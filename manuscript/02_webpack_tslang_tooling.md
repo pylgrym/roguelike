@@ -126,7 +126,7 @@ And a webpage `src/index0.html` to host it in. We could make do with this tiny b
 
 But we'll use this more complete version, which includes stuff we want to be there. There is a graphics canvas we are going to draw on, and some sensible default settings (getting rid of default margin, setting proper encoding, and a background color that lets us see how the canvas is doing).
 
-````html
+```html
 <!DOCTYPE html>
 <html>
 
@@ -142,8 +142,7 @@ But we'll use this more complete version, which includes stuff we want to be the
     <canvas id="canvas1"></canvas>
   </body>
 </html>
-
-````
+```
 
 We are now almost ready to type `npm start`. In order to do that, we have to **add** the `start` script to our `package.json`, so the script section will look like this:
 
