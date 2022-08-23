@@ -142,6 +142,7 @@ But we'll use this more complete version, which includes stuff we want to be the
     <canvas id="canvas1"></canvas>
   </body>
 </html>
+
 ````
 
 We are now almost ready to type `npm start`. In order to do that, we have to **add** the `start` script to our `package.json`, so the script section will look like this:
