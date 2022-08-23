@@ -5,7 +5,7 @@ We are going to build a game. What kind of game? It will be turn-based, like che
 
 The player is represented by an @-sign, in a top-down grid representation of a dungeon, facing enemy **monsters** represented by moving alphabet letters, and fighting back with other ascii-character **items** he finds there.
 
-![roguelikey2](./resources/roguelikey2.png)
+![roguelikey2](roguelikey2.png)
 
 I first encountered roguelike games when I was about 16 years old, having launched some of them by accident, while searching for interesting or useful software (what you would call 'games'). I stared at them for a bit, thinking there had to be some sort of misunderstanding - they seemed to have misplaced their graphics, their sound effects, their action, and even their user-interface? I figured out how to *close* the programs again, then promptly forgot about them. 
 
