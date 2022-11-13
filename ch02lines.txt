@@ -1,0 +1,99 @@
+mkdir mygame
+cd mygame
+npm init
+
+npm install -D typescript
+npm install -D webpack-cli
+npm install -D webpack@^5
+npm install -D ts-loader
+npm install -D @types/jquery
+npm install -D jquery
+npm install -D webpack-dev-server
+npm install -D html-webpack-plugin@^5
+npm install -D file-loader
+
+const HtmlWebpackPlugin=require("html-webpack-plugin");
+const webpack = require("webpack");
+module.exports = {
+  entry: './src/index02_hello.ts',
+  module: { rules: [
+    { test:    /\.ts$/, 
+      use: 'ts-loader', exclude: /node_modules/ },
+    { test: /\.(ico)$/, 
+      use: 'file-loader?name=src/[name].[ext]' }    
+  ] },
+  mode: 'development',
+  resolve: { 
+      extensions: [ ".js", ".ts" ],
+      modules: [ 'src', 'node_modules' ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin( 
+    { template: './src/index0.html',
+       favicon: './src/favicon.ico' } ),
+    new webpack.ProvidePlugin(
+      {$: 'jquery',jquery: 'jquery'}
+    )
+  ],
+  devServer: { static: './dist' }
+}
+
+{ "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "ES2020", // or stick to "ES6",
+    "strict": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,    
+    "forceConsistentCasingInFileNames": true
+} }
+---------------------------------
+mkdir src
+cd src
+---------------------------------
+let test:string = 'Hello Typescript!';
+console.log(test);
+document.body.textContent = test;
+---------------------------------
+<!DOCTYPE html>
+<html> <body id="body1">
+  Hello!
+  <canvas id="canvas1"></canvas>
+</body> </html>
+---------------------------------
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      body { margin: 0px; }
+      html { background: black; color:cyan; overflow: hidden; }
+      canvas { background: lightblue; }
+    </style>
+    <meta charset="utf-8">
+  </head>
+
+  <body id="body1">
+    <canvas id="canvas1"></canvas>
+  </body>
+</html>
+----------------------------------
+"start": "webpack serve --open",
+----------------------------------
+npm start
+----------------------------------
+npx webpack serve --open --entry ./src/index02_hello.ts
+----------------------------------
+
+
+
+
+
+
+

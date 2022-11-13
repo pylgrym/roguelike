@@ -1,0 +1,15 @@
+{ "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "ES2020", // or stick to "ES6",
+    "strict": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,    
+    "forceConsistentCasingInFileNames": true
+} }
