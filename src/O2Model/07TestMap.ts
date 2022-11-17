@@ -6,7 +6,7 @@ import { WPoint } from "./07WPoint";
 
 export class TestMap {
   static test0():DMapIF {
-    let wdim = new WPoint(14, 8);
+    let wdim = new WPoint(14,8);
     let level = 0;
     return new DMap(wdim,Glyph.Wall,level);    
   }
@@ -26,7 +26,7 @@ export class TestMap {
   }
 
   static fullTest():DMapIF {
-    let wdim = new WPoint(14, 8);
+    let wdim = new WPoint(32,16);
     let rnd = new Rnd(42);
     return TestMap.test(wdim,rnd,0);    
   }
