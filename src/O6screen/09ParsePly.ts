@@ -6,6 +6,7 @@ import { GameIF } from "O3build/08GameIF";
 import { CmdIF } from "O4cmds/09CmdIF";
 import { MoveCmd } from "O4cmds/09MoveCmd";
 import { WaitCmd } from "O4cmds/09WaitCmd";
+import { MakerIF } from "./06ScreenMakerIF";
 
 export class ParsePly {
   public ply:Mob;

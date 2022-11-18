@@ -2,6 +2,8 @@ import { Stack } from "O1term/05ScreenStack";
 import { SScreenIF } from "O1term/05SScreenIF";
 import { GameIF } from "O3build/08GameIF";
 import { BuildIF1 } from "O3build/09BuildIF1";
+import { OverScreen0 } from "./06OverScreen";
+import { MakerIF } from "./06ScreenMakerIF";
 import { GameScreen } from "./09GameScreen";
 
 export class ScreenMaker2_Fixed implements MakerIF {

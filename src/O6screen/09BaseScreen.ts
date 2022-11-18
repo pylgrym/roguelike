@@ -5,6 +5,7 @@ import { DMapIF } from "O2model/07DMapIF";
 import { DrawMap } from "O2model/07DrawMap";
 import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
+import { MakerIF } from "./06ScreenMakerIF";
 
 export class BaseScreen implements SScreenIF {
   name='base';

@@ -1,5 +1,6 @@
 import { StackIF } from "O1term/05ScreenStackIF";
 import { GameIF } from "O3build/08GameIF";
+import { MakerIF } from "./06ScreenMakerIF";
 import { BaseScreen } from "./09BaseScreen";
 import { ParsePly } from "./09ParsePly";
 
