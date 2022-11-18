@@ -1,8 +1,8 @@
-import { DMapIF } from "O2Model/07DMapIF";
-import { Rnd } from "O2Model/07Rnd";
-import { TestMap } from "O2Model/07TestMap";
-import { WPoint } from "O2Model/07WPoint";
-import { Game0 } from "O2Model/08GameModel";
+import { DMapIF } from "O2model/07DMapIF";
+import { Rnd } from "O2model/07Rnd";
+import { TestMap } from "O2model/07TestMap";
+import { WPoint } from "O2model/07WPoint";
+import { Game0 } from "O2model/08GameModel";
 import { BuildIF0 } from "./08BuildIF0";
 import { GameIF } from "./08GameIF";
 
