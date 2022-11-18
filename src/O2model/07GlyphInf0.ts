@@ -20,6 +20,12 @@ export class GlyphMap0 {
     add('#',Glyph.Wall);   
     add('.',Glyph.Floor);  
     add('?',Glyph.Unknown);
+
+    add('@',Glyph.Ply); // ch09
+    add('a',Glyph.Ant);
+    add('b',Glyph.Bat);
+    add('c',Glyph.Cat);
+  
     return GlyphMap0.glyphs.length;
   }
   static add(c:string, g:Glyph) {

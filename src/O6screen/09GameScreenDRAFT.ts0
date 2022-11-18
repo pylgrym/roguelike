@@ -1,0 +1,34 @@
+export class GameScreenDRAFT implements SScreenIF {
+  name='game';
+  game:GameIF;
+  constructor(public game:GameIF, public make:MakerIF) { }
+  draw(term:Term) { 
+    DrawMap.drawMap0(term,this.game.curMap(),new WPoint());
+  }
+  onKey(e:JQuery.KeyDownEvent, s:StackIF) {
+    this.plyKeyTurn(s, ParsePly.keyPressToCode(e));
+  }
+  plyKeyTurn(s:StackIF, c:string):void { 
+      if (this.plyTurn(s,c)) { this.npcTurns(s); }
+      return true; 
+  }
+  plyTurn(s:StackIF, c:string):boolean { return true; }
+  npcTurns(s:StackIF) {
+    let ply = <Mob> this.game.ply;
+    let map = <DMapIF> this.game.curMap();
+    let q = map.Q;
+    var m:Mob;
+    for (m=q.next(); !m.isPly && !this.over(); m=q.next()) {
+      this.npcTurn(m,ply);
+    }
+  }  
+  npcTurn(m: Mob, ply:Mob) {}
+  over(s:StackIF):boolean { 
+    let over = !this.game.ply.alive();
+    if (over) {
+      s.pop();
+      s.push(this.make.gameOver());
+    }
+    return over;  
+  }    
+}

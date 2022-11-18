@@ -21,4 +21,14 @@ export class DrawMap {
     }
   }  
   static outside:MapCell = new MapCell(Glyph.Unknown);    
+
+  // ch09:
+  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint) { 
+    if (!plypos) { plypos = new WPoint(); }
+    let vp:WPoint = new WPoint( // Must get viewport:
+      -Math.floor(term.dim.x*0.5)+plypos.x,
+      -Math.floor(term.dim.y*0.5)+plypos.y,
+    );
+    this.drawMap0(term,map,vp);  
+  }  
 }

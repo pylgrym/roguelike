@@ -2,9 +2,13 @@ import { DMapIF } from "./07DMapIF";
 import { Glyph } from "./07Glyph";
 import { MapCell } from "./07MapCell";
 import { WPoint } from "./07WPoint";
+import { Mob } from "./09Mob";
+import { TurnQ } from "./09TurnQ";
 
 export class DMap implements DMapIF {
   cells:MapCell[][];
+  Q: TurnQ = new TurnQ(); // ch09
+
   //constructor(public dim:WPoint, public level:number){}
   // change ctor to this:
   constructor(public dim:WPoint, g_empty:Glyph, 
@@ -30,5 +34,32 @@ export class DMap implements DMapIF {
       }
     }
     return cells;
+  }  
+
+  // ch09:
+  moveMob(m:Mob, p:WPoint):void {
+    this.cell(m.pos).mob = undefined;
+    m.pos.x = p.x; m.pos.y = p.y;
+    this.cell(m.pos).mob = m;
+  }
+  addNPC(m:Mob):Mob {
+    this.cell(m.pos).mob = m;
+    this.Q.pushMob(m);
+    return m;
+  }
+  removeMob(m:Mob):void {
+    this.Q.removeMob(m);
+    this.cell(m.pos).mob = undefined;
+  }
+  enterMap(ply:Mob, np:WPoint):void {
+    ply.pos.set(np);
+    this.cell(ply.pos).mob = ply;
+    this.Q.frontPushMob(ply);
+  }
+
+  blocked(p:WPoint):boolean {
+    if (!this.legal(p)) { return true; }
+    let c = this.cell(p);
+    return c.blocked();
   }  
 }
