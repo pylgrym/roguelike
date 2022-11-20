@@ -9,7 +9,6 @@ export class TurnQ {
     this.mobs.splice(this.mobs.indexOf(m),1); 
   }
   frontPushMob(m:Mob) { this.mobs.unshift(m); }
-
   next():Mob {
     this.pushMob(this.popMob());
     return this.curMob();

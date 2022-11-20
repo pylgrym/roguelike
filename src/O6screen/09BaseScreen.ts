@@ -10,13 +10,6 @@ import { MakerIF } from "./06ScreenMakerIF";
 export class BaseScreen implements SScreenIF {
   name='base';
   constructor(public game:GameIF, public make:MakerIF){}
-  /*
-  draw0(term:TermIF) { 
-    DrawMap.drawMap0(
-      term, <DMapIF> this.game.curMap(), new WPoint()
-    );
-  }
-  */
   draw(term:TermIF) { 
     DrawMap.drawMapPly(
       term, <DMapIF>this.game.curMap(), this.game.ply.pos

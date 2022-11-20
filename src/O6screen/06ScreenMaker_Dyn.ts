@@ -3,9 +3,11 @@ import { SScreenIF } from "O1term/05SScreenIF";
 import { MakerIF } from "./06ScreenMakerIF";
 import { DummyScreen } from "./06DummyScreen";
 import { OverScreen0 } from "./06OverScreen";
+import { GameIF } from "O3build/08GameIF";
+import { BuildIF1 } from "O3build/09BuildIF1";
 
-export interface GameIF {}
-export interface BuildIF1 {makeGame():GameIF}
+//export interface GameIF {} // ch09:replaced
+//export interface BuildIF1 {makeGame():GameIF}
 
 export class ScreenMaker1_Dyn implements MakerIF {
   game:GameIF|null = null;

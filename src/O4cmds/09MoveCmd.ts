@@ -8,15 +8,14 @@ export class MoveCmd extends CmdBase {
   constructor(
     public dir:WPoint, public mob:Mob, public game:GameIF
   ) { super(); }
-
-  /*
-  exc():boolean { 
+  
+  exc0():boolean { 
     let map = <DMapIF> this.game.curMap();
     let np = this.dir.plus(this.mob.pos);
     map.moveMob(this.mob,np); 
     return true;
   }
-  */
+  
   exc():boolean { 
     let map = <DMapIF> this.game.curMap();
     let np = this.dir.plus(this.mob.pos);
