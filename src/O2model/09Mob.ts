@@ -12,7 +12,12 @@ export class Mob {
   pos:WPoint = new WPoint();
   g:Glyph = Glyph.Unknown;
   name:string = '?';
+
+  hp:number = 3;    // ch11
+  maxhp:number = 3; // ch11
+
   isPly:boolean = false;
 
-  alive():boolean { return true; }
+  // alive():boolean { return true; }
+  alive():boolean { return this.hp>0; } // ch11.
 }

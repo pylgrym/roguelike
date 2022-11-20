@@ -14,6 +14,7 @@ export class BaseScreen implements SScreenIF {
     DrawMap.drawMapPly(
       term, <DMapIF>this.game.curMap(), this.game.ply.pos
     ); 
+    DrawMap.renderStats(term, this.game); // ch11
   }
   onKey(e:JQuery.KeyDownEvent, s:StackIF) {}
   npcTurns(s:StackIF) {

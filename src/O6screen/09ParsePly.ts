@@ -6,6 +6,7 @@ import { GameIF } from "O3build/08GameIF";
 import { CmdIF } from "O4cmds/09CmdIF";
 import { MoveCmd } from "O4cmds/09MoveCmd";
 import { WaitCmd } from "O4cmds/09WaitCmd";
+import { MoveBumpCmd } from "O4cmds/11MoveBumpCmd";
 import { MakerIF } from "./06ScreenMakerIF";
 
 export class ParsePly {
@@ -41,11 +42,17 @@ export class ParsePly {
       case 'ArrowUp':    case 'k': case 'K': dir.y-=1; break;
       case '.': return this.waitCmd(); break;   
     }
-    if (!dir.empty()) { return this.moveCmd(dir); }
+    //if (!dir.empty()) { return this.moveCmd(dir); }
+    if (!dir.empty()) { return this.moveBumpCmd(dir); }
     return null;
   }
   moveCmd(dir:WPoint):CmdIF {
     return new MoveCmd(dir, this.ply, this.game); 
   }
   waitCmd(): CmdIF { return new WaitCmd(); }    
+
+  moveBumpCmd(dir:WPoint):CmdIF { // ch11
+    return new MoveBumpCmd(dir,this.ply,this.game); 
+  }
+
 }
