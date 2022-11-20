@@ -25,7 +25,7 @@ export class GlyphMap0 {
     add('a',Glyph.Ant);
     add('b',Glyph.Bat);
     add('c',Glyph.Cat);
-  
+		add('S',Glyph.Sheep);  
     return GlyphMap0.glyphs.length;
   }
   static add(c:string, g:Glyph) {

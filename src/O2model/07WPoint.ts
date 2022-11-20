@@ -12,6 +12,19 @@ export class WPoint {
   }
   set(n: WPoint) { this.x = n.x; this.y = n.y; }
 
+  // ch10:
+  dir(p:WPoint):WPoint { 
+    return new WPoint(Math.sign(p.x-this.x), 
+                      Math.sign(p.y-this.y)); 
+  }
+  dist(b:WPoint):number { return Math.sqrt(this.sqDist(b)); }
+  sqDist(b:WPoint):number { 
+    let d = this.minus(b);
+    return (d.x*d.x + d.y*d.y); 
+  }
+  minus(b:WPoint):WPoint { return new WPoint(this.x-b.x, this.y-b.y); }
+
+
   static StockDims = new WPoint(
     TPoint.StockDims.x,TPoint.StockDims.y);
 }

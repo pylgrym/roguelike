@@ -6,22 +6,24 @@ import { TestMap } from "O2model/07TestMap";
 import { WPoint } from "O2model/07WPoint";
 import { Game0 } from "O2model/08GameModel";
 import { Mob } from "O2model/09Mob";
+import { MobAI1_sheep } from "O5ai/10MobAi1_sheep";
+import { MobAiIF } from "O5ai/10MobAiIF";
 import { GameIF } from "./08GameIF";
-import { BuildIF1 } from "./09BuildIF1";
+import { BuildIF2 } from "./10BuildIF2";
 
-export class Builder1 implements BuildIF1 {
+export class Builder2a implements BuildIF2 {
   makeGame():GameIF { 
     let rnd = new Rnd(42);
     let game = new Game0(rnd);
-    game.ply = this.makePly();
+    game.ply = this.makePly(); 
     game.map = this.makeLevel(rnd, 0);
     this.enterFirstLevel0(game);
-
+    game.ai = this.makeAI(); 
     return game; 
-  } 
+  }  
   makeLevel(rnd:Rnd, level:number):DMapIF {
     let map = this.makeMap(rnd, level);
-    
+    this.makeSheepRing(map,rnd);
     return map;
   }
   makeMap(rnd:Rnd, level:number):DMapIF {
@@ -38,4 +40,28 @@ export class Builder1 implements BuildIF1 {
     return new WPoint(Math.floor(d.x/2), Math.floor(d.y/2)); 
   }
   makePly():Mob { return new Mob(Glyph.Ply,20,12); }
+  makeAI():MobAiIF|null{ return new MobAI1_sheep(); }  
+  makeSheepRing(map:DMapIF, rnd:Rnd) {
+    this.makeMobRing(Glyph.Sheep, map, rnd);
+  }
+  makeMobRing(g:Glyph, map:DMapIF, rnd:Rnd) {
+    let dim = map.dim;
+    let c = new WPoint(Math.floor(dim.x/2),
+                       Math.floor(dim.y/2));
+    let p = new WPoint();
+    for (p.y=1;p.y<dim.y-1;++p.y) {
+      for (p.x=1;p.x<dim.x-1;++p.x) {
+        let d = c.dist(p);
+        if (d<7 || d>9) { continue; }
+        if (map.blocked(p)) { continue; }
+        this.addNPC(g,p.x,p.y, map,0);
+      }
+    }
+  }
+  addNPC(g:Glyph, x:number, y:number, 
+         map:DMapIF, level:number) { 
+    let mob = new Mob(g,x,y);
+    map.addNPC(mob); 
+    return mob;
+  }
 }

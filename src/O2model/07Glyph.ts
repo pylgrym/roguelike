@@ -1,12 +1,13 @@
-export enum Glyph { 
-  Bad, // will be numbers 0,1,2 etc.
+export enum Glyph {
+  Bad,
   Rock,
-  Wall, 
+  Wall,
   Floor,
   Unknown,
 
-  Ply, // ch09
+  Ply,
   Ant,
   Bat,
-  Cat
+  Cat,
+  Sheep
 }

@@ -28,7 +28,10 @@ export class BaseScreen implements SScreenIF {
       this.npcTurn(m,ply);
     }
   }  
-  npcTurn(m:Mob, ply:Mob) {}
+  npcTurn(m:Mob, ply:Mob) {
+    let ai = this.game.ai;  // ch10
+    if (ai) { ai.turn(m,ply,this.game); }      
+  }
   over(s:StackIF):boolean { 
     let over = !this.game.ply.alive();
     if (over) {
