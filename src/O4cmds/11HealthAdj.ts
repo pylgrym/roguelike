@@ -22,12 +22,17 @@ export class HealthAdj {
     console.log('dmg', amount, m.hp);
     m.hp -= amount;
     console.log('d_to', amount, m.hp);
-    if (m.hp <= 0) { this.mobDies(m, game); }
+    if (m.hp <= 0) { 
+      let involvesPly = m.isPly || 
+            (attacker != null && attacker.isPly);
+      this.mobDies(m, game, involvesPly); 
+    }
   }
 
-  static mobDies(m: Mob, game:GameIF) {
+  static mobDies(m: Mob, game:GameIF, involvesPly:boolean) {
     let s = `${m.name} dies in a fit of agony`;
-    console.log(s);
+    //console.log(s);
+    if (involvesPly) { game.msg(s); } // ch12
     let map = <DMapIF> game.curMap();
     map.removeMob(m);
   }

@@ -3,6 +3,7 @@ import { MobAiIF } from "O5ai/10MobAiIF";
 import { DMapIF } from "./07DMapIF";
 import { Rnd } from "./07Rnd";
 import { Mob } from "./09Mob";
+import { MsgLog } from "./12MsgLog";
 
 export class Game0 implements GameIF {
   constructor(public rnd:Rnd) {}
@@ -11,4 +12,7 @@ export class Game0 implements GameIF {
 
     ply:Mob = <Mob><unknown> undefined; // ch09    
     ai:MobAiIF|null = null; // ch10
+
+    log:MsgLog = <MsgLog>  <unknown> undefined; // ch12 fixup.
+    msg(s:string){} 
 }

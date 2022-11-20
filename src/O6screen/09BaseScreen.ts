@@ -6,6 +6,7 @@ import { DrawMap } from "O2model/07DrawMap";
 import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
 import { MakerIF } from "./06ScreenMakerIF";
+import { MoreScreen } from "./12MoreScreen";
 
 export class BaseScreen implements SScreenIF {
   name='base';
@@ -15,6 +16,7 @@ export class BaseScreen implements SScreenIF {
       term, <DMapIF>this.game.curMap(), this.game.ply.pos
     ); 
     DrawMap.renderStats(term, this.game); // ch11
+    DrawMap.renderMsg(term, this.game); // ch12
   }
   onKey(e:JQuery.KeyDownEvent, s:StackIF) {}
   npcTurns(s:StackIF) {
@@ -28,6 +30,7 @@ export class BaseScreen implements SScreenIF {
     ) {
       this.npcTurn(m,ply);
     }
+    this.handleMsgs(s); // ch12    
   }  
   npcTurn(m:Mob, ply:Mob) {
     let ai = this.game.ai;  // ch10
@@ -40,5 +43,11 @@ export class BaseScreen implements SScreenIF {
       s.push(this.make.gameOver());
     }
     return over;  
+  }
+  handleMsgs(s:StackIF) { // ch12
+    if (!this.game.log) {return;}
+    if (this.game.log.queuedMsgs()) {
+      s.push(new MoreScreen(this.game,this.make));
+    }
   }
 }

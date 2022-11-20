@@ -42,4 +42,24 @@ export class DrawMap {
     term.txt(0,y++, hp, 'yellow', 'teal');
     term.txt(0,y++,mhp, 'yellow', 'teal');
   }    
+
+  // ch12:  
+  static renderMsg(term:TermIF, game:GameIF) {
+    let log = game.log;
+    if (!log) {return;} //(Let older versions still run.)
+    let line = log.top();
+    let num = log.len(); 
+    let s = (num > 1)  
+       ? `${line} (${num} more)`
+       : line;
+    s = this.extend(s,term);
+    term.txt(1,1, s, 'cyan', 'blue');
+  }
+
+  static mask:string='';
+  static extend(s:String, term:TermIF):string { 
+      let dim = term.dim; // Extend s to width:
+      if (!this.mask) { this.mask = ' '.repeat(dim.x); }
+      return s + this.mask.substr(0, dim.x - s.length);
+  }
 }

@@ -14,6 +14,9 @@ export class GameScreen extends BaseScreen {
   }
   plyKeyTurn(s:StackIF, c:string,
              e:JQuery.KeyDownEvent|null):void { 
+    if (this.game.log) {
+      this.game.log.clearQueue();
+    }    
     if (this.plyTurn(s,c,e)) { this.npcTurns(s); }
   }    
 

@@ -1,4 +1,5 @@
 import { StackIF } from "O1term/05ScreenStackIF";
+import { SScreenIF } from "O1term/05SScreenIF";
 import { DMapIF } from "O2model/07DMapIF";
 import { WPoint } from "O2model/07WPoint";
 import { Mob } from "O2model/09Mob";
@@ -8,6 +9,7 @@ import { MoveCmd } from "O4cmds/09MoveCmd";
 import { WaitCmd } from "O4cmds/09WaitCmd";
 import { MoveBumpCmd } from "O4cmds/11MoveBumpCmd";
 import { MakerIF } from "./06ScreenMakerIF";
+import { LogScreen } from "./12LogScreen";
 
 export class ParsePly {
   public ply:Mob;
@@ -34,6 +36,8 @@ export class ParsePly {
   }
   parseKeyCmd(c:string, ss:StackIF,
               e:JQuery.KeyDownEvent|null):CmdIF|null {
+
+    var s:SScreenIF|undefined = undefined; // ch12
     let dir = new WPoint();
     switch (c) {
       case 'ArrowLeft':  case 'h': case 'H': dir.x-=1; break;
@@ -41,8 +45,10 @@ export class ParsePly {
       case 'ArrowDown':  case 'j': case 'J': dir.y+=1; break;
       case 'ArrowUp':    case 'k': case 'K': dir.y-=1; break;
       case '.': return this.waitCmd(); break;   
+      case 'q': s = new LogScreen(this.game,this.maker); break;  
     }
-    //if (!dir.empty()) { return this.moveCmd(dir); }
+    if (s) { ss.push(s); return null; }// ch12
+
     if (!dir.empty()) { return this.moveBumpCmd(dir); }
     return null;
   }
