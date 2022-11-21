@@ -24,6 +24,10 @@ export class WPoint {
   }
   minus(b:WPoint):WPoint { return new WPoint(this.x-b.x, this.y-b.y); }
 
+  // ch13:
+  eq(b:WPoint):boolean { 
+    return b.x ==  this.x && b.y == this.y;
+  }
 
   static StockDims = new WPoint(
     TPoint.StockDims.x,TPoint.StockDims.y);

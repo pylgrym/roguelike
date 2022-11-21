@@ -9,5 +9,8 @@ export enum Glyph {
   Ant,
   Bat,
   Cat,
-  Sheep
+  Sheep,
+
+  StairsDown, // ch13
+  StairsUp
 }
