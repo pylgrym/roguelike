@@ -26,6 +26,8 @@ export class ScreenMaker1_Dyn implements MakerIF {
   gameOver():SScreenIF {
     return this.overScreen(<GameIF>this.game, this);  
   }
+  more(game:GameIF|null):SScreenIF { return new DummyScreen(this);}
+
 
   static runDyn(dyn_gs:ScreenMaker1_Dyn) {
     Stack.run_SScreen(dyn_gs.init(dyn_gs));
