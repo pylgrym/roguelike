@@ -6,7 +6,6 @@ import { DrawMap } from "O2model/07DrawMap";
 import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
 import { MakerIF } from "./06ScreenMakerIF";
-import { MoreScreen } from "./12MoreScreen";
 
 export class BaseScreen implements SScreenIF {
   name='base';
@@ -47,7 +46,7 @@ export class BaseScreen implements SScreenIF {
   handleMsgs(s:StackIF) { // ch12
     if (!this.game.log) {return;}
     if (this.game.log.queuedMsgs()) {
-      s.push(new MoreScreen(this.game,this.make));
+      s.push(this.make.more(this.game)); //new MoreScreen(this.game, this.make));
     }
   }
 }
