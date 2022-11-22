@@ -18,7 +18,9 @@ export class ScreenMaker2_Fixed implements MakerIF {
   }
 
   // ch12:
-  more(game:GameIF|null):SScreenIF { return new MoreScreen(<GameIF>game,this); }
+  more(game:GameIF|null):SScreenIF { 
+    return new MoreScreen(<GameIF>game,this); 
+  }
 
   static run_Gfirst(m:MakerIF) {
     Stack.run_SScreen(m.new_Game());
