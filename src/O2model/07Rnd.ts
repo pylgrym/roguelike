@@ -1,3 +1,5 @@
+import { WPoint } from "./07WPoint";
+
 export class RndRoot {
   constructor(public seed:number){}
   getSeed():number { return this.seed; }
@@ -35,4 +37,22 @@ export class RndBase extends RndRoot {
 
 // (We must present it as the name Rnd,
 // which will later become a more complete version.)
-export class Rnd extends RndBase { }
+export class Rnd extends RndBase { 
+  //ch14:
+  rndDir2():WPoint {  // Never makes zero-zero.
+    let a = this.rndC(-1,1);
+    let b = this.oneIn(2) ? 1 : -1;
+    let h = this.oneIn(2);
+    return new WPoint(h ? a : b, h ? b:a);
+  }
+  // Two extras you can have for free:
+  rndDir0():WPoint { 
+    return new WPoint(this.rndC(-1,1), 
+                      this.rndC(-1,1));
+  }
+
+  rndDir(p:WPoint=new WPoint()):WPoint {
+    return new WPoint(p.x+this.rndC(-1,1),
+                      p.y+this.rndC(-1,1));
+  }
+}
