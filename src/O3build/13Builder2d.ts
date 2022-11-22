@@ -77,26 +77,26 @@ export class Builder2d implements BuildIF2 {
     (level == 0) 
     ? this.addStairs0(map) 
     : this.addStairs(map,rnd);
-    }
-    addStairs0(map: DMapIF) { 
-        let pos = this.centerPos(map.dim);
-        let p = new WPoint(3,0).addTo(pos);
-        map.cell(p).env = Glyph.StairsDown;
-    }
+  }
+  addStairs0(map: DMapIF) { 
+      let pos = this.centerPos(map.dim);
+      let p = new WPoint(3,0).addTo(pos);
+      map.cell(p).env = Glyph.StairsDown;
+  }
 
-    addStairs(map:DMapIF, rnd:Rnd) {  
-        this.addStair(map, rnd, Glyph.StairsDown);
-        this.addStair(map, rnd, Glyph.StairsUp);
-    }
-    addStair(map:DMapIF,rnd:Rnd,stair:Glyph):boolean {
-        let p = <WPoint> FreeSpace.findFree(map, rnd);
-        map.cell(p).env = stair;	
-        return true;
-    }    
-    enterFirstLevel(game: Game2) {
-      let dung = game.dung; 
-      let map = dung.curMap(game);
-      let np = this.centerPos(map.dim);
-      game.dung.plySwitchLevel(dung.level,np,game);
-    }
+  addStairs(map:DMapIF, rnd:Rnd) {  
+      this.addStair(map, rnd, Glyph.StairsDown);
+      this.addStair(map, rnd, Glyph.StairsUp);
+  }
+  addStair(map:DMapIF,rnd:Rnd,stair:Glyph):boolean {
+      let p = <WPoint> FreeSpace.findFree(map, rnd);
+      map.cell(p).env = stair;	
+      return true;
+  }    
+  enterFirstLevel(game: Game2) {
+    let dung = game.dung; 
+    let map = dung.curMap(game);
+    let np = this.centerPos(map.dim);
+    game.dung.plySwitchLevel(dung.level,np,game);
+  }
 }

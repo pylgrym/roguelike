@@ -4,13 +4,11 @@ export enum Glyph {
   Wall,
   Floor,
   Unknown,
-
   Ply,
   Ant,
   Bat,
   Cat,
   Sheep,
-
   StairsDown, // ch13
   StairsUp
 }
