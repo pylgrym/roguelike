@@ -6,7 +6,7 @@ import { TestMap } from "O2model/07TestMap";
 import { WPoint } from "O2model/07WPoint";
 import { Game0 } from "O2model/08GameModel";
 import { Mob } from "O2model/09Mob";
-import { Game1 } from "O2model/12GameModel1_Log";
+import { Game2 } from "O2model/13GameModel2";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { MobAI2_cat } from "O5ai/11MobAI2_cat";
 import { GameIF } from "./08GameIF";
@@ -16,10 +16,9 @@ import { FreeSpace } from "./13FreeSpace";
 export class Builder2d implements BuildIF2 {
   makeGame():GameIF { 
     let rnd = new Rnd(42);
-    let game = new Game1(rnd);
-    game.ply = this.makePly(); 
-    game.map = this.makeLevel(rnd, 0);
-    this.enterFirstLevel0(game);
+    let ply = this.makePly(); 
+    let game = new Game2(rnd,ply,this);
+    this.enterFirstLevel(game);
     game.ai = this.makeAI(); 
     return game; 
   }  
@@ -94,4 +93,10 @@ export class Builder2d implements BuildIF2 {
         map.cell(p).env = stair;	
         return true;
     }    
+    enterFirstLevel(game: Game2) {
+      let dung = game.dung; 
+      let map = dung.curMap(game);
+      let np = this.centerPos(map.dim);
+      game.dung.plySwitchLevel(dung.level,np,game);
+    }
 }

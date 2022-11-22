@@ -7,15 +7,12 @@ import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
 
-export class Game1 implements GameIF {
-  constructor(public rnd:Rnd) {}
-  map: DMapIF|null = null;
-  curMap(): DMapIF|null { return this.map; }
-  ply: Mob = <Mob><unknown>undefined;  
+export class Game2 implements GameIF {
+  constructor(public rnd:Rnd, public ply:Mob, 
+              public build:BuildIF0) {}
+  curMap():DMapIF|null { return this.dung.curMap(this); }
   ai: MobAiIF | null = null;
   log: MsgLog = new MsgLog();
   msg(s:string) { this.log.msg(s); }
-
-  dung:Dung = <Dung> <unknown> undefined; // ch13
-  build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
+  dung:Dung = new Dung(); // ch13
 }

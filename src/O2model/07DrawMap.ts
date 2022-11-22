@@ -36,11 +36,13 @@ export class DrawMap {
   // ch11:
   static renderStats(term:TermIF, game:GameIF) {
     let ply = game.ply;
-    let  hp = ` HP:${ply.hp}`
-    let mhp = `MHP:${ply.maxhp}`    
+    let  hp = ` HP:${ply.hp}`;
+    let mhp = `MHP:${ply.maxhp}`;    
+    let   L = `LVL:${game.dung.level}`;    
     let y=1;
     term.txt(0,y++, hp, 'yellow', 'teal');
     term.txt(0,y++,mhp, 'yellow', 'teal');
+    term.txt(0,y++,  L, 'yellow', 'teal'); // ch13.
   }    
 
   // ch12:  
