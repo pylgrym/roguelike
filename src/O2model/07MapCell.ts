@@ -10,6 +10,13 @@ export class MapCell {
     return this.mob ? this.mob.g : this.env; 
   }
   blocked():boolean {
-    return (!!this.mob || this.env == Glyph.Wall);
+    return (!!this.mob || this.opaque()); // ch15
   }
+  opaque():boolean {  // ch15
+    return (
+         this.env == Glyph.Wall 
+      || this.env == Glyph.Rock
+      || this.env == Glyph.Door_Closed 
+      );
+  }  
 }

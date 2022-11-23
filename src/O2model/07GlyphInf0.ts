@@ -30,6 +30,9 @@ export class GlyphMap0 {
     add('>',Glyph.StairsDown); // ch13
     add('<',Glyph.StairsUp);
       
+    add(',',Glyph.Door_Open);  // ch15
+    add('+',Glyph.Door_Closed);
+
     return GlyphMap0.glyphs.length;
   }
   static add(c:string, g:Glyph) {

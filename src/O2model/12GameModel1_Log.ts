@@ -14,8 +14,8 @@ export class Game1 implements GameIF {
   ply: Mob = <Mob><unknown>undefined;  
   ai: MobAiIF | null = null;
   log: MsgLog = new MsgLog();
-  msg(s:string) { this.log.msg(s); }
-
+  msg(s:string) { this.log.msg(s,false); }
+  flash(s:string) { this.log.msg(s,true);  }
   dung:Dung = <Dung> <unknown> undefined; // ch13
   build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
 }

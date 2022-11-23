@@ -17,7 +17,7 @@ export class Game0 implements GameIF {
 
     log:MsgLog = <MsgLog>  <unknown> undefined; // ch12 fixup.
     msg(s:string){} 
-
+    flash(s:string){}
     dung:Dung = <Dung> <unknown> undefined; // ch13
     build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
 }

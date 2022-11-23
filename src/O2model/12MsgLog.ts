@@ -1,9 +1,9 @@
 export class MsgLog {
   queue: string[] = [];
   archive: string[] = [];
-  msg(s:string) {
-    this.archive.push(s);
+  msg(s:string, flash:boolean) {
     this.queue.push(s);
+    if (!flash) { this.archive.push(s); }
     console.log(s);
   }
   dequeue() { this.queue.shift(); }

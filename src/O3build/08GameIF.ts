@@ -14,6 +14,7 @@ export interface GameIF {
   ai: MobAiIF | null; // ch10
 
   msg(s:string):void; // ch12
+  flash(s:string):void;//ch15
   log:MsgLog;
 
   dung:Dung;          // ch13
