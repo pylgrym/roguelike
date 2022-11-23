@@ -53,7 +53,7 @@ export class DrawMap {
        ? `${line} (${num} more)`
        : line;
     s = this.extend(s,term);
-    term.txt(1,1, s, 'cyan', 'blue');
+    term.txt(0,0, s, 'cyan', 'blue');
   }
 
   static mask:string='';
