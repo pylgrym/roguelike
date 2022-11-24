@@ -2,9 +2,7 @@ import { Glyph } from "./07Glyph";
 import { Mob } from "./09Mob";
 
 export class MapCell {
-  constructor(public env:Glyph) {}
-  // glyph():Glyph { return this.env; }
-  
+  constructor(public env:Glyph) {}  
   mob:Mob|undefined; // ch09
   glyph():Glyph {
     return this.mob ? this.mob.g : this.env; 

@@ -19,7 +19,7 @@ export class HealthAdj {
   }
 
   static dmg(m: Mob, amount: number, game:GameIF,
-             attacker:Mob|null) {
+             attacker:Mob|null) { 
     AutoHeal.combatResets(m,attacker,game);
 
     console.log('dmg', amount, m.hp);

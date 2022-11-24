@@ -8,11 +8,10 @@ import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
 
-export class Game0 implements GameIF {
+export class Game0 implements GameIF { 
   constructor(public rnd:Rnd) {}
   map:DMapIF|null = null;
   curMap():DMapIF|null { return this.map;}
-
   ply:Mob = <Mob><unknown> undefined; // ch09    
   ai:MobAiIF|null = null; // ch10
   log:MsgLog = <MsgLog>  <unknown> undefined; // ch12 fixup.

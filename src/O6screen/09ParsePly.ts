@@ -38,7 +38,6 @@ export class ParsePly {
   }
   parseKeyCmd(c:string, ss:StackIF,
               e:JQuery.KeyDownEvent|null):CmdIF|null {
-
     var s:SScreenIF|undefined = undefined; // ch12
     let dir = new WPoint();
     switch (c) {

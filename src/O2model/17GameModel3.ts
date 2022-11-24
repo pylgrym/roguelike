@@ -8,7 +8,7 @@ import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
 
-export class Game3 implements GameIF {
+export class Game3 implements GameIF { 
   constructor(public rnd:Rnd, public ply:Mob, 
               public build:BuildIF0) {}
   curMap():DMapIF|null { return this.dung.curMap(this); }

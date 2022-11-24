@@ -2,7 +2,7 @@ import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
 import { HealthAdj } from "./11HealthAdj";
 
-export class AutoHeal { 
+export class AutoHeal {  
     amountToHealMin:number = 1;
     timeToHealMax:number = 5;
     nextWait:number=0;
