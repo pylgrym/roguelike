@@ -3,7 +3,7 @@ import { TPoint } from "O1term/03TPoint";
 import { GameIF } from "O3build/08GameIF";
 import { DMapIF } from "./07DMapIF";
 import { Glyph } from "./07Glyph";
-import { GlyphInf0, GlyphMap0 } from "./07GlyphInf0";
+import { GlyphMap1 } from "./16GlyphInf1";
 import { MapCell } from "./07MapCell";
 import { WPoint } from "./07WPoint";
 
@@ -16,8 +16,9 @@ export class DrawMap {
       for (t.x=0, w.x=vp.x; t.x<tdim.x; ++t.x, ++w.x) {
         let cell:MapCell = 
             (map.legal(w) ? map.cell(w) : this.outside);
-        let i:GlyphInf0 = GlyphMap0.inf(cell.glyph());
-        term.at(t.x, t.y, i.c,'gray', 'lightgray');
+        let i = GlyphMap1.inf(cell.glyph()); // ch16
+        term.at(t.x, t.y, i.c, i.fg, i.bg);
+        // 'gray', 'lightgray');
       } 
     }
   }  
