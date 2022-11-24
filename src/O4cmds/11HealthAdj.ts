@@ -1,6 +1,7 @@
 import { DMapIF } from "O2model/07DMapIF";
 import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
+import { AutoHeal } from "./17AutoHeal";
 
 export class HealthAdj {
   public static adjust(m:Mob,amount:number,game:GameIF) {
@@ -19,6 +20,8 @@ export class HealthAdj {
 
   static dmg(m: Mob, amount: number, game:GameIF,
              attacker:Mob|null) {
+    AutoHeal.combatResets(m,attacker,game);
+
     console.log('dmg', amount, m.hp);
     m.hp -= amount;
     console.log('d_to', amount, m.hp);

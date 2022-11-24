@@ -8,7 +8,7 @@ import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
 
-export class Game2 implements GameIF {
+export class Game3 implements GameIF {
   constructor(public rnd:Rnd, public ply:Mob, 
               public build:BuildIF0) {}
   curMap():DMapIF|null { return this.dung.curMap(this); }
@@ -17,5 +17,5 @@ export class Game2 implements GameIF {
   msg(s:string) { this.log.msg(s,false); }
   flash(s:string) { this.log.msg(s,true);  }
   dung:Dung = new Dung(); // ch13
-  autoHeal:AutoHeal|undefined; // ch17
+  autoHeal:AutoHeal|undefined = new AutoHeal(); // ch17
 }

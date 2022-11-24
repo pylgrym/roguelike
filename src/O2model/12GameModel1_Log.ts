@@ -1,5 +1,6 @@
 import { BuildIF0 } from "O3build/08BuildIF0";
 import { GameIF } from "O3build/08GameIF";
+import { AutoHeal } from "O4cmds/17AutoHeal";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { DMapIF } from "./07DMapIF";
 import { Rnd } from "./07Rnd";
@@ -18,4 +19,5 @@ export class Game1 implements GameIF {
   flash(s:string) { this.log.msg(s,true);  }
   dung:Dung = <Dung> <unknown> undefined; // ch13
   build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
+  autoHeal:AutoHeal|undefined; // ch17
 }

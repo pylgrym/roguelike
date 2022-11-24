@@ -4,6 +4,7 @@ import { SScreenIF } from "O1term/05SScreenIF";
 import { DMapIF } from "O2model/07DMapIF";
 import { DrawMap } from "O2model/07DrawMap";
 import { Mob } from "O2model/09Mob";
+import { TurnQ } from "O2model/09TurnQ";
 import { GameIF } from "O3build/08GameIF";
 import { MakerIF } from "./06ScreenMakerIF";
 
@@ -23,6 +24,7 @@ export class BaseScreen implements SScreenIF {
     let map = <DMapIF> this.game.curMap();
     let q = map.Q;
     var m:Mob;
+    this.finishPlyTurn(q);
     for (m=q.next(); 
          !m.isPly && !this.over(s); 
          m=q.next()
@@ -49,4 +51,14 @@ export class BaseScreen implements SScreenIF {
       s.push(this.make.more(this.game)); //new MoreScreen(this.game, this.make));
     }
   }
+
+  finishPlyTurn(q: TurnQ) {
+    let ply = q.curMob();
+    if (!ply.isPly) { throw `${ply.name} not ply?`; }
+      
+    if (this.game.autoHeal) {
+      this.game.autoHeal.turn(ply, this.game);
+    }
+  } 
+
 }
