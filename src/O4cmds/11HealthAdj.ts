@@ -3,10 +3,10 @@ import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
 
 export class HealthAdj {
-  public static adjust(m:Mob,amount:number,game:GameIF) {
+  public static adjust(m:Mob,amount:number,game:GameIF,actor:Mob|null) {
     if (amount==0){return;} // do nothing.
     if (amount>0) {return this.heal(m,amount);}
-    if (amount<0) {return this.dmg(m,-amount,game,null);}
+    if (amount<0) {return this.dmg(m,-amount,game,actor);}
   }
   
   public static heal(m:Mob, amount:number) {
