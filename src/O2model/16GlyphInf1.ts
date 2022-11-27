@@ -29,6 +29,31 @@ export class GlyphMap1 {
     add(bg,    '#e2b',   'a',Glyph.Ant);
     add(bg,    '#43a',   'b',Glyph.Bat);
     add(bg,    '#6c4',   'c',Glyph.Cat);
+
+		add(bg,    '#bf8',   'd',Glyph.Dog); // ch20
+		add(bg,    '#bf8',   'e',Glyph.Eye); 
+		add(bg,    '#bf8',   'f',Glyph.Frog); 
+		add(bg,    '#bf8',   'g',Glyph.Golem); 
+		add(bg,    '#bf8',   'h',Glyph.Harpy); 
+		add(bg,    '#bf8',   'i',Glyph.Imp); 
+		add(bg,    '#bf8',   'j',Glyph.Jackal);
+		add(bg,    '#bf8',   'k',Glyph.Kobold);
+		add(bg,    '#bf8',   'l',Glyph.Lich); 
+		add(bg,    '#bf8',   'm',Glyph.Mold); 
+		add(bg,    '#bf8',   'n',Glyph.Naga); 
+		add(bg,    '#bf8',   'o',Glyph.Orc); 
+		add(bg,    '#bf8',   'p',Glyph.Pirate); 
+		add(bg,    '#bf8',   'q',Glyph.Quasit); 
+		add(bg,    '#bf8',   'r',Glyph.Rat); 
+		add(bg,    '#bf8',   's',Glyph.Snake); 
+		add(bg,    '#bf8',   't',Glyph.Troll); 
+		add(bg,    '#bf8',   'u',Glyph.UmberHulk); 
+		add(bg,    '#bf8',   'v',Glyph.Vampire); 
+		add(bg,    '#bf8',   'w',Glyph.Worm); 
+		add(bg,    '#bf8',   'x',Glyph.Xorn); 
+		add(bg,    '#bf8',   'y',Glyph.Yeti); 
+		add(bg,    '#bf8',   'z',Glyph.Zombie); 
+
     add(bg,    '#294',   'S',Glyph.Sheep); 
     
     add(bg,    'orange', '>',Glyph.StairsDown); // ch13
@@ -50,4 +75,13 @@ export class GlyphMap1 {
       GlyphMap1.glyphs.length 
     );
   }
+
+  // ch20:
+  static max:number = Object.keys(Glyph).length / 2;
+  static ix2glyph(ix:number):Glyph {
+    if (ix<0) { throw `ix ${ix} is less than 0!`; }
+    if (ix>=this.max) { throw `ix ${ix} >= ${this.max}!`; }
+    let g:Glyph = <Glyph> ix;
+    return g;
+  }  
 }

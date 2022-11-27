@@ -7,7 +7,12 @@ export enum Glyph {
   Ply,
   Ant,
   Bat,
-  Cat,
+  Cat,     Dog,    Eye,       Frog,   // ch20
+  Golem,   Harpy,  Imp,       Jackal,
+  Kobold,  Lich,   Mold,      Naga, 
+  Orc,     Pirate, Quasit,    Rat, 
+  Snake,   Troll,  UmberHulk, Vampire, 
+  Worm,    Xorn,   Yeti,      Zombie, 
   Sheep,
   StairsDown, // ch13
   StairsUp,

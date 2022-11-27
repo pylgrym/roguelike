@@ -18,6 +18,7 @@ export class Mob {
   hp:number = 3;    // ch11
   maxhp:number = 3; // ch11
   mood:Mood = Mood.Asleep; //ch18
+  level:number = 0; // ch20
 
   // alive():boolean { return true; }
   alive():boolean { return this.hp>0; } // ch11.

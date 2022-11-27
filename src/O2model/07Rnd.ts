@@ -55,4 +55,17 @@ export class Rnd extends RndBase {
     return new WPoint(p.x+this.rndC(-1,1),
                       p.y+this.rndC(-1,1));
   }
+
+  // ch20:
+  spiceUpLevel(L: number):number {	
+    if (this.oneIn(3)) {
+      let dir = this.oneIn(3) ? 1: -1;
+      L = this.spice(L+dir, dir); 
+      if (L < 0) { L = 0; } 
+    } // (There are no negative levels.)
+    return L;
+  }
+  spice(L: number, dir:number):number {
+    return this.oneIn(4) ? this.spice(L+dir, dir) : L; 
+  }  
 }
