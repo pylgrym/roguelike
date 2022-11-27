@@ -2,7 +2,7 @@ import { Mob } from "O2model/09Mob";
 import { Mood } from "O2model/18MoodEnum";
 import { GameIF } from "O3build/08GameIF";
 import { MobAiIF } from "./10MobAiIF";
-import { SleepAI } from "./18SleepAI";
+import { Sleep2AI } from "./18Sleep2AI";
 import { WakeAI } from "./18WakeAI";
 
 export class MoodAI implements MobAiIF {
@@ -18,6 +18,6 @@ export class MoodAI implements MobAiIF {
   }
     
   static stockMood():MobAiIF {
-    return new MoodAI(new SleepAI(),new WakeAI());
+    return new MoodAI(new Sleep2AI(),new WakeAI());
   }
 }

@@ -6,6 +6,7 @@ import { Glyph } from "./07Glyph";
 import { GlyphMap1 } from "./16GlyphInf1";
 import { MapCell } from "./07MapCell";
 import { WPoint } from "./07WPoint";
+import { CanSee } from "O4cmds/18CanSee";
 
 export class DrawMap {
   static drawMap0(term:TermIF, map:DMapIF, vp:WPoint) {
@@ -24,6 +25,37 @@ export class DrawMap {
   }  
   static outside:MapCell = new MapCell(Glyph.Unknown);    
 
+  static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint) { 
+    let unlit:string='#001';
+    let farlit:string = '#124';
+    let farDist:number = 50;
+    var fg:string, bg:string;
+    let tdim = term.dim;
+    let t=new TPoint();
+    let w=new WPoint();
+    for (t.y=0, w.y=vp.y; t.y<tdim.y; ++t.y, ++w.y) {
+      for (t.x=0, w.x=vp.x; t.x<tdim.x; ++t.x, ++w.x) {      
+        let c:MapCell = (map.legal(w) ? map.cell(w) : this.outside);
+        let dist:number = w.sqDist(plypos);
+        let far:boolean = (dist>farDist);
+
+        // 18B:
+        let seeMob = !!c.mob && !far 
+            && CanSee.canSee(c.mob.pos,plypos,map,true);
+        let g:Glyph = (seeMob ? c.mob!.g : c.glyph18());
+
+        let i = GlyphMap1.inf(g);
+        if (far) {
+          bg=unlit; fg=(c.lit?farlit:unlit);
+        } else { // near
+          bg=i.bg; fg=i.fg;
+          if (!c.lit) { c.lit = true; } 
+        }          
+        term.at(t.x, t.y, i.c, fg, bg);                  
+      } 
+    }
+  }  
+
   // ch09:
   static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint) { 
     if (!plypos) { plypos = new WPoint(); }
@@ -31,7 +63,8 @@ export class DrawMap {
       -Math.floor(term.dim.x*0.5)+plypos.x,
       -Math.floor(term.dim.y*0.5)+plypos.y,
     );
-    this.drawMap0(term,map,vp);  
+    //this.drawMap0(term,map,vp);  
+    this.drawMap18(term,map,vp,plypos);  
   }
 
   // ch11:
