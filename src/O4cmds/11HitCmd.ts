@@ -14,11 +14,11 @@ export class HitCmd extends CmdBase {
     if (dmg == 3) { dmg = 1; }
     let s=dmg? `${me} hits ${him} for ${dmg}`
              : `${me} misses ${him}`;
-    HealthAdj.adjust(this.him, -dmg, this.game);
     //console.log(s);
     if (this.me.isPly || this.him.isPly) { // ch12
       this.game.msg(s); // ch12
     }
+    HealthAdj.adjust(this.him,-dmg,this.game,this.me);
     return true;
   }
 }

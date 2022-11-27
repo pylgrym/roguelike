@@ -4,10 +4,10 @@ import { GameIF } from "O3build/08GameIF";
 import { AutoHeal } from "./17AutoHeal";
 
 export class HealthAdj {
-  public static adjust(m:Mob,amount:number,game:GameIF) {
+  public static adjust(m:Mob,amount:number,game:GameIF,actor:Mob|null) {
     if (amount==0){return;} // do nothing.
     if (amount>0) {return this.heal(m,amount);}
-    if (amount<0) {return this.dmg(m,-amount,game,null);}
+    if (amount<0) {return this.dmg(m,-amount,game,actor);}
   }
   
   public static heal(m:Mob, amount:number) {
@@ -22,9 +22,9 @@ export class HealthAdj {
              attacker:Mob|null) { 
     AutoHeal.combatResets(m,attacker,game);
 
-    console.log('dmg', amount, m.hp);
+    let old_hp = m.hp; //console.log('dmg', amount, m.hp);
     m.hp -= amount;
-    console.log('d_to', amount, m.hp);
+    console.log('dmg',amount,'d_to',old_hp,'->',m.hp, m.name);
     if (m.hp <= 0) { 
       let involvesPly = m.isPly || 
             (attacker != null && attacker.isPly);
