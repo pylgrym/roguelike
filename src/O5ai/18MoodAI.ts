@@ -17,7 +17,7 @@ export class MoodAI implements MobAiIF {
     return ai!.turn(me,enemy,game);
   }
     
-  static stockMood():MobAiIF {
-    return new MoodAI(new Sleep2AI(),new WakeAI());
+  static stockMood(speed:number):MobAiIF {
+    return new MoodAI(new Sleep2AI(),new WakeAI(speed));
   }
 }

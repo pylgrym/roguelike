@@ -9,7 +9,7 @@ import { MoodAI } from "./18MoodAI";
 export class AiSwitcher implements MobAiIF {
   ai2_cat:MobAiIF = new MobAI2_cat(); 
   ai3_ant:MobAiIF = new MobAI3_ant(); 
-  ai4_bat:MobAiIF = MoodAI.stockMood(); 
+  ai4_bat:MobAiIF = MoodAI.stockMood(2); 
   turn(me:Mob, enemy:Mob, game:GameIF):boolean { 
     var ai:MobAiIF;
     switch (me.g) {
