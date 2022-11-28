@@ -25,10 +25,14 @@ export class DrawMap {
   }  
   static outside:MapCell = new MapCell(Glyph.Unknown);    
 
-  static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint) { 
-    let unlit:string='#001';
-    let farlit:string = '#124';
-    let farDist:number = 50;
+  static even:boolean = false;
+
+  static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint) {     
+    let unlit:string='#024';
+    let farlit:string = '#36c'; //'#124';
+
+    this.even = !this.even;
+    let farDist:number = this.even? 50 : 500;
     var fg:string, bg:string;
     let tdim = term.dim;
     let t=new TPoint();
