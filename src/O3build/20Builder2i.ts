@@ -93,9 +93,9 @@ export class Builder2i implements BuildIF2 {
     return mob;
   }
   setLevelStats(mob:Mob, mobLevel:number) { 
-	mob.level = mobLevel;
-	mob.maxhp = mob.level * 5;
-	mob.hp = mob.maxhp;
+    mob.level = mobLevel;
+    mob.maxhp = mob.level * 5;
+    mob.hp = mob.maxhp;
   }
 
   // ch13
@@ -144,7 +144,7 @@ export class Builder2i implements BuildIF2 {
     }
   }
   addMapLevel_Mob(pos:WPoint, map:DMapIF, rnd:Rnd) { 
-	this.addLevelMob(pos,map,rnd,map.level);
+	  this.addLevelMob(pos,map,rnd,map.level);
   }
   addLevelMob(p:WPoint, map:DMapIF, 
                 rnd:Rnd, baseLevel:number):Mob { 

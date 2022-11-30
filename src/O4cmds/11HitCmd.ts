@@ -14,17 +14,14 @@ export class HitCmd extends CmdBase {
     let dmg:number = this.calcDmg(rnd, this.me); // ch20
     //let dmg = rnd.rndC(0,3);
     //if (dmg == 3) { dmg = 1; }
-    
     let s=dmg? `${me} hits ${him} for ${dmg}`
              : `${me} misses ${him}`;
     if (this.me.isPly || this.him.isPly) { // ch12
       this.game.msg(s); // ch12
     }
-
     HealthAdj.adjust(this.him,-dmg,this.game,this.me);
     return true;
   }
-
   calcDmg(rnd:Rnd, me:Mob): number {
     let level = me.level;
     let lim = level+1;
