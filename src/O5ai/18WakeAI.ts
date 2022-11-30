@@ -7,11 +7,13 @@ import { MobAI3_ant } from "./14MobAi3_ant";
 import { SleepAI } from "./18SleepAI";
 
 export class WakeAI implements MobAiIF {
+  constructor(public speed:number){}
+
   aiDir:MobAiIF = new MobAI2_cat();
   aiRnd:MobAiIF = new MobAI3_ant();
   turn(me:Mob, enemy:Mob, game:GameIF):boolean { 
     let r = game.rnd; 
-    for (let i=0;i<2;++i) {
+    for (let i=0;i<this.speed;++i) {
       var ai = r.oneIn(2) ? this.aiDir : this.aiRnd;
       ai.turn(me,enemy,game);
     }
