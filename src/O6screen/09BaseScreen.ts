@@ -1,4 +1,5 @@
 import { TermIF } from "O1term/03TermIF";
+import { Stack } from "O1term/05ScreenStack";
 import { StackIF } from "O1term/05ScreenStackIF";
 import { SScreenIF } from "O1term/05SScreenIF";
 import { DMapIF } from "O2model/07DMapIF";
@@ -60,5 +61,8 @@ export class BaseScreen implements SScreenIF {
       this.game.autoHeal.turn(ply, this.game);
     }
   } 
-
+  pop_And_RunNPCLoop(s:Stack) { // ch22
+    s.pop();
+    this.npcTurns(s); 
+  }
 }

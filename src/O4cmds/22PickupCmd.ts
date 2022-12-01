@@ -18,7 +18,7 @@ export class PickupCmd extends CmdBase {
     }       
     c.obj = undefined; // Remove from floor.
     bag.add(obj); // Put into bag instead. 
-    let msg = `ply gets ${obj.name}.`;    
+    let msg = `ply gets ${obj.desc()}.`;    
     game.flash(msg);
     return true;
   }

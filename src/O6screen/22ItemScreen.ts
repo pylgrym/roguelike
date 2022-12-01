@@ -46,7 +46,6 @@ export class ItemScreen extends BaseScreen {
     // This completes ply's turn, 
     // so execute command and return.
     if (this.dropBagItem()) {
-      this. 
         this.pop_And_RunNPCLoop(ss); 
     } // NPCs must do their turns now.
   }
