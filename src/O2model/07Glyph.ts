@@ -18,5 +18,13 @@ export enum Glyph {
   StairsUp,
 
   Door_Open,  // ch15
-  Door_Closed
+  Door_Closed,
+
+  Dagger, // ch21
+  Shield,
+  Cap,
+  Gloves, 
+  Cape,
+  Leggings,
+  Boots
 }

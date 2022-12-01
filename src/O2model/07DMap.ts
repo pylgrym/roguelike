@@ -4,6 +4,7 @@ import { MapCell } from "./07MapCell";
 import { WPoint } from "./07WPoint";
 import { Mob } from "./09Mob";
 import { TurnQ } from "./09TurnQ";
+import { Obj } from "./21Obj";
 
 export class DMap implements DMapIF {
   cells:MapCell[][];
@@ -62,4 +63,9 @@ export class DMap implements DMapIF {
     let c = this.cell(p);
     return c.blocked();
   }  
+
+  // ch21:
+  addObj(o:Obj, p:WPoint) { 
+    this.cell(p).obj = o; 
+  }
 }

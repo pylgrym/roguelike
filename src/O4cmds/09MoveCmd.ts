@@ -2,6 +2,7 @@ import { DMapIF } from "O2model/07DMapIF";
 import { Glyph } from "O2model/07Glyph";
 import { WPoint } from "O2model/07WPoint";
 import { Mob } from "O2model/09Mob";
+import { Obj } from "O2model/21Obj";
 import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "./09CmdBase";
 import { StairCmd } from "./13StairCmd";
@@ -26,6 +27,7 @@ export class MoveCmd extends CmdBase {
       map.moveMob(this.mob,np); 
       if (this.mob.isPly) { // ch13
         this.dealWithStairs(map,np);
+        this.flashIfItem(); //ch21
       }
     }
     return legal;
@@ -40,4 +42,16 @@ export class MoveCmd extends CmdBase {
     }
     new StairCmd(dir,this.game).exc();
   }
+  // ch21:
+  flashIfItem() { 
+    let map:DMapIF = <DMapIF> this.game.curMap();
+    let np = this.game.ply.pos;
+
+    let o:Obj|undefined = map.cell(np).obj;
+    if (o) { 
+      let msg = `${o.desc()} here.`;
+      this.game.flash(msg);
+    }
+  }
+
 }

@@ -2,6 +2,7 @@ import { MapCell } from "./07MapCell";
 import { WPoint } from "./07WPoint";
 import { Mob } from "./09Mob";
 import { TurnQ } from "./09TurnQ";
+import { Obj } from "./21Obj";
 
 export interface DMapIF {
   dim:WPoint;
@@ -17,4 +18,7 @@ export interface DMapIF {
   removeMob(m:Mob):void;
 
   blocked(p:WPoint):boolean;
+
+  // ch21:
+  addObj(o:Obj, p:WPoint):void;
 }

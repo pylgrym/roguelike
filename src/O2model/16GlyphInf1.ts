@@ -62,6 +62,14 @@ export class GlyphMap1 {
     add(bg,    'orange', ',',Glyph.Door_Open);  // ch15
     add(bg,    'orange', '+',Glyph.Door_Closed);
 
+    add(bg,    'blue',   '-',Glyph.Dagger); // ch21
+    add(bg,    'red',    '(',Glyph.Shield);
+    add(bg,    'purple', '(',Glyph.Cap);
+    add(bg,    'lime',   '(',Glyph.Gloves);
+    add(bg,    'blue',   '(',Glyph.Cape);
+    add(bg,    'cyan',   '(',Glyph.Leggings);
+    add(bg,    'pink',   '(',Glyph.Boots);
+
     return GlyphMap1.glyphs.length;
   }
   static add(bg:string, fg:string, c:string, g:Glyph) {
