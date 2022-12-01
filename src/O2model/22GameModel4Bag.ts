@@ -9,7 +9,7 @@ import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
 import { Bag } from "./22Bag";
 
-export class Game3 implements GameIF { 
+export class Game4 implements GameIF { 
   constructor(public rnd:Rnd, public ply:Mob, 
               public build:BuildIF0) {}
   curMap():DMapIF|null { return this.dung.curMap(this); }
@@ -19,5 +19,5 @@ export class Game3 implements GameIF {
   flash(s:string) { this.log.msg(s,true);  }
   dung:Dung = new Dung(); // ch13
   autoHeal:AutoHeal|undefined = new AutoHeal(); // ch17
-  bag:Bag|undefined; // ch22
+  bag:Bag = new Bag(); // ch22 
 }

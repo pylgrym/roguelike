@@ -7,6 +7,7 @@ import { Rnd } from "./07Rnd";
 import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
+import { Bag } from "./22Bag";
 
 export class Game0 implements GameIF { 
   constructor(public rnd:Rnd) {}
@@ -20,4 +21,5 @@ export class Game0 implements GameIF {
   dung:Dung = <Dung> <unknown> undefined; // ch13
   build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
   autoHeal:AutoHeal|undefined; // ch17
+  bag:Bag|undefined; // ch22
 }

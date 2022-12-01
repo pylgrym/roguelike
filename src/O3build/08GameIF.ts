@@ -3,6 +3,7 @@ import { Rnd } from "O2model/07Rnd";
 import { Mob } from "O2model/09Mob";
 import { MsgLog } from "O2model/12MsgLog";
 import { Dung } from "O2model/13Dung";
+import { Bag } from "O2model/22Bag";
 import { AutoHeal } from "O4cmds/17AutoHeal";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { BuildIF0 } from "./08BuildIF0";
@@ -19,4 +20,5 @@ export interface GameIF {
   build:BuildIF0; 
 
   autoHeal: AutoHeal|undefined; // ch17
+  bag:Bag|undefined; // ch22
 }

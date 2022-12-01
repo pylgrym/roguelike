@@ -7,6 +7,7 @@ import { Rnd } from "./07Rnd";
 import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
+import { Bag } from "./22Bag";
 
 export class Game2 implements GameIF {
   constructor(public rnd:Rnd, public ply:Mob, 
@@ -18,4 +19,5 @@ export class Game2 implements GameIF {
   flash(s:string) { this.log.msg(s,true);  }
   dung:Dung = new Dung(); // ch13
   autoHeal:AutoHeal|undefined; // ch17
+  bag:Bag|undefined; // ch22
 }
