@@ -16,7 +16,7 @@ export class MapCell {
   glyph18():Glyph { return this.env; }
 
   // ch21
-  glyph21(): Glyph {  // this is wrong, it should also use LoS!CanSee
+  glyph21(): Glyph {  
     return this.obj ? this.obj.g 
                     : this.env; 
   }
