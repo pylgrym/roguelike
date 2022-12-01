@@ -20,26 +20,46 @@ export class ObjTypes {
   {g: Glyph.Leggings,s:Slot.Legs },
   {g: Glyph.Boots,   s:Slot.Feet }
   ]    
+  
+  static ixForGlyph(g:Glyph):number {
+    return this.objtypes.findIndex(t => t.g == g);
+  }
 
-  static addRndObjToMap(p:WPoint, map:DMapIF, rnd:Rnd):Obj { 
-    let obj = this.rndLevelObj(map.level, rnd);
+  // PLACES objects:
+  static addObjTypeToMap(p:WPoint, map:DMapIF, rnd:Rnd,
+                         objType:Glyph, level:number):Obj 
+  { 
+    let ix = this.ixForGlyph(objType);
+    let tmpl:ObjTypeIF = ObjTypes.getTmpl(ix);
+    let obj = this.makeTemplateObj(level,rnd,tmpl);
     map.addObj(obj,p); 
     return obj;
   }
-  static rndLevelObj(level:number, rnd:Rnd):Obj {
-    let objLevel = rnd.spiceUpLevel(level);
-    let ix = rnd.rnd(ObjTypes.objtypes.length);
+  static addRndObjForLevel(p:WPoint, map:DMapIF, 
+        rnd:Rnd, level:number):Obj 
+  { 
+    let obj = this.rndLevelObj(level,rnd);
+    map.addObj(obj,p); 
+    return obj;
+  }
+  // MAKES objects:
+  static rndLevelObj(level:number, r:Rnd):Obj {
+    let ix = r.rnd(ObjTypes.objtypes.length);
     let tmpl:ObjTypeIF = ObjTypes.getTmpl(ix);
+    return this.makeTemplateObj(level,r,tmpl);
+  }
+  static makeTemplateObj(level:number, rnd:Rnd, 
+                         tmpl:ObjTypeIF):Obj {
+    let objLevel = rnd.spiceUpLevel(level);
     let obj = new Obj(tmpl.g, tmpl.s);
     obj.level = objLevel;
     return obj;
-  }
+  } 
   static getTmpl(ix:number):ObjTypeIF {
     let len = ObjTypes.objtypes.length;
-    if (ix <0 || ix >= len) { 
-        throw `bad ix:${ix}, not ${len}`; 
-      }
+    if (ix < 0 || ix >= len) { 
+      throw `bad ix:${ix}, not ${len}`; 
+    }
     return ObjTypes.objtypes[ix];
   }
-  
 }

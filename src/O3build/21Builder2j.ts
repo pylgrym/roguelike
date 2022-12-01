@@ -167,7 +167,7 @@ export class Builder2j implements BuildIF2 {
             for (p.x=0;p.x<map.dim.x; ++p.x) {
                 if (map.blocked(p)){ continue; }
                 if (rnd.oneIn(40)) {
-                    ObjTypes.addRndObjToMap(p,map,rnd);
+                    ObjTypes.addRndObjForLevel(p,map,rnd,map.level);
                 } 
             }
         }
