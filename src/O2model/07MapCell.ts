@@ -16,10 +16,11 @@ export class MapCell {
   glyph18():Glyph { return this.env; }
 
   // ch21
-  glyph21(): Glyph {  
+  glyph21(): Glyph {
     return this.obj ? this.obj.g 
                     : this.env; 
   }
+  hasObj():boolean { return !!this.obj; } // ch21
 
   blocked():boolean {
     return (!!this.mob || this.opaque()); // ch15
