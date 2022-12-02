@@ -1,3 +1,9 @@
+import { Obj } from "O2model/21Obj";
+import { Slot } from "O2model/21Slot";
+import { Worn } from "O2model/23Worn";
+import { GameIF } from "O3build/08GameIF";
+import { CmdBase } from "./09CmdBase";
+
 export class WearCmd extends CmdBase {
   worn:Worn;
   constructor(public obj:Obj, public ix:number,
@@ -17,9 +23,9 @@ export class WearCmd extends CmdBase {
     return true;
   }
   wearable(obj:Obj):boolean {
-    let canWear = (obj.slot == Slot.NotWorn);
+    let canWear = (obj.slot != Slot.NotWorn);
     if (!canWear) {
-      this.game.flash(`${obj.name()} is not wearable.`);
+      this.game.flash(`${obj.name()} is not wearable: ${obj.slot}`);
     }
     return canWear;
   }

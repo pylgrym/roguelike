@@ -9,26 +9,30 @@ import { WearCmd } from "O4cmds/23WearCmd";
 import { MakerIF } from "./06ScreenMakerIF";
 import { BaseScreen } from "./09BaseScreen";
 
-export class ItemScreen extends BaseScreen {  
-  name:string = 'item';     
+export class ItemScreen extends BaseScreen {
+  name:string = 'item';
+  worn:boolean; // ch23
+
   constructor(public obj:Obj, public ix:number, 
                game:GameIF, maker:MakerIF) { 
     super(game,maker); 
+    this.worn = !!game.worn; // ch23
   } 
 
   draw(term:TermIF) { 
     // Remove prev menu:
     super.draw(term); 
     let fg = 'lightblue', bg='#025';
-
     let y=1;
     term.txt(0,y++, 
      `Do what with ${this.obj.desc()} ?`,
       fg,bg); 
-    term.txt(0,y++,'u use',   fg,bg); 
-    term.txt(0,y++,'d drop',  fg,bg); 
-    term.txt(0,y++,'t throw', fg,bg); 
-    term.txt(0,y++,'w wear',  fg,bg);         
+    term.txt(0,y++,'d drop',  fg,bg);
+    if (this.worn ) { // ch23
+      term.txt(0,y++,'w wear',  fg,bg); 
+    }
+    term.txt(0,y++,'u use',   fg,bg);
+    term.txt(0,y++,'t throw', fg,bg);
     DrawMap.renderMsg(term, this.game); 
   }   
 
@@ -71,9 +75,12 @@ export class ItemScreen extends BaseScreen {
   // ch23
   wear(ss:Stack):boolean { 
     if (!this.worn) { return false; }
-    return new WearCmd(
+    let ok = new WearCmd(
       this.obj, this.ix, this.game
     ).exc(); 
-    // ?this.pop_And_RunNPCLoop(ss); 
+    if (ok) { 
+      this.pop_And_RunNPCLoop(ss); 
+    }
+    return ok;
   }
 }

@@ -1,3 +1,9 @@
+import { Obj } from "O2model/21Obj";
+import { Slot } from "O2model/21Slot";
+import { Worn } from "O2model/23Worn";
+import { GameIF } from "O3build/08GameIF";
+import { CmdBase } from "./09CmdBase";
+
 export class UnequipCmd extends CmdBase {
   constructor(public slot:Slot,
               public game:GameIF) { super(); }

@@ -70,13 +70,28 @@ export class DrawMap {
   // ch11:
   static renderStats(term:TermIF, game:GameIF) {
     let ply = game.ply;
+
+    // ch23:
+    let nEA = game.worn?.AC_reduce().toFixed(2);
+    let nAC = game.worn?.AC();
+    let nAP = game.worn?.weaponDmg();
+    let  EA = ` EA:${nEA}`;
+    let  AC = ` AC:${nAC}`;
+    let  AP = ` AP:${nAP}`;
+
     let  hp = ` HP:${ply.hp}`;
     let mhp = `MHP:${ply.maxhp}`;    
-    let   L = `LVL:${game.dung.level}`;    
+    let   L = `LVL:${game.dung.level}`;
+
+ 
     let y=1;
     term.txt(0,y++, hp, 'yellow', 'teal');
     term.txt(0,y++,mhp, 'yellow', 'teal');
     term.txt(0,y++,  L, 'yellow', 'teal'); // ch13.
+    // ch23:
+    term.txt(0,y++, EA, 'yellow', 'teal');
+    term.txt(0,y++, AC, 'yellow', 'teal');
+    term.txt(0,y++, AP, 'yellow', 'teal');
   }    
 
   // ch12:  
