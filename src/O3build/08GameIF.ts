@@ -4,6 +4,7 @@ import { Mob } from "O2model/09Mob";
 import { MsgLog } from "O2model/12MsgLog";
 import { Dung } from "O2model/13Dung";
 import { Bag } from "O2model/22Bag";
+import { Worn } from "O2model/23Worn";
 import { AutoHeal } from "O4cmds/17AutoHeal";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { BuildIF0 } from "./08BuildIF0";
@@ -21,4 +22,5 @@ export interface GameIF {
 
   autoHeal: AutoHeal|undefined; // ch17
   bag:Bag|undefined; // ch22
+  worn:Worn|undefined; // ch23
 }

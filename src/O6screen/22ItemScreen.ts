@@ -5,6 +5,7 @@ import { DrawMap } from "O2model/07DrawMap";
 import { Obj } from "O2model/21Obj";
 import { Bag } from "O2model/22Bag";
 import { GameIF } from "O3build/08GameIF";
+import { WearCmd } from "O4cmds/23WearCmd";
 import { MakerIF } from "./06ScreenMakerIF";
 import { BaseScreen } from "./09BaseScreen";
 
@@ -37,6 +38,7 @@ export class ItemScreen extends BaseScreen {
     console.log('key:', e.key);
     switch (e.key) {
       case 'd': this.dropItem(s); break;
+      case 'w': this.wear(s); break; // ch23      
       default: s.pop(); break;
     } 
     return true;
@@ -64,5 +66,14 @@ export class ItemScreen extends BaseScreen {
     bag.removeIx(this.ix);
     game.msg(`Ply drops ${c.obj.name()}.`);
     return true;
+  }
+  
+  // ch23
+  wear(ss:Stack):boolean { 
+    if (!this.worn) { return false; }
+    return new WearCmd(
+      this.obj, this.ix, this.game
+    ).exc(); 
+    // ?this.pop_And_RunNPCLoop(ss); 
   }
 }

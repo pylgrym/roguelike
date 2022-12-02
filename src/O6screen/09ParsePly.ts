@@ -14,6 +14,7 @@ import { MakerIF } from "./06ScreenMakerIF";
 import { LogScreen } from "./12LogScreen";
 import { CmdDirScreen } from "./15CmdDirScreen";
 import { InvScreen } from "./22InvScreen";
+import { WornScreen } from "./23WornScreen";
 
 export class ParsePly {
   public ply:Mob;
@@ -60,6 +61,12 @@ export class ParsePly {
           s = new InvScreen(this.game,this.maker); 
         }
         break;    
+
+        case 'u': // ch23
+        if (this.game.worn) {
+          s = new  WornScreen(this.game,this.maker); 
+        }
+        break;     
       }
     if (s) { ss.push(s); return null; }// ch12
 

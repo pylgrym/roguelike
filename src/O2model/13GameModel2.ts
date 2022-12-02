@@ -8,6 +8,7 @@ import { Mob } from "./09Mob";
 import { MsgLog } from "./12MsgLog";
 import { Dung } from "./13Dung";
 import { Bag } from "./22Bag";
+import { Worn } from "./23Worn";
 
 export class Game2 implements GameIF {
   constructor(public rnd:Rnd, public ply:Mob, 
@@ -20,4 +21,5 @@ export class Game2 implements GameIF {
   dung:Dung = new Dung(); // ch13
   autoHeal:AutoHeal|undefined; // ch17
   bag:Bag|undefined; // ch22
+  worn:Worn = <Worn><unknown> undefined; // ch23
 }
