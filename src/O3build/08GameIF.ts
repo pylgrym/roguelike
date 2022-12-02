@@ -18,7 +18,6 @@ export interface GameIF {
   log:MsgLog;
   dung:Dung;          // ch13
   build:BuildIF0; 
-
   autoHeal: AutoHeal|undefined; // ch17
   bag:Bag|undefined; // ch22
 }
