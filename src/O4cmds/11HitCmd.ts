@@ -13,7 +13,6 @@ export class HitCmd extends CmdBase {
     let me = this.me.name, him = this.him.name;
     let rnd = this.game.rnd;
     let dmg:number = this.calcDmg(rnd, this.me); // ch20
-    
     let rest = (this.him.hp - dmg);
     let s=dmg? `${me} hits ${him} for ${dmg}→${rest}`
              : `${me} misses ${him}`;

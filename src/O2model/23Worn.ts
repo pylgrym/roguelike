@@ -42,7 +42,7 @@ export class Worn {
   AC():number { 
       let AC:number = 0;
       for (let [,v] of this._objs) { 
-          AC += v.level; 
+          AC += v.level*2; 
       }
       return AC;
   }
