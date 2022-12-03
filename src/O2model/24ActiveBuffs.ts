@@ -1,5 +1,6 @@
 import { GameIF } from "O3build/08GameIF";
 import { Mob } from "./09Mob";
+import { Buff } from "./24BuffEnum";
 import { BuffIF } from "./24BuffIF";
 
 export class ActiveBuffs {

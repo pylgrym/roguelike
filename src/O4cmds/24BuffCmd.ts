@@ -1,3 +1,9 @@
+import { Mob } from "O2model/09Mob";
+import { Buff } from "O2model/24BuffEnum";
+import { BuffIF, TickIF } from "O2model/24BuffIF";
+import { GameIF } from "O3build/08GameIF";
+import { CmdBase } from "./09CmdBase";
+
 export class BuffCmd extends CmdBase {
   constructor(public buff:Buff, 
               public mob:Mob, 

@@ -9,6 +9,7 @@ import { WPoint } from "./07WPoint";
 import { CanSee } from "O4cmds/18CanSee";
 import { ActiveBuffs } from "./24ActiveBuffs";
 import { BuffIF } from "./24BuffIF";
+import { Buff } from "./24BuffEnum";
 
 export class DrawMap {
   static drawMap0(term:TermIF, map:DMapIF, vp:WPoint) {
