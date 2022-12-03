@@ -7,6 +7,8 @@ import { GlyphMap1 } from "./16GlyphInf1";
 import { MapCell } from "./07MapCell";
 import { WPoint } from "./07WPoint";
 import { CanSee } from "O4cmds/18CanSee";
+import { ActiveBuffs } from "./24ActiveBuffs";
+import { BuffIF } from "./24BuffIF";
 
 export class DrawMap {
   static drawMap0(term:TermIF, map:DMapIF, vp:WPoint) {
@@ -88,6 +90,9 @@ export class DrawMap {
     term.txt(0,y++, EA, 'yellow', 'teal');
     term.txt(0,y++, AC, 'yellow', 'teal');
     term.txt(0,y++, AP, 'yellow', 'teal');
+
+    let buffs:ActiveBuffs = ply.buffs; // ch24
+    y = this.renderBuffs(term, buffs, y); 
   }    
 
   // ch12:  
@@ -108,5 +113,27 @@ export class DrawMap {
       let dim = term.dim; // Extend s to width:
       if (!this.mask) { this.mask = ' '.repeat(dim.x); }
       return s + this.mask.substr(0, dim.x - s.length);
+  }
+
+  // ch24:
+  static renderBuffs(term:TermIF,
+                    buffs:ActiveBuffs,
+                    y:number):number {
+    let bmap:Map<Buff,BuffIF> = buffs._map;
+    let bg = '#502';
+    let fg_danger = '#ff3300';
+    for (let [buff,buffIF] of bmap) {
+    let label:string = Buff[buff];
+    let r:string = this.remain(buffIF);
+    let sbuff:string = `${r} ${label}`;
+    term.txt(0,y++,sbuff, fg_danger, bg);
+    } 
+    let AFF = `AF#:${bmap.size}`;
+    term.txt(0,y++,AFF,'yellow', bg);
+    return y;
+  }
+
+  static remain(b:BuffIF): string { 
+    return `${b.time}`; 
   }
 }

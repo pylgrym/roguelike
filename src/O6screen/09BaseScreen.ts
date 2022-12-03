@@ -34,9 +34,10 @@ export class BaseScreen implements SScreenIF {
     }
     this.handleMsgs(s); // ch12    
   }  
-  npcTurn(m:Mob, ply:Mob) {
-    let ai = this.game.ai;  // ch10
-    if (ai) { ai.turn(m,ply,this.game); }      
+  npcTurn(m:Mob, ply:Mob) { 
+    let ai = this.game.ai; // ch10
+    if (ai) { ai.turn(m,ply,this.game); }  
+    this.tickBuffs(m);
   }
   over(s:StackIF):boolean { 
     let over = !this.game.ply.alive();
@@ -53,16 +54,22 @@ export class BaseScreen implements SScreenIF {
     }
   }
 
-  finishPlyTurn(q: TurnQ) {
+  finishPlyTurn(q:TurnQ) {
     let ply = q.curMob();
-    if (!ply.isPly) { throw `${ply.name} not ply?`; }
-      
+    if (!ply.isPly) { throw `${ply.name} not ply?'`; }
+    this.tickBuffs(ply);
     if (this.game.autoHeal) {
       this.game.autoHeal.turn(ply, this.game);
     }
-  } 
+  }  
   pop_And_RunNPCLoop(s:Stack) { // ch22
     s.pop();
     this.npcTurns(s); 
+  }
+
+  // ch24
+  tickBuffs(m: Mob) {
+    if (!m.buffs) { return; }
+    m.buffs.ticks(m,this.game);
   }
 }
