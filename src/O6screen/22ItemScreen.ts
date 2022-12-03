@@ -42,7 +42,7 @@ export class ItemScreen extends BaseScreen {
     console.log('key:', e.key);
     switch (e.key) {
       case 'd': this.dropItem(s); break;
-      case 'w': this.wear(s); break; // ch23      
+      case 'w': this.wear(s); break; // ch23
       default: s.pop(); break;
     } 
     return true;

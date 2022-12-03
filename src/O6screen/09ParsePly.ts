@@ -66,7 +66,7 @@ export class ParsePly {
         if (this.game.worn) {
           s = new  WornScreen(this.game,this.maker); 
         }
-        break;     
+        break;
       }
     if (s) { ss.push(s); return null; }// ch12
 
