@@ -11,6 +11,7 @@ import { Slot } from "O2model/21Slot";
 import { Bag } from "O2model/22Bag";
 import { Game4 } from "O2model/22GameModel4Bag";
 import { MobAiIF } from "O5ai/10MobAiIF";
+import { MoodAI } from "O5ai/18MoodAI";
 import { AiSwitcher2 } from "O5ai/20AISwitcher2";
 import { GameIF } from "./08GameIF";
 import { BuildIF2 } from "./10BuildIF2";
@@ -62,7 +63,7 @@ export class Builder2k implements BuildIF2 {
   
   makeAI():MobAiIF|null { 
       //return new AiSwitcher(); // ch14
-      return new AiSwitcher2(); //MoodAI.stockMood()); //1)); 
+      return new AiSwitcher2(MoodAI.stockMood(1)); 
   } 
   makeSheepRing(map:DMapIF, rnd:Rnd) {
     this.makeMobRing(Glyph.Sheep, map, rnd);
