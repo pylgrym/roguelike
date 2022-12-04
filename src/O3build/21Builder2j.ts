@@ -8,6 +8,7 @@ import { Mob } from "O2model/09Mob";
 import { GlyphMap1 } from "O2model/16GlyphInf1";
 import { Game3 } from "O2model/17GameModel3";
 import { MobAiIF } from "O5ai/10MobAiIF";
+import { MoodAI } from "O5ai/18MoodAI";
 import { AiSwitcher2 } from "O5ai/20AISwitcher2";
 import { GameIF } from "./08GameIF";
 import { BuildIF2 } from "./10BuildIF2";
@@ -57,7 +58,7 @@ export class Builder2j implements BuildIF2 {
   
   makeAI():MobAiIF|null { 
       //return new AiSwitcher(); // ch14
-      return new AiSwitcher2(); //MoodAI.stockMood()); //1)); 
+      return new AiSwitcher2(MoodAI.stockMood(1)); 
   } 
   makeSheepRing(map:DMapIF, rnd:Rnd) {
     this.makeMobRing(Glyph.Sheep, map, rnd);
