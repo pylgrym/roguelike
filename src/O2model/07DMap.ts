@@ -5,13 +5,10 @@ import { WPoint } from "./07WPoint";
 
 export class DMap implements DMapIF {
   cells:MapCell[][];
-  //constructor(public dim:WPoint, public level:number){}
-  // change ctor to this:
   constructor(public dim:WPoint, g_empty:Glyph, 
               public level:number) {
     this.cells = this.allocMap(g_empty);
   }
-
   cell(p:WPoint):MapCell { 
     return this.cells[p.y][p.x]; 
   }
@@ -19,7 +16,6 @@ export class DMap implements DMapIF {
     return p.x >= 0 && p.x < this.dim.x
         && p.y >= 0 && p.y < this.dim.y; 
   }
-
   allocMap(g_empty:Glyph) {
     let cells = new Array(this.dim.y);
     let p:WPoint = new WPoint();
