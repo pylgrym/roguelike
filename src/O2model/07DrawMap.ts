@@ -124,16 +124,15 @@ export class DrawMap {
     let bg = '#502';
     let fg_danger = '#ff3300';
     for (let [buff,buffIF] of bmap) {
-    let label:string = Buff[buff];
-    let r:string = this.remain(buffIF);
-    let sbuff:string = `${r} ${label}`;
-    term.txt(0,y++,sbuff, fg_danger, bg);
+      let label:string = Buff[buff];
+      let r:string = this.remain(buffIF);
+      let sbuff:string = `${r} ${label}`;
+      term.txt(0,y++,sbuff, fg_danger, bg);
     } 
     let AFF = `AF#:${bmap.size}`;
     term.txt(0,y++,AFF,'yellow', bg);
     return y;
   }
-
   static remain(b:BuffIF): string { 
     return `${b.time}`; 
   }
