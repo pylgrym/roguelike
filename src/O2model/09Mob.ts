@@ -9,19 +9,16 @@ export class Mob {
     this.g = g;
     this.name = Glyph[g]; 
     this.pos.x = x; this.pos.y = y;  
-  }
-    
+  }   
   pos:WPoint = new WPoint();
   g:Glyph = Glyph.Unknown;
   name:string = '?';
   isPly:boolean = false;
-
   hp:number = 3;    // ch11
   maxhp:number = 3; // ch11
   mood:Mood = Mood.Asleep; //ch18
   level:number = 0; // ch20
   buffs:ActiveBuffs = new ActiveBuffs(); //ch24
-
   // alive():boolean { return true; }
   alive():boolean { return this.hp>0; } // ch11.
 }

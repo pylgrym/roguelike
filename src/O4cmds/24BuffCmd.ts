@@ -14,7 +14,7 @@ export class BuffCmd extends CmdBase {
     );
     let effect:TickIF|undefined = undefined;
     if (this.buff == Buff.Poison) {
-      effect = new PoisonTick(this.mob, this.game);
+      //effect = new PoisonTick(this.mob, this.game);
     }
     let active:BuffIF = { 
       buff:this.buff, time:8,  effect:effect
