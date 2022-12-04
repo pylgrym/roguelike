@@ -9,7 +9,7 @@ export class ActiveBuffs {
     this._map.set(b.buff, b); 
     game.msg(`${mob.name} is ${Buff[b.buff]} !`);
   } 
-  // (Maybe only show these in a later section..)
+  
   del(b: BuffIF, game: GameIF, mob: Mob) {
     this._map.delete(b.buff); 
     if (mob.isPly) {
