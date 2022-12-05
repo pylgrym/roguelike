@@ -1,0 +1,9 @@
+# git ignore file:
+node_modules
+/log/*.log
+/folderToIgnore
+/ignoreThisSingleFile.txt
+
+.gradle
+octopus/oct2.py
+.gitignore
