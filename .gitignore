@@ -7,3 +7,4 @@ node_modules
 .gradle
 octopus/oct2.py
 .gitignore
+package-lock.json
