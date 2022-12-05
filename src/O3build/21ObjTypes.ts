@@ -9,7 +9,6 @@ export interface ObjTypeIF {
   g:Glyph;
   s:Slot;
 }
-
 export class ObjTypes {
   static objtypes:ObjTypeIF[] = [
   {g: Glyph.Dagger,  s:Slot.MainHand},
