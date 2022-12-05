@@ -1,0 +1,9 @@
+/node_modules/
+# git ignore file:
+/log/*.log
+/folderToIgnore
+/ignoreThisSingleFile.txt
+
+.gradle
+octopus/oct2.py
+package-lock.json
