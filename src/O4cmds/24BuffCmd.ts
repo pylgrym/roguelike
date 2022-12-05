@@ -22,7 +22,6 @@ export class BuffCmd extends CmdBase {
     this.addBuffToMob(active,this.game,this.mob);
     return true;
   }
-
   addBuffToMob(active:BuffIF, 
                game:GameIF, mob:Mob) {
     mob.buffs.add(active,game,mob);
