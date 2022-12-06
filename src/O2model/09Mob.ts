@@ -2,6 +2,7 @@ import { Glyph } from "./07Glyph";
 import { WPoint } from "./07WPoint";
 import { Mood } from "./18MoodEnum";
 import { ActiveBuffs } from "./24ActiveBuffs";
+import { Buff } from "./24BuffEnum";
 
 export class Mob {
   constructor(g:Glyph, x:number, y:number) {
@@ -19,6 +20,9 @@ export class Mob {
   mood:Mood = Mood.Asleep; //ch18
   level:number = 0; // ch20
   buffs:ActiveBuffs = new ActiveBuffs(); //ch24
-  // alive():boolean { return true; }
+  is(buff:Buff): boolean { //ch25
+    return this.buffs.is(buff); 
+  }
+
   alive():boolean { return this.hp>0; } // ch11.
 }
