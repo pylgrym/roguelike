@@ -9,12 +9,9 @@ export class BuffCmd extends CmdBase {
               public mob:Mob, 
               public game:GameIF){ super(); }
   exc():boolean {
-    this.game.msg(
-      `${this.mob.name} is ${Buff[this.buff]}`
-    );
     let effect:TickIF|undefined = undefined;
-    if (this.buff == Buff.Poison) {
-      //effect = new PoisonTick(this.mob, this.game);
+    switch (this.buff) {
+      //case Buff.Poison: effect = new PoisonTick(m,g); break;
     }
     let active:BuffIF = { 
       buff:this.buff, time:8,  effect:effect
