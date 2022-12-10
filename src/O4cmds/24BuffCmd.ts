@@ -14,10 +14,6 @@ export class BuffCmd extends CmdBase {
               public mob:Mob, 
               public game:GameIF){ super(); }
   exc():boolean {
-    this.game.msg(
-      `${this.mob.name} is ${Buff[this.buff]}`
-    );
-
     // ch25:
     let m = this.mob, g = this.game;
     let effect:TickIF|undefined = undefined;
