@@ -13,29 +13,45 @@ export class HitCmd extends CmdBase {
   constructor(
     public me:Mob, public him:Mob, public game:GameIF
   ) { super(); }
-  exc():boolean {
+  exc():boolean { // ch25
     let g=this.game;
-    let me = this.me.name, him = this.him.name;
-    let rnd = g.rnd;
-    let dmg:number = this.calcDmg(rnd, this.me); // ch20
-    let rest = (this.him.hp - dmg);
-    let s=dmg? `${me} hits ${him} for ${dmg}→${rest}`
-             : `${me} misses ${him}`;
-    if (this.me.isPly || this.him.isPly) { // ch12
-      g.msg(s); // ch12
+    let m=this.me;
+    let r = g.rnd;
+
+    let dmg:number = this.calcDmg(r,m); // ch20
+    let back:number=0;
+    if (m.is(Buff.Shock) && r.oneIn(2)) {
+      dmg = this.shockDmg(dmg);
+      back = r.rndC(2,3);
     }
-    HealthAdj.adjust(this.him,-dmg,g,this.me);
+
+    let me = m.name, him = this.him.name;
+    this.doDmg(dmg,m,g,me,him);
+    if (back>0) {
+      this.doDmg(dmg,m,g,'SHOCK',me);
+    }
+
     this.clearCharm(g); // ch25
     return true;
+  }
+  shockDmg(dmg:number): number { 
+    return Math.floor(dmg*3/2); 
+  }
+  doDmg(dmg:number,atk:Mob,g:GameIF, me:string,him:string) {
+    let rest = (this.him.hp - dmg);
+    let s=dmg? `${me} hits ${him} for ${dmg}→${rest}`
+             : `${me} misses ${him}`;  
+    if (atk.isPly || this.him.isPly) {
+      g.msg(s);  
+    }
+    if (dmg) { 
+      HealthAdj.adjust(this.him, -dmg, g,atk);
+    }
   }
   clearCharm(g:GameIF) { // ch25
     let h = this.him;
     if (!h.is(Buff.Charm)) { return; }
     h.buffs.cleanse(Buff.Charm, this.game, h);
-    if (h.isPly) {
-      let s = 'the charm wears off!';
-      g.msg(s);
-    }
   }
   calcDmg(rnd:Rnd, me:Mob): number {
     return rnd.rndC(0,this.power(me));
@@ -50,7 +66,19 @@ export class HitCmd extends CmdBase {
     if (g.worn) { return this.wornPower(g,g.worn); }
     return this.unarmed();
   }
-  wornPower(g:GameIF,w:Worn):number {
+  wornPowerPre25(g:GameIF,w:Worn):number {
     return w.weapon() ? w.weaponDmg() : this.unarmed();
+  }
+  // ch25
+  wornPower(g:GameIF,w:Worn): number {
+    let disarm = g.ply.is(Buff.Disarm);
+    if (w.weapon()) {
+      if (disarm) {
+        g.msg('ply hits bare-handed.');
+      } else {
+        return w.weaponDmg();
+      }
+    } 
+    return this.unarmed();
   }
 }

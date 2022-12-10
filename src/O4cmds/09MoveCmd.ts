@@ -6,8 +6,10 @@ import { Obj } from "O2model/21Obj";
 import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "./09CmdBase";
 import { StairCmd } from "./13StairCmd";
+import { Act } from "./25Act";
 
 export class MoveCmd extends CmdBase {
+  act:Act = Act.Move; // ch25.
   constructor(
     public dir:WPoint, public mob:Mob, public game:GameIF
   ) { super(); }
@@ -24,6 +26,7 @@ export class MoveCmd extends CmdBase {
     let np = this.dir.plus(this.mob.pos);
     let legal = !map.blocked(np);
     if (legal) { 
+      this.mob.sinceMove = 0;
       map.moveMob(this.mob,np); 
       if (this.mob.isPly) { // ch13
         this.dealWithStairs(map,np);

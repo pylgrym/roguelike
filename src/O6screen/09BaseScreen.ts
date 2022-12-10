@@ -54,15 +54,19 @@ export class BaseScreen implements SScreenIF {
     if (!m.buffs) { return; }
     m.buffs.ticks(m,this.game);
   }
+  finishTurn(m: Mob) {
+    ++m.sinceMove;
+    this.tickBuffs(m);
+  }
   npcTurn(m:Mob, ply:Mob) { 
     let ai = this.game.ai; // ch10
     if (ai) { ai.turn(m,ply,this.game); }  
-    this.tickBuffs(m);
+    this.finishTurn(m);
   }
   finishPlyTurn(q:TurnQ) {
     let ply = q.curMob();
     if (!ply.isPly) { throw `${ply.name} not ply?'`; }
-    this.tickBuffs(ply);
+    this.finishTurn(ply);
     if (this.game.autoHeal) {
       this.game.autoHeal.turn(ply, this.game);
     }

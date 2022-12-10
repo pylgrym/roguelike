@@ -23,6 +23,7 @@ export class Mob {
   is(buff:Buff): boolean { //ch25
     return this.buffs.is(buff); 
   }
+  sinceMove:number=0; // ch25
 
   alive():boolean { return this.hp>0; } // ch11.
 }

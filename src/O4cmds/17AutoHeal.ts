@@ -1,4 +1,5 @@
 import { Mob } from "O2model/09Mob";
+import { Buff } from "O2model/24BuffEnum";
 import { GameIF } from "O3build/08GameIF";
 import { HealthAdj } from "./11HealthAdj";
 
@@ -10,11 +11,18 @@ export class AutoHeal {
     countdown:number=0; 
     constructor(){ this.resetHeal(); }
     public static combatReset(mob:Mob, game:GameIF) { 
-        let ah = game.autoHeal;
+      this.clearSleep(mob,game); // ch25
+      let ah = game.autoHeal;
         if (mob.isPly && ah) {
             ah.resetHeal();
         } 
     }
+    static clearSleep(m:Mob,g:GameIF) { // ch25.
+      if (!m.is(Buff.Sleep)) { return; }
+      m.buffs.cleanse(Buff.Sleep,g,m);
+      if (m.isPly) { g.msg('ply wakes up!'); }
+    }
+    
     public static combatResets(a:Mob, b:Mob|null, game:GameIF) { 
         this.combatReset(a,game); 
         if (b) { AutoHeal.combatReset(b,game); }
@@ -47,4 +55,4 @@ export class AutoHeal {
         }
         this.countdown = this.nextWait;
     }
-}
+  }

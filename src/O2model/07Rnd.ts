@@ -68,4 +68,5 @@ export class Rnd extends RndBase {
   spice(L: number, dir:number):number {
     return this.oneIn(4) ? this.spice(L+dir, dir) : L; 
   }  
+  pct(rate:number):boolean { return this.rnd(100) < rate; } // ch25
 }
