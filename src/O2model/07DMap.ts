@@ -9,13 +9,10 @@ export class DMap implements DMapIF {
   cells:MapCell[][];
   Q: TurnQ = new TurnQ(); // ch09
 
-  //constructor(public dim:WPoint, public level:number){}
-  // change ctor to this:
   constructor(public dim:WPoint, g_empty:Glyph, 
               public level:number) {
     this.cells = this.allocMap(g_empty);
   }
-
   cell(p:WPoint):MapCell { 
     return this.cells[p.y][p.x]; 
   }
@@ -23,7 +20,6 @@ export class DMap implements DMapIF {
     return p.x >= 0 && p.x < this.dim.x
         && p.y >= 0 && p.y < this.dim.y; 
   }
-
   allocMap(g_empty:Glyph) {
     let cells = new Array(this.dim.y);
     let p:WPoint = new WPoint();
@@ -56,7 +52,6 @@ export class DMap implements DMapIF {
     this.cell(ply.pos).mob = ply;
     this.Q.frontPushMob(ply);
   }
-
   blocked(p:WPoint):boolean {
     if (!this.legal(p)) { return true; }
     let c = this.cell(p);
