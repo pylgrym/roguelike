@@ -5,8 +5,8 @@ import { HealthAdj } from "./11HealthAdj";
 
 export class HitCmd extends CmdBase {
   constructor(
-    public me:Mob, public him:Mob, public game:GameIF
-  ) { super(); }
+    public me:Mob, public him:Mob, public g:GameIF
+  ) { super(me,g); }
 
   exc0():boolean {
     let me = this.me.name, him = this.him.name;
@@ -18,14 +18,14 @@ export class HitCmd extends CmdBase {
   }
   exc():boolean {
     let me = this.me.name, him = this.him.name;
-    let rnd = this.game.rnd;
+    let rnd = this.g.rnd;
     let dmg = rnd.rndC(0,3);
     if (dmg == 3) { dmg = 1; }
     let s=dmg? `${me} hits ${him} for ${dmg}`
              : `${me} misses ${him}`;
     console.log(s);
     //this.him.hp -= dmg;
-    HealthAdj.adjust(this.him, -dmg, this.game,this.me);
+    HealthAdj.adjust(this.him, -dmg, this.g,this.me);
     return true;
   }
 }
