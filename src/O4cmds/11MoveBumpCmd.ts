@@ -8,15 +8,15 @@ import { HitCmd } from "./11HitCmd";
 
 export class MoveBumpCmd extends CmdBase {
   constructor(
-    public dir:WPoint, public mob:Mob, public game:GameIF
-  ) { super(); }  
+    public dir:WPoint, public me:Mob, public g:GameIF
+  ) { super(me,g); }  
   exc():boolean { 
-    let np = this.dir.plus(this.mob.pos);
-    let map = <DMapIF> this.game.curMap();
+    let np = this.dir.plus(this.me.pos);
+    let map = <DMapIF> this.g.curMap();
     if (!map.legal(np)) { return false; }
     let cell = map.cell(np);           
     return cell.mob  
-      ? new  HitCmd(this.mob,cell.mob,this.game).exc() 
-      : new MoveCmd(this.dir,this.mob,this.game).exc();
+      ? new  HitCmd(this.me,cell.mob,this.g).exc() 
+      : new MoveCmd(this.dir,this.me,this.g).exc();
   }
 }
