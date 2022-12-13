@@ -13,8 +13,9 @@ export class BaseScreen implements SScreenIF {
   name='base';
   constructor(public game:GameIF, public make:MakerIF){}
   draw(term:TermIF) { 
-    DrawMap.drawMapPly(
-      term, <DMapIF>this.game.curMap(), this.game.ply.pos
+    // DrawMap.drawMapPly
+    DrawMap.drawMapPly25(
+      term, this.game, <DMapIF>this.game.curMap(), this.game.ply.pos
     ); 
     DrawMap.renderStats(term, this.game); // ch11
     DrawMap.renderMsg(term, this.game); // ch12

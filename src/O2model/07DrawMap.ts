@@ -28,7 +28,8 @@ export class DrawMap {
   }  
   static outside:MapCell = new MapCell(Glyph.Unknown);    
 
-  static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint) { 
+  //static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint) { 
+  static drawMap25(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint, blind:boolean) { 
     let unlit:string='#001';
     let farlit:string = '#124';
     let farDist:number = 50;
@@ -40,11 +41,18 @@ export class DrawMap {
       for (t.x=0, w.x=vp.x; t.x<tdim.x; ++t.x, ++w.x) {      
         let c:MapCell = (map.legal(w) ? map.cell(w) : this.outside);
         let dist:number = w.sqDist(plypos);
-        let far:boolean = (dist>farDist);
+
+        //let far:boolean = (dist>farDist);
+        let far:boolean = (dist>farDist) && !blind; // ch25
 
         // 18B:
-        let seeMob = !!c.mob && !far 
-            && CanSee.canSee(c.mob.pos,plypos,map,true);
+        //let seeMob = !!c.mob && !far 
+        //    && CanSee.canSee(c.mob.pos,plypos,map,true);
+
+        // ch15:
+        let seeMob = c.mob && !far && (!blind || c.mob.isPly)
+          && CanSee.canSee(c.mob.pos,plypos,map,true);        
+       
         let g:Glyph = (seeMob ? c.mob!.g : c.glyph21()); //ch21
 
         let i = GlyphMap1.inf(g);
@@ -60,14 +68,21 @@ export class DrawMap {
   }  
 
   // ch09:
-  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint) { 
+  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint, blind:boolean) { 
     if (!plypos) { plypos = new WPoint(); }
     let vp:WPoint = new WPoint( // Must get viewport:
       -Math.floor(term.dim.x*0.5)+plypos.x,
       -Math.floor(term.dim.y*0.5)+plypos.y,
     );
     //this.drawMap0(term,map,vp);  
-    this.drawMap18(term,map,vp,plypos);  
+    //this.drawMap18(term,map,vp,plypos);  
+    this.drawMap25(term,map,vp,plypos,blind);  
+  }
+  static drawMapPly25(term:TermIF, game:GameIF, plypos:WPoint) {
+    let map = <DMapIF> game.curMap();
+    let buffs = game.ply.buffs;
+    let blind = buffs.is(Buff.Blind);
+    this.drawMapPly(term,map,plypos,blind);
   }
 
   // ch11:
