@@ -7,7 +7,7 @@ import { CmdBase } from "./09CmdBase";
 export class BuffCmd extends CmdBase {
   constructor(public buff:Buff, 
               public mob:Mob, 
-              public game:GameIF){ super(); }
+              g:GameIF,me:Mob){ super(me,g); }
   exc():boolean {
     let effect:TickIF|undefined = undefined;
     switch (this.buff) {
@@ -16,7 +16,7 @@ export class BuffCmd extends CmdBase {
     let active:BuffIF = { 
       buff:this.buff, time:8,  effect:effect
     }; 
-    this.addBuffToMob(active,this.game,this.mob);
+    this.addBuffToMob(active,this.g,this.mob);
     return true;
   }
   addBuffToMob(active:BuffIF, 
