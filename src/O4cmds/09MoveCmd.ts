@@ -9,23 +9,24 @@ import { StairCmd } from "./13StairCmd";
 
 export class MoveCmd extends CmdBase {
   constructor(
-    public dir:WPoint, public mob:Mob, public game:GameIF
-  ) { super(); }
+    public dir:WPoint, public me:Mob, public g:GameIF
+  ) { super(me,g); }
   
   exc0():boolean { 
-    let map = <DMapIF> this.game.curMap();
-    let np = this.dir.plus(this.mob.pos);
-    map.moveMob(this.mob,np); 
+    let map = <DMapIF> this.g.curMap();
+    let np = this.dir.plus(this.me.pos);
+    map.moveMob(this.me,np); 
     return true;
   }
   
   exc():boolean { 
-    let map = <DMapIF> this.game.curMap();
-    let np = this.dir.plus(this.mob.pos);
+    let map = <DMapIF> this.g.curMap();
+    let np = this.dir.plus(this.me.pos);
     let legal = !map.blocked(np);
+    //if (legal) { map.moveMob(this.me,np); }
     if (legal) { 
-      map.moveMob(this.mob,np); 
-      if (this.mob.isPly) { // ch13
+      map.moveMob(this.me,np); 
+      if (this.me.isPly) { // ch13
         this.dealWithStairs(map,np);
         this.flashIfItem(); //ch21
       }
@@ -40,17 +41,17 @@ export class MoveCmd extends CmdBase {
       case Glyph.StairsUp:   dir=-1;break;
       default: return; // No stairs here.
     }
-    new StairCmd(dir,this.game).exc();
+    new StairCmd(dir,this.g).exc();
   }
   // ch21:
   flashIfItem() { 
-    let map:DMapIF = <DMapIF> this.game.curMap();
-    let np = this.game.ply.pos;
+    let map:DMapIF = <DMapIF> this.g.curMap();
+    let np = this.g.ply.pos;
 
     let o:Obj|undefined = map.cell(np).obj;
     if (o) { 
       let msg = `${o.desc()} here.`;
-      this.game.flash(msg);
+      this.g.flash(msg);
     }
   }
 
