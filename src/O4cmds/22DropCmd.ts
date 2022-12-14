@@ -6,9 +6,9 @@ import { CmdBase } from "./09CmdBase";
 
 export class DropCmd extends CmdBase {
   constructor(public obj:Obj, public ix:number, 
-              public game:GameIF) { super(); }
+              g:GameIF) { super(g.ply,g); }
   exc(): boolean {
-    let game = this.game;
+    let game = this.g;
     let map = <DMapIF>game.curMap();
     let ply = game.ply;
     let c = map.cell(ply.pos);

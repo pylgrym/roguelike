@@ -8,16 +8,16 @@ import { CmdIF } from "./09CmdIF";
 
 export class DoorCmd extends CmdBase {
   dir:WPoint = new WPoint();
-  constructor(public m:Mob, public game:GameIF){
-    super();
+  constructor(public me:Mob, public g:GameIF){
+    super(me,g);
   }
   setDir(dir:WPoint):CmdIF { 
     this.dir = dir; return this; 
   }
   exc():boolean {
-    let p = this.m.pos;
+    let p = this.me.pos;
     let door = p.plus(this.dir);
-    let map = <DMapIF>this.game.curMap();
+    let map = <DMapIF>this.g.curMap();
     let cell = map.cell(door);        
     switch (cell.env) {
     case Glyph.Door_Closed: 
@@ -25,7 +25,7 @@ export class DoorCmd extends CmdBase {
     case Glyph.Door_Open: 
       cell.env=Glyph.Door_Closed; break;
     default: 
-      this.game.flash(`No door here!`); 
+      this.g.flash(`No door here!`); 
       return false;
     }
     this.msg(cell.env);
@@ -34,7 +34,7 @@ export class DoorCmd extends CmdBase {
   msg(env:Glyph) {
     let open = (env == Glyph.Door_Open);
     let action = open ? 'opens': 'closes';
-    let who = this.m.name;
-    this.game.msg(`${who} ${action} the door`);
+    let who = this.me.name;
+    this.g.msg(`${who} ${action} the door`);
   }  
 }

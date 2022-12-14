@@ -4,9 +4,9 @@ import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "./09CmdBase";
 
 export class PickupCmd extends CmdBase { 
-  constructor(public game:GameIF) { super(); }   
+  constructor(g:GameIF) { super(g.ply,g); }   
 	exc():boolean { 
-    let game = this.game; 
+    let game = this.g; 
     let map = <DMapIF> game.curMap();
     let ply = game.ply;
     let bag = <Bag>game.bag;
