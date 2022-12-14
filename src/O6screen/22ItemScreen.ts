@@ -77,7 +77,7 @@ export class ItemScreen extends BaseScreen {
     if (!this.worn) { return false; }
     let ok = new WearCmd(
       this.obj, this.ix, this.game
-    ).exc(); 
+    ).turn(); 
     if (ok) { 
       this.pop_And_RunNPCLoop(ss); 
     }
