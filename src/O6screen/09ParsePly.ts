@@ -34,7 +34,7 @@ export class ParsePly {
   parseKeyCodeAsTurn(c:string, ss:StackIF,
                      e:JQuery.KeyDownEvent|null):boolean {
     let cmd = this.parseKeyCmd(c,ss,e);
-    return (cmd ? cmd.exc() : false);
+    return (cmd ? cmd.turn() : false);
   }
   parseKeyCmd(c:string, ss:StackIF,
               e:JQuery.KeyDownEvent|null):CmdIF|null {

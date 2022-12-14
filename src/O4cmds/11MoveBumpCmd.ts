@@ -14,9 +14,10 @@ export class MoveBumpCmd extends CmdBase {
     let np = this.dir.plus(this.me.pos);
     let map = <DMapIF> this.g.curMap();
     if (!map.legal(np)) { return false; }
-    let cell = map.cell(np);           
-    return cell.mob  
-      ? new  HitCmd(this.me,cell.mob,this.g).exc() 
-      : new MoveCmd(this.dir,this.me,this.g).exc();
+    let cell = map.cell(np);     
+    let cmd = cell.mob  
+      ? new  HitCmd(this.me,cell.mob,this.g) 
+      : new MoveCmd(this.dir,this.me,this.g);
+    return cmd.turn();
   }
 }
