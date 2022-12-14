@@ -7,6 +7,6 @@ export class MobAI3_ant implements MobAiIF {
   turn(me:Mob, enemy:Mob, game:GameIF):boolean {
     let r = game.rnd;
     let dir = r.rndDir2();
-    return new MoveBumpCmd(dir, me, game).exc();
+    return new MoveBumpCmd(dir, me, game).npcTurn();
   }
 }
