@@ -10,6 +10,6 @@ export class MobAI2_cat implements MobAiIF {
 
     let dir = me.pos.dir(enemy.pos);
     let cmd = new MoveBumpCmd(dir,me,game);
-    return cmd.exc();  
+    return cmd.npcTurn();  
   }
 }
