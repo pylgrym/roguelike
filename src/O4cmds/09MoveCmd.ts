@@ -45,13 +45,13 @@ export class MoveCmd extends CmdBase {
   }
   // ch21:
   flashIfItem() { 
-    let map:DMapIF = <DMapIF> this.game.curMap();
-    let np = this.game.ply.pos;
+    let map:DMapIF = <DMapIF> this.g.curMap();
+    let np = this.g.ply.pos;
 
     let o:Obj|undefined = map.cell(np).obj;
     if (o) { 
       let msg = `${o.desc()} here.`;
-      this.game.flash(msg);
+      this.g.flash(msg);
     }
   }
 
