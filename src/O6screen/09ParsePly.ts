@@ -67,9 +67,9 @@ export class ParsePly {
     return null;
   }
   moveCmd(dir:WPoint):CmdIF {
-    return new MoveCmd(dir, this.ply, this.game); 
+    return new MoveCmd(dir,this.ply,this.game); 
   }
-  waitCmd(): CmdIF { return new WaitCmd(); }    
+  waitCmd(): CmdIF { return new WaitCmd(this.ply,this.game); }    
 
   moveBumpCmd(dir:WPoint):CmdIF { // ch11
     return new MoveBumpCmd(dir,this.ply,this.game); 
