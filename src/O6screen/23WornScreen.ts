@@ -58,6 +58,6 @@ export class WornScreen extends BaseScreen {
       return true;
     } // how does cancel work here?
     unequip(slot:Slot):boolean { 
-      return new UnequipCmd(slot,this.game).exc();
+      return new UnequipCmd(slot,this.game).turn();
     }
   }
