@@ -7,12 +7,12 @@ import { CmdBase } from "./09CmdBase";
 export class WearCmd extends CmdBase {
   worn:Worn;
   constructor(public obj:Obj, public ix:number,
-              public game:GameIF) { 
-    super(); 
-    this.worn = <Worn> game.worn;
+              public g:GameIF) { 
+    super(g.ply,g); 
+    this.worn = <Worn> g.worn;
   }
   exc(): boolean {
-    let game = this.game; 
+    let game = this.g; 
     let obj:Obj = this.obj;
     if (!this.wearable(obj)) {return false;}
     if (this.alreadyWorn(obj)) {return false;}
@@ -25,7 +25,7 @@ export class WearCmd extends CmdBase {
   wearable(obj:Obj):boolean {
     let canWear = (obj.slot != Slot.NotWorn);
     if (!canWear) {
-      this.game.flash(`${obj.name()} is not wearable: ${obj.slot}`);
+      this.g.flash(`${obj.name()} is not wearable: ${obj.slot}`);
     }
     return canWear;
   }
@@ -33,7 +33,7 @@ export class WearCmd extends CmdBase {
     let already = this.worn.has(obj.slot); 
     if (already) {
       let label = Slot[obj.slot];
-      this.game.flash(`${label} already worn.`);
+      this.g.flash(`${label} already worn.`);
     }
     return already; 
   }
@@ -45,7 +45,7 @@ export class WearCmd extends CmdBase {
     let overlap = this.overlaps(obj.slot, inHand!.slot);
     if (overlap) {
       let f=`unequip ${inHand!.name()} first.`;
-      this.game.flash(f);
+      this.g.flash(f);
     }
     return overlap;
   }

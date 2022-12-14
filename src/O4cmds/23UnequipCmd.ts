@@ -6,11 +6,11 @@ import { CmdBase } from "./09CmdBase";
 
 export class UnequipCmd extends CmdBase {
   constructor(public slot:Slot,
-              public game:GameIF) { super(); }
+              public g:GameIF) { super(g.ply,g); }
   exc(): boolean {
     let slot = this.slot;
     if (slot == Slot.NotWorn) { return false; }
-    let game = this.game;
+    let game = this.g;
     let worn = <Worn> game.worn;
     if (!worn.has(slot)) {
       let label:string = Slot[slot];

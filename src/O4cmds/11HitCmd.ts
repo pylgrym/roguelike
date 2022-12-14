@@ -11,10 +11,10 @@ export class HitCmd extends CmdBase {
   act:Act = Act.Hit; // ch25.
 
   constructor(
-    public me:Mob, public him:Mob, public game:GameIF
-  ) { super(); }
+    public me:Mob, public him:Mob, public g:GameIF
+  ) { super(me,g); }
   exc():boolean { // ch25
-    let g=this.game;
+    let g=this.g;
     let m=this.me;
     let r = g.rnd;
 
@@ -51,7 +51,7 @@ export class HitCmd extends CmdBase {
   clearCharm(g:GameIF) { // ch25
     let h = this.him;
     if (!h.is(Buff.Charm)) { return; }
-    h.buffs.cleanse(Buff.Charm, this.game, h);
+    h.buffs.cleanse(Buff.Charm, this.g, h);
   }
   calcDmg(rnd:Rnd, me:Mob): number {
     return rnd.rndC(0,this.power(me));
@@ -62,7 +62,7 @@ export class HitCmd extends CmdBase {
   NPC_Power(m:Mob):number{ return m.level+1; }
   unarmed():number { return 3; } 
   ply_Power(ply:Mob):number {
-    let g = this.game;
+    let g = this.g;
     if (g.worn) { return this.wornPower(g,g.worn); }
     return this.unarmed();
   }

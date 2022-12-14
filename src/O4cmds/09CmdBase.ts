@@ -8,17 +8,15 @@ import { Act } from "./25Act";
 
 export abstract class CmdBase implements CmdIF {
   // ch25:
-  m:Mob|undefined = undefined;
-  g:GameIF|undefined = undefined;
   act:Act = Act.Act; // (default is other than hit and move.)
 
   exc(): boolean { throw 'no exc'; }
+  constructor(public me:Mob, public g:GameIF){}
   setDir(dir: WPoint):CmdIF {throw 'no setDir';} // ch15
-
 
   public turn():boolean {
     let r = this.able(
-      <Mob>this.m,<GameIF>this.g,this.act
+      <Mob>this.me,<GameIF>this.g,this.act
     );  
     if (!r.able) { return r.turn; }
     return this.exc(); 

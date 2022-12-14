@@ -47,7 +47,7 @@ export class SpellAI implements MobAiIF {
   
   cast(buff:number, me:Mob, 
        enemy:Mob, game:GameIF):boolean {
-    let spell = new BuffCmd(buff,enemy,game);
+    let spell = new BuffCmd(buff,enemy,game,me);
     return spell.exc();
   }
 }
