@@ -31,7 +31,7 @@ export class HitCmd extends CmdBase {
   NPC_Power(m:Mob):number{ return m.level+1; }
   unarmed():number { return 3; } 
   ply_Power(ply:Mob):number {
-    let g = this.game;
+    let g = this.g;
     if (g.worn) { return this.wornPower(g,g.worn); }
     return this.unarmed();
   }
