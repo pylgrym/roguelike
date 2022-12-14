@@ -35,6 +35,6 @@ export class CmdDirScreen extends BaseScreen {
     return true;
   }
   actDir(dir: WPoint):boolean {
-    return this.cmd.setDir(dir).exc();
+    return this.cmd.setDir(dir).turn();
   }
 }
