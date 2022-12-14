@@ -39,6 +39,6 @@ export class MoveCmd extends CmdBase {
       case Glyph.StairsUp:   dir=-1;break;
       default: return; // No stairs here.
     }
-    new StairCmd(dir,this.g).exc();
+    new StairCmd(dir,this.g).raw();//stairs. 
   }
 }
