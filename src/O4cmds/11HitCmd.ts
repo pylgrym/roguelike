@@ -26,9 +26,9 @@ export class HitCmd extends CmdBase {
     }
 
     let me = m.name, him = this.him.name;
-    this.doDmg(dmg,m,g,me,him);
+    this.doDmg(dmg,this.him,m,g,me,him);
     if (back>0) {
-      this.doDmg(dmg,m,g,'SHOCK',me);
+      this.doDmg(back,m,m,g,'SHOCK',me);
     }
 
     this.clearCharm(g); // ch25
@@ -37,15 +37,16 @@ export class HitCmd extends CmdBase {
   shockDmg(dmg:number): number { 
     return Math.floor(dmg*3/2); 
   }
-  doDmg(dmg:number,atk:Mob,g:GameIF, me:string,him:string) {
-    let rest = (this.him.hp - dmg);
+  doDmg(dmg:number,tgt:Mob, atk:Mob, g:GameIF, 
+        me:string,him:string) {
+    let rest = (tgt.hp - dmg);
     let s=dmg? `${me} hits ${him} for ${dmg}→${rest}`
              : `${me} misses ${him}`;  
-    if (atk.isPly || this.him.isPly) {
+    if (atk.isPly || tgt.isPly) {
       g.msg(s);  
     }
     if (dmg) { 
-      HealthAdj.adjust(this.him, -dmg, g,atk);
+      HealthAdj.adjust(tgt,-dmg,g,atk);
     }
   }
   clearCharm(g:GameIF) { // ch25
