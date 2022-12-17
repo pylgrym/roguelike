@@ -1,5 +1,6 @@
 import { TermIF } from "O1term/03TermIF";
 import { TPoint } from "O1term/03TPoint";
+import { GameIF } from "O3build/08GameIF";
 import { DMapIF } from "./07DMapIF";
 import { Glyph } from "./07Glyph";
 import { GlyphInf0, GlyphMap0 } from "./07GlyphInf0";
@@ -23,7 +24,7 @@ export class DrawMap {
   static outside:MapCell = new MapCell(Glyph.Unknown);    
 
   // ch09:
-  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint) { 
+  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint, g:GameIF) { 
     if (!plypos) { plypos = new WPoint(); }
     let vp:WPoint = new WPoint( // Must get viewport:
       -Math.floor(term.dim.x*0.5)+plypos.x,
