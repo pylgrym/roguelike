@@ -24,7 +24,7 @@ export class DrawMap {
   static outside:MapCell = new MapCell(Glyph.Unknown);    
 
   // ch09:
-  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint) { 
+  static drawMapPly(term:TermIF, map:DMapIF, plypos:WPoint, g:GameIF) { 
     if (!plypos) { plypos = new WPoint(); }
     let vp:WPoint = new WPoint( // Must get viewport:
       -Math.floor(term.dim.x*0.5)+plypos.x,
