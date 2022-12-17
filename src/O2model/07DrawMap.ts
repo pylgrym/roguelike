@@ -24,7 +24,7 @@ export class DrawMap {
   }  
   static outside:MapCell = new MapCell(Glyph.Unknown);    
 
-  static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint) { 
+  static drawMap18(term:TermIF, map:DMapIF, vp:WPoint, plypos:WPoint,g:GameIF) { 
     let unlit:string='#001';
     let farlit:string = '#124';
     let farDist:number = 50;
@@ -63,7 +63,7 @@ export class DrawMap {
       -Math.floor(term.dim.y*0.5)+plypos.y,
     );
     //this.drawMap0(term,map,vp);  
-    this.drawMap18(term,map,vp,plypos);  
+    this.drawMap18(term,map,vp,plypos,g);  
   }
 
   // ch11:
