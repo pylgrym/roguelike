@@ -47,10 +47,6 @@ export class DrawMap {
         let far:boolean = (dist>farDist) && !blind; // ch25
 
         // 18B:
-        //let seeMob = !!c.mob && !far 
-        //    && CanSee.canSee(c.mob.pos,plypos,map,true);
-
-        // ch15:
         let seeMob = c.mob && !far && (!blind || c.mob.isPly)
           && CanSee.canSee(c.mob.pos,plypos,map,true);        
        
