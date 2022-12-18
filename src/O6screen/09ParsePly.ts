@@ -10,6 +10,7 @@ import { WaitCmd } from "O4cmds/09WaitCmd";
 import { MoveBumpCmd } from "O4cmds/11MoveBumpCmd";
 import { DoorCmd } from "O4cmds/15DoorCmd";
 import { PickupCmd } from "O4cmds/22PickupCmd";
+import { DigCmd } from "O4cmds/26DigCmd";
 import { MakerIF } from "./06ScreenMakerIF";
 import { LogScreen } from "./12LogScreen";
 import { CmdDirScreen } from "./15CmdDirScreen";
@@ -41,6 +42,8 @@ export class ParsePly {
   }
   parseKeyCmd(c:string, ss:StackIF,
               e:JQuery.KeyDownEvent|null):CmdIF|null {
+    let shift = e?.shiftKey; // ch26
+
     var s:SScreenIF|undefined = undefined; // ch12
     let dir = new WPoint();
     switch (c) {
@@ -68,11 +71,22 @@ export class ParsePly {
         }
         break;
       }
-    if (s) { ss.push(s); return null; }// ch12
+    if (s) { ss.push(s); return null; } // ch12
 
-    if (!dir.empty()) { return this.moveBumpCmd(dir); }
+    //if (!dir.empty()) { return this.moveBumpCmd(dir); }
+    // ch26:
+    if (!dir.empty()) {
+      return (shift
+              ? this.digDir(dir)
+              : this.moveBumpCmd(dir) );
+    }
+
     return null;
   }
+  digDir(dir:WPoint):CmdIF {
+    return new DigCmd(dir, this.ply, this.game);
+  }
+
   moveCmd(dir:WPoint):CmdIF {
     return new MoveCmd(dir,this.ply,this.game); 
   }
