@@ -1,3 +1,6 @@
+import { WPoint } from "O2model/07WPoint";
+import { Mob } from "O2model/09Mob";
+
 export interface StepIF {
   // steps return their 'next step'
   excS():StepIF|null; 

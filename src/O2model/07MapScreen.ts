@@ -13,6 +13,7 @@ export class MapScreen implements SScreenIF {
   draw(term:TermIF) { 
       DrawMap.drawMap0(term,this.map,new WPoint()); 
   }
+  onTime():boolean{return false;} // ch27
     
   static runMapScreen(map:DMapIF) {
     Stack.run_SScreen(new MapScreen(map));

@@ -47,7 +47,9 @@ export class DrawMap {
         let seeMob = c.mob && !far && (!blind || c.mob.isPly)
           && CanSee.canSee(c.mob.pos,plypos,map,true);        
        
-        let g:Glyph = (seeMob ? c.mob!.g : c.glyph21()); //ch21
+        //let g:Glyph = (seeMob ? c.mob!.g : c.glyph21()); //ch21
+        let g:Glyph = (seeMob ? c.mob!.g : c.glyph27()); //ch27
+        if (c.sprite) { far = false; } //ch27
 
         let i = GlyphMap1.inf(g);
         if (far) {

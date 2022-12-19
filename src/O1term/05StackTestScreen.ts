@@ -7,4 +7,5 @@ export class StackTestScreen implements SScreenIF {
   name='test2';
   onKey(e:JQuery.KeyDownEvent, s:StackIF){}
   draw(term:TermIF) { TestTerm.test2(term,'-'); }
+  onTime():boolean{return false;} // ch27
 }

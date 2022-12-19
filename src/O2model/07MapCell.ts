@@ -7,6 +7,7 @@ export class MapCell {
   mob:Mob|undefined; // ch09
   lit:boolean|undefined; // ch18
   obj: Obj|undefined; // ch21
+  public sprite:Glyph|undefined; // ch27
 
   glyph():Glyph {
     return this.mob ? this.mob.g : this.env; 
@@ -20,6 +21,13 @@ export class MapCell {
     return this.obj ? this.obj.g 
                     : this.env; 
   }
+  
+  // ch27
+  glyph27():Glyph { 
+    if (this.sprite) { return this.sprite; }
+    return (this.obj ? this.obj.g : this.env); 
+  }
+
   hasObj():boolean { return !!this.obj; } // ch21
 
   blocked():boolean {

@@ -19,6 +19,14 @@ export class Stack implements StackIF, RawScreenIF {
     if (s) { s.onKey(e,this); }
   }
 
+  // ch27
+  onTime():boolean {
+    let change = false;
+    let s = this.cur();
+    if (s) { change = s.onTime(this); }
+    return change;
+  }
+
   static run_SScreen(sScreen:SScreenIF) {
     let stack = new Stack();
     stack.push(sScreen); 

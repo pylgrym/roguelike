@@ -20,6 +20,7 @@ export class BaseScreen implements SScreenIF {
     DrawMap.renderMsg(term, this.game); // ch12
   }
   onKey(e:JQuery.KeyDownEvent, s:StackIF) {}
+  onTime(stack:Stack):boolean{return false;}
   npcTurns(s:StackIF) {
     let ply = <Mob> this.game.ply;
     let map = <DMapIF> this.game.curMap();

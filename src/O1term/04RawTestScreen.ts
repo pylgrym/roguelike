@@ -7,4 +7,6 @@ export class RawTestScreen implements RawScreenIF {
   key:string='-';
   onKey(e:JQuery.KeyDownEvent){this.key=`?:${e.key}`;}
   draw(term:Term) { TestTerm.test2(term,this.key); }
+
+  onTime():boolean{return false;} // ch27
 }

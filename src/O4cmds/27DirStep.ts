@@ -1,3 +1,10 @@
+import { DMapIF } from "O2model/07DMapIF";
+import { Glyph } from "O2model/07Glyph";
+import { WPoint } from "O2model/07WPoint";
+import { GameIF } from "O3build/08GameIF";
+import { StepIF } from "./27StepIF";
+import { TimedStep } from "./27TimedStep";
+
 export class DirStep extends TimedStep {
   map:DMapIF;
   dir:WPoint|null = null;

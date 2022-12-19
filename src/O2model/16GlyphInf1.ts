@@ -69,6 +69,10 @@ export class GlyphMap1 {
     add(bg,    'blue',   '(',Glyph.Cape);
     add(bg,    'cyan',   '(',Glyph.Leggings);
     add(bg,    'pink',   '(',Glyph.Boots);
+   
+    add(bg,    'blue',   '🌟',Glyph.Bullet); // ch27 
+    //*✵🌟🌠✵✴❃✫🔯❂ 
+    // https://unicode-table.com/en/sets/star-symbols/
 
     return GlyphMap1.glyphs.length;
   }

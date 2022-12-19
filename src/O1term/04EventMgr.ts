@@ -8,6 +8,7 @@ export class EventMgr {
     $('#body1').on('keydown', this.onKey.bind(this));
     $(window).on('resize', this.onResize.bind(this));
     this.onResize();
+    this.initTimer(); // ch27
   }
   onResize() {
     this.term.onResize();
@@ -17,6 +18,17 @@ export class EventMgr {
     this.screen.onKey(e);
     this.screen.draw(this.term); 
   }
+
+  // ch27
+  initTimer() {
+    let interval_ms = 100; 
+    setInterval(this.onTimer.bind(this), interval_ms); 
+  }
+  onTimer() { 
+    let change:boolean = this.screen.onTime(); 
+    if (change) { this.screen.draw(this.term); } 
+  } 
+
 
   static runRawScreen(rawScreen:RawScreenIF) {
      return new EventMgr(ResizingTerm.StockTerm(), 

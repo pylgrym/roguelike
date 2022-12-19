@@ -9,6 +9,7 @@ export class OverScreen0 implements SScreenIF {
   draw(term:Term) { 
     term.txt(1,1,' GAME OVER! ', 'yellow', 'red');
   }
+  onTime():boolean{return false;} // OverScreen0
   onKey(e:JQuery.KeyDownEvent, s:StackIF) {
     s.pop();
     s.push(this.make.new_Game());  

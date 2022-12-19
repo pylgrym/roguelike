@@ -1,3 +1,11 @@
+import { DMapIF } from "O2model/07DMapIF";
+import { WPoint } from "O2model/07WPoint";
+import { Mob } from "O2model/09Mob";
+import { GameIF } from "O3build/08GameIF";
+import { HealthAdj } from "./11HealthAdj";
+import { StepIF } from "./27StepIF";
+import { TimedStep } from "./27TimedStep";
+
 export class BlastStep extends TimedStep {
   target:Mob|null = null;
   pos:WPoint|null = null;

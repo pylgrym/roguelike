@@ -13,4 +13,5 @@ export class DummyScreen implements SScreenIF {
     s.pop();
     s.push(this.make.gameOver());  
   }
+  onTime():boolean{return false;} // ch27
 }
