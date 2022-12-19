@@ -11,6 +11,7 @@ import { MoveBumpCmd } from "O4cmds/11MoveBumpCmd";
 import { DoorCmd } from "O4cmds/15DoorCmd";
 import { PickupCmd } from "O4cmds/22PickupCmd";
 import { DigCmd } from "O4cmds/26DigCmd";
+import { BulletCmd } from "O4cmds/27BulletCmd";
 import { MakerIF } from "./06ScreenMakerIF";
 import { LogScreen } from "./12LogScreen";
 import { CmdDirScreen } from "./15CmdDirScreen";
@@ -54,6 +55,7 @@ export class ParsePly {
       case '.': return this.waitCmd(); break;   
       case 'q': s = new LogScreen(this.game,this.maker); break; // ch12
       case 'c': s = this.doorCmd(); break; // ch15
+      case 'm': s = this.bulletCmd(ss); break; // ch27
       case 'g': // ch22
         if (this.game.bag) {
           return new PickupCmd(this.game);
@@ -100,4 +102,15 @@ export class ParsePly {
     let cmd = new DoorCmd(this.ply,this.game);
     return new CmdDirScreen(cmd,this.game,this.maker); 
   }  
+
+  // ch27
+  bulletCmd(ss:StackIF):SScreenIF {
+    return this.dir(
+      new BulletCmd(this.ply,this.game,ss, this.maker)
+    );
+  }
+  dir(cmd: CmdIF) {
+    return new CmdDirScreen(cmd,this.game,this.maker); 
+  }
+
 }
