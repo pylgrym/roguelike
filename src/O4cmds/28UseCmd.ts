@@ -35,8 +35,8 @@ export class UseCmd extends CmdBase {
   use(obj: Obj,me:Mob,g:GameIF):boolean {
     var cmd:CmdIF;
     switch (obj.g) {
-      case Glyph.Potion: cmd = new HealCmd(1,me,g); break;
-      case Glyph.Scroll: cmd = new PortCmd(1,me,g); break;
+      case Glyph.Potion: cmd = new HealCmd(obj.level+4,me,g); break;
+      case Glyph.Scroll: cmd = new PortCmd(6,me,g); break;
       default: return false;
     }
     return cmd.raw();

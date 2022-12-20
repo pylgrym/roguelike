@@ -12,22 +12,24 @@ export class PortCmd extends CmdBase {
     exc(): boolean {
         let g = this.g;
         let map = <DMapIF> g.curMap();
-        let p = this.find(this.me.pos, this.r, map);
+        let p = this.pick(this.me.pos, this.r, map);
         if (!p) { return false; }
         map.moveMob(this.me,p);        
         g.msg(`${this.me.name} shimmers`);
         return true; 
     }
-    find(c:WPoint,r:number,map:DMapIF):WPoint|null {
-        console.log('r:', r);
+    pick(c:WPoint,r:number,map:DMapIF):WPoint|null {
         let R = this.g.rnd;
         let p = new WPoint();
         for (let ix=15; ix>0; ) {
-            p.x = c.x + R.rnd(-r,r);
-            p.y = c.y + R.rnd(-r,r);
+            let dx=R.rnd(-r,r), dy = R.rnd(-r,r);
+            p.x = c.x + dx;
+            p.y = c.y + dy;
             if (!map.legal(p)) { continue; }
             --ix;
-            if (!map.cell(p).blocked()){return p;}
+            if (map.cell(p).blocked()){continue;}
+            console.table({r,dx,dy});
+            return p;
         } 
         return null;
     }
