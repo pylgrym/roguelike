@@ -43,7 +43,18 @@ export class SpellAI implements MobAiIF {
     return this.cast(buff,me,enemy,game);
   }
 
-  pickBuff(me:Mob, r:Rnd):Buff { return Buff.Confuse; }
+  pickBuff0(me:Mob, r:Rnd):Buff { return Buff.Confuse; }
+  pickBuff(me:Mob, r:Rnd):Buff { 
+    // Levitate is last buff:
+    let range:number = (Buff.Levitate)+1; 
+    //let offset = me.level - 2;
+    // Clip levels to buff-range:
+    let buffIx:number = me.level % range;
+    // Pick the Buff at <buffIx> offset:
+    let buff:Buff = Buff.Confuse + buffIx;
+    console.log(`${me.name} buff: ${buff}`);
+    return buff; //Buff.Confuse; 
+  }
   
   cast(buff:number, me:Mob, 
        enemy:Mob, game:GameIF):boolean {
