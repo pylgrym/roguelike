@@ -19,6 +19,7 @@ export class PortCmd extends CmdBase {
         return true; 
     }
     find(c:WPoint,r:number,map:DMapIF):WPoint|null {
+        console.log('r:', r);
         let R = this.g.rnd;
         let p = new WPoint();
         for (let ix=15; ix>0; ) {

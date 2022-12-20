@@ -18,11 +18,11 @@ export class UseCmd extends CmdBase {
     let obj:Obj = this.obj;
     if (!this.usable(obj)) {return false;}
 
+    game.msg(`You use ${obj.name()}.`);
     let used = this.use(obj,this.me,this.g);
     if (!used) { return false; }
 
     game.bag!.removeIx(this.ix);
-    game.msg(`You use ${obj.name()}.`);
     return true;
   }
   usable(obj:Obj):boolean {
