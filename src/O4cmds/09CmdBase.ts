@@ -108,4 +108,16 @@ export abstract class CmdBase implements CmdIF {
     return true;
   }
 
+  confused(g:GameIF, dir:WPoint):boolean {
+    if (!this.me.is(Buff.Confuse)) { return false; }
+    let r = g.rnd;
+    if (r.oneIn(2)) { return false; }
+    if (this.me.isPly) {
+      g.msg('Ply is confused!');
+    }
+    let cd = r.rndDir2();
+    dir.x = cd.x; dir.y = cd.y;
+    return true;
+  }
+
 }
