@@ -6,6 +6,7 @@ import { Obj } from "O2model/21Obj";
 import { Bag } from "O2model/22Bag";
 import { GameIF } from "O3build/08GameIF";
 import { WearCmd } from "O4cmds/23WearCmd";
+import { UseCmd } from "O4cmds/28UseCmd";
 import { MakerIF } from "./06ScreenMakerIF";
 import { BaseScreen } from "./09BaseScreen";
 
@@ -31,7 +32,8 @@ export class ItemScreen extends BaseScreen {
     if (this.worn ) { // ch23
       term.txt(0,y++,'w wear',  fg,bg); 
     }
-    term.txt(0,y++,'u use',   fg,bg);
+    term.txt(0,y++,'u use',   fg,bg); // ch28
+
     term.txt(0,y++,'t throw', fg,bg);
     DrawMap.renderMsg(term, this.game); 
   }   
@@ -43,6 +45,7 @@ export class ItemScreen extends BaseScreen {
     switch (e.key) {
       case 'd': this.dropItem(s); break;
       case 'w': this.wear(s); break; // ch23
+      case 'u': this.use(s); break; // ch28
       default: s.pop(); break;
     } 
     return true;
@@ -82,5 +85,16 @@ export class ItemScreen extends BaseScreen {
       this.pop_And_RunNPCLoop(ss); 
     }
     return ok;
+  }
+
+  // ch28
+  use(ss:Stack):boolean { 
+    let ok = new UseCmd(
+      this.obj, this.ix, this.game
+    ).turn(); 
+    if (ok) { 
+      this.pop_And_RunNPCLoop(ss); 
+    }
+    return true;
   }
 }
