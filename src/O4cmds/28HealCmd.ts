@@ -1,7 +1,8 @@
 import { HealthAdj } from "./11HealthAdj";
 import { CmdBase } from "./09CmdBase";
-import { GameIF } from "O2model/08GameIF";
 import { Mob } from "O2model/09Mob";
+import { GameIF } from "O3build/08GameIF";
+//import { GameIF } from "O2model/08GameIF";
 
 export class HealCmd extends CmdBase {
     constructor(

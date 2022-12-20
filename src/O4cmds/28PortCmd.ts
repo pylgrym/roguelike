@@ -1,8 +1,9 @@
 import { CmdBase } from "./09CmdBase";
-import { GameIF } from "O2model/08GameIF";
 import { WPoint } from "O2model/07WPoint";
 import { DMapIF } from "O2model/07DMapIF";
 import { Mob } from "O2model/09Mob";
+import { GameIF } from "O3build/08GameIF";
+//import { GameIF } from "O2model/08GameIF";
 
 export class PortCmd extends CmdBase {
     constructor(
