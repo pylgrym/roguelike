@@ -28,5 +28,8 @@ export enum Glyph {
   Leggings,
   Boots,
 
-  Bullet
+  Bullet, // ch27
+
+  Potion, // ch28
+  Scroll
 }

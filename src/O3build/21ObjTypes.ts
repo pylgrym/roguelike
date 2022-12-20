@@ -17,7 +17,10 @@ export class ObjTypes {
   {g: Glyph.Gloves,  s:Slot.Hands},
   {g: Glyph.Cape,    s:Slot.Back },
   {g: Glyph.Leggings,s:Slot.Legs },
-  {g: Glyph.Boots,   s:Slot.Feet }
+  {g: Glyph.Boots,   s:Slot.Feet },
+
+  {g: Glyph.Potion,  s:Slot.NotWorn},
+  {g: Glyph.Scroll,  s:Slot.NotWorn},
   ]    
   
   static ixForGlyph(g:Glyph):number {

@@ -71,6 +71,10 @@ export class GlyphMap1 {
     add(bg,    'pink',   '(',Glyph.Boots);
    
     add(bg,    'blue',   '🌟',Glyph.Bullet); // ch27 
+
+    add(bg,    'blue',   '!',Glyph.Potion); // ch28
+    add(bg,    'yellow', '?',Glyph.Scroll); 
+     
     //*✵🌟🌠✵✴❃✫🔯❂ 
     // https://unicode-table.com/en/sets/star-symbols/
 
