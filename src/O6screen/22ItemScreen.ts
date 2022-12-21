@@ -88,13 +88,10 @@ export class ItemScreen extends BaseScreen {
   }
 
   // ch28
-  useItem(ss:Stack):boolean { 
-    let ok = new UseCmd(
-      this.obj, this.ix, this.game
-    ).turn(); 
-    if (ok) { 
-      this.pop_And_RunNPCLoop(ss); 
-    }
-    return true;
+  useItem(ss:Stack):void { 
+    let didTurn = new UseCmd(
+      this.obj, this.ix, this.game, ss, this.make
+    ).raw(); // UseCmd is not the turn, it is a UI-thing. 
+    if (didTurn) { this.pop_And_RunNPCLoop(ss); }
   }
 }

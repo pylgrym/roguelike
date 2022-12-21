@@ -3,12 +3,17 @@ import { Mob } from "O2model/09Mob";
 import { Buff } from "O2model/24BuffEnum";
 import { GameIF } from "O3build/08GameIF";
 import { CmdIF } from "./09CmdIF";
+import { CostIF } from "./28CostIF";
 import { Able } from "./25Able";
 import { Act } from "./25Act";
 
 export abstract class CmdBase implements CmdIF {
   // ch25:
   act:Act = Act.Act; // (default is other than hit and move.)
+
+  // ch28:
+  cost:CostIF|undefined;
+  setCost(cost:CostIF|undefined) { this.cost = cost;}
 
   exc(): boolean { throw 'no exc'; }
   constructor(public me:Mob, public g:GameIF){}
@@ -18,11 +23,17 @@ export abstract class CmdBase implements CmdIF {
   public raw():boolean  { return this.exc(); } 
   public npcTurn():boolean { return this.turn(); }
 
+  pay():boolean {
+    if (!this.cost) { return true; }
+    return this.cost.pay();
+  }
+  
   public turn():boolean {
     let r = this.able(
       <Mob>this.me,<GameIF>this.g,this.act
     );  
     if (!r.able) { return r.turn; }
+    if (!this.pay()) { return true; }
     return this.exc(); 
   }
   able(m:Mob, g:GameIF,act:Act):Able {
