@@ -31,5 +31,6 @@ export enum Glyph {
   Bullet, // ch27
 
   Potion, // ch28
-  Scroll
+  Scroll,
+  Wand
 }

@@ -32,6 +32,7 @@ export class UseCmd extends CmdBase {
     }
     return canUse;
   }
+  
   use(obj: Obj,me:Mob,g:GameIF):boolean {
     var cmd:CmdIF;
     switch (obj.g) {
@@ -41,4 +42,13 @@ export class UseCmd extends CmdBase {
     }
     return cmd.raw();
   }
+}
+
+
+export class UseCmd0 extends CmdBase {
+  constructor(public obj:Obj, public ix:number,
+              public g:GameIF) { 
+    super(g.ply,g); 
+  }
+  exc(): boolean { return false; }
 }

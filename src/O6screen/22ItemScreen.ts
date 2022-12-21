@@ -45,7 +45,7 @@ export class ItemScreen extends BaseScreen {
     switch (e.key) {
       case 'd': this.dropItem(s); break;
       case 'w': this.wear(s); break; // ch23
-      case 'u': this.use(s); break; // ch28
+      case 'u': this.useItem(s); break; // ch28
       default: s.pop(); break;
     } 
     return true;
@@ -88,7 +88,7 @@ export class ItemScreen extends BaseScreen {
   }
 
   // ch28
-  use(ss:Stack):boolean { 
+  useItem(ss:Stack):boolean { 
     let ok = new UseCmd(
       this.obj, this.ix, this.game
     ).turn(); 

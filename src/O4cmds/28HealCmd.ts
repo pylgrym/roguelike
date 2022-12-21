@@ -6,7 +6,8 @@ import { GameIF } from "O3build/08GameIF";
 
 export class HealCmd extends CmdBase {
     constructor(
-        public r:number, public me:Mob, public g:GameIF
+        public r:number, 
+        public me:Mob, public g:GameIF
     ) { super(me,g); }
     exc(): boolean {
         let g = this.g;
