@@ -92,6 +92,8 @@ export class ItemScreen extends BaseScreen {
     let didTurn = new UseCmd(
       this.obj, this.ix, this.game, ss, this.make
     ).raw(); // UseCmd is not the turn, it is a UI-thing. 
-    if (didTurn) { this.pop_And_RunNPCLoop(ss); }
+    if (didTurn) { 
+      this.pop_And_RunNPCLoop(ss); 
+    }
   }
 }

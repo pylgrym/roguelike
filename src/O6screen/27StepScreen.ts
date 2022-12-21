@@ -17,9 +17,7 @@ export class StepScreen extends BaseScreen {
   } // keys dont do anything during anim.
   draw(term:TermIF) { super.draw(term); } 
   onTime(s:Stack):boolean { 
-    if (this.step == null) { 
-        throw 'step is null'; 
-    }
+    if (this.step == null) { throw 'step is null'; }
     this.step = this.step.excS();
     if (this.step) { return true; }    
     this.pop_And_RunNPCLoop(s);

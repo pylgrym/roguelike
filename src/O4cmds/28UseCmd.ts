@@ -33,14 +33,14 @@ export class UseCmd extends CmdBase {
     let obj:Obj = this.obj;
     if (!this.usable(obj)) {return false;}
 
-    let didTurn = this.use(obj,this.me,this.g);
+    let didTurn = this.useObj(obj,this.me,this.g);
     if (didTurn) { 
       game.bag!.removeIx(this.ix);
     }
-    return didTurn; // if we did turn, it will run npcLoop.
+    return didTurn; // if we did a turn, it must run npcLoop.
   }
   
-  use(obj: Obj,me:Mob,g:GameIF):boolean {
+  useObj(obj: Obj,me:Mob,g:GameIF):boolean {
     var cmd:CmdIF;
     switch (obj.g) {
       case Glyph.Potion: cmd = new HealCmd(obj.level+4,me,g); break;
@@ -53,14 +53,18 @@ export class UseCmd extends CmdBase {
     return cmd.turn(); // these would be actual turns.
   }
   useZapItem(g:GameIF): boolean {
-    let zap = new BulletCmd(g.ply,g,this.ss,this.maker); // hvorfor er det nu, vi skal bruge maker?
+    let zap = new BulletCmd(g.ply,g,this.ss,this.maker); // (maker is because we'll be running screens.)
     zap.setCost(new ItemCost(g,this.ix));
     let dir = new CmdDirScreen(zap,g,this.maker); 
     this.ss.pop(); // pop the old.
     this.ss.push(dir);
-    return false;
+    return false; // this was not a turn.
   }
 }
+
+
+
+
 
 export class UseCmd0 extends CmdBase {
   constructor(public obj:Obj, public ix:number,
