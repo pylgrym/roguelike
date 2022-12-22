@@ -54,7 +54,7 @@ export class UseCmd extends CmdBase {
   }
   useZapItem(g:GameIF): boolean {
     let zap = new BulletCmd(g.ply,g,this.ss,this.maker); // (maker is because we'll be running screens.)
-    zap.setCost(new ItemCost(g,this.ix));
+    zap.setCost(new ItemCost(g,this.obj,this.ix));
     let dir = new CmdDirScreen(zap,g,this.maker); 
     this.ss.pop(); // pop the old.
     this.ss.push(dir);
