@@ -201,5 +201,6 @@ export class Builder2n implements BuildIF2 {
     // ch28
     bag?.add(new Obj(Glyph.Potion, Slot.NotWorn) );
     bag?.add(new Obj(Glyph.Scroll, Slot.NotWorn) );
+    bag?.add(new Obj(Glyph.Wand,   Slot.NotWorn) );
   }
 }

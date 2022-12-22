@@ -98,7 +98,6 @@ export class ItemScreen extends BaseScreen {
     if (spell == null) { return; }
     ss.pop(); 
     if (spell instanceof CmdBase) {
-      g.msg(`You use ${this.obj.name()}.`);
       if (spell.turn()) {
         this.npcTurns(ss); 
       }
