@@ -1,12 +1,15 @@
 import { TermIF } from "O1term/03TermIF";
 import { Stack } from "O1term/05ScreenStack";
+import { SScreenIF } from "O1term/05SScreenIF";
 import { DMapIF } from "O2model/07DMapIF";
 import { DrawMap } from "O2model/07DrawMap";
 import { Obj } from "O2model/21Obj";
 import { Bag } from "O2model/22Bag";
 import { GameIF } from "O3build/08GameIF";
+import { CmdBase } from "O4cmds/09CmdBase";
+import { CmdIF } from "O4cmds/09CmdIF";
 import { WearCmd } from "O4cmds/23WearCmd";
-import { UseCmd } from "O4cmds/28UseCmd";
+import { FindObjSpell } from "O4cmds/28FindObjSpell";
 import { MakerIF } from "./06ScreenMakerIF";
 import { BaseScreen } from "./09BaseScreen";
 
@@ -89,11 +92,21 @@ export class ItemScreen extends BaseScreen {
 
   // ch28
   useItem(ss:Stack):void { 
-    let didTurn = new UseCmd(
-      this.obj, this.ix, this.game, ss, this.make
-    ).raw(); // UseCmd is not the turn, it is a UI-thing. 
-    if (didTurn) { 
-      this.pop_And_RunNPCLoop(ss); 
+    let g = this.game;
+    let finder = new FindObjSpell(this.obj,this.ix,g,ss,this.make);
+    let spell:CmdIF|SScreenIF|null = finder.find();
+    if (spell == null) { return; }
+    ss.pop(); 
+    if (spell instanceof CmdBase) {
+      g.msg(`You use ${this.obj.name()}.`);
+      if (spell.turn()) {
+        this.npcTurns(ss); 
+      }
+    } else { // (it's a screen)
+      ss.push(<SScreenIF> spell);
     }
   }
 }
+
+//let didTurn = new UseCmd(this.obj, this.ix, this.game, ss, this.make).raw(); // UseCmd is not the turn, it is a UI-thing. 
+//if (didTurn) { this.pop_And_RunNPCLoop(ss); }
