@@ -4,7 +4,7 @@ import { CostIF } from './28CostIF';
 
 
 export class ItemCost implements CostIF {
-  constructor(public g:GameIF, public obj:Obj, public objIx:number) { }
+  constructor(public g:GameIF, public obj:Obj, public objIx:number){}
   pay(): boolean {
     this.g.msg(`You use ${this.obj.name()}.`);
     this.g.bag!.removeIx(this.objIx);

@@ -91,6 +91,19 @@ export class ItemScreen extends BaseScreen {
   }
 
   // ch28
+  useItem0(ss:Stack):void { 
+    let g = this.game;
+    let finder = new FindObjSpell(this.obj,this.ix,g,ss,this.make);
+    let spell:CmdIF|null = <CmdIF> finder.find();
+    if (spell == null) { return; }
+    ss.pop();
+    if (spell) {
+      if (spell.turn()) {
+        this.npcTurns(ss); 
+      }
+    } 
+  }
+
   useItem(ss:Stack):void { 
     let g = this.game;
     let finder = new FindObjSpell(this.obj,this.ix,g,ss,this.make);
@@ -106,6 +119,3 @@ export class ItemScreen extends BaseScreen {
     }
   }
 }
-
-//let didTurn = new UseCmd(this.obj, this.ix, this.game, ss, this.make).raw(); // UseCmd is not the turn, it is a UI-thing. 
-//if (didTurn) { this.pop_And_RunNPCLoop(ss); }
