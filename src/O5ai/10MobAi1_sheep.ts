@@ -7,6 +7,6 @@ export class MobAI1_sheep implements MobAiIF {
   turn(me:Mob, enemy:Mob, game:GameIF):boolean {
     let dir = me.pos.dir(enemy.pos);
     let cmd = new MoveCmd(dir,me,game);
-    return cmd.exc();  
+    return cmd.npcTurn();  
   }
 }
