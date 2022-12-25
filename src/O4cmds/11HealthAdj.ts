@@ -1,6 +1,9 @@
 import { DMapIF } from "O2model/07DMapIF";
+import { Glyph } from "O2model/07Glyph";
+import { WPoint } from "O2model/07WPoint";
 import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
+import { ObjTypes } from "O3build/21ObjTypes";
 import { AutoHeal } from "./17AutoHeal";
 
 export class HealthAdj {
@@ -38,6 +41,29 @@ export class HealthAdj {
     if (involvesPly) { game.msg(s); } // ch12
     let map = <DMapIF> game.curMap();
     map.removeMob(m);
+    this.mightDropLoot(m, map, game);
+  }
+
+  // ch21:
+  static mightDropLoot(m:Mob,map:DMapIF,game:GameIF) {
+    if (game.rnd.oneIn(2)) { return; }
+    this.dropLoot(m.pos,map,game, m.level);
+  }
+  static dropLoot(pos:WPoint, map:DMapIF, 
+                  game:GameIF, level:number
+  ) {
+    let lootCell = map.cell(pos);
+    let canDrop = (lootCell.env == Glyph.Floor);
+    var s:string;
+    if (!canDrop) {
+      s = `Something falls into an inaccessible place.`;
+    } else {
+      let rnd = game.rnd;
+      let objLevel = level+1;
+      let obj  = ObjTypes.addRndObjForLevel(pos,map,rnd,objLevel);
+      s = `Something rolls on the floor: ${obj.desc()}`;
+    }
+    game.msg(s); 
   }
   
 }
