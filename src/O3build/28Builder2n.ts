@@ -57,7 +57,7 @@ export class Builder2n implements BuildIF2 {
   }
   makePly():Mob { 
     let ply = new Mob(Glyph.Ply,20,12);
-    ply.hp = ply.maxhp = 15;
+    ply.hp = ply.maxhp = 10000; //15;
     return ply; 
   }
   
