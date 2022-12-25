@@ -7,7 +7,6 @@ export class ActiveBuffs {
   _map: Map<Buff, BuffIF> = new Map();
   add(b: BuffIF, game: GameIF, mob: Mob) { 
     this._map.set(b.buff, b); 
-    game.msg(`${mob.name} is ${Buff[b.buff]} !`);
   } 
   
   del(b: BuffIF, game: GameIF, mob: Mob) {
