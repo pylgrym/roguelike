@@ -23,8 +23,7 @@ export class BuffCmd extends CmdBase {
       case Buff.Freeze: effect = new FreezeTick(m,g); break;
       case Buff.Bleed:  effect = new BleedTick(m,g);  break;
       case Buff.Petrify:effect = new PetrifyTick(m,g);break;
-    }
-  
+    }  
     let active:BuffIF = { 
       buff:this.buff, time:8,  effect:effect
     }; 
@@ -33,6 +32,12 @@ export class BuffCmd extends CmdBase {
   }
   addBuffToMob(active:BuffIF, 
                game:GameIF, mob:Mob) {
+    if (mob.isPly || this.me.isPly) {
+      let who = mob.name;
+      let what:string = Buff[active.buff];
+      let by = this.me.name;
+      game.msg(`${who} is ${what} by ${by}`);
+    }
     mob.buffs.add(active,game,mob);
   }
 
