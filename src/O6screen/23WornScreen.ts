@@ -50,13 +50,13 @@ export class WornScreen extends BaseScreen {
       DrawMap.renderMsg(term, this.game);  
     } 
     onKey(e:JQuery.KeyDownEvent,
-          stack:Stack):boolean 
-    {
-      if (this.unequip( this.char2slot(e.key) )) {
+          stack:Stack):boolean {
+      let slot = this.char2slot(e.key);
+      if (slot == Slot.NotWorn || this.unequip(slot)) { 
         stack.pop();
-      } 
+      }
       return true;
-    } // how does cancel work here?
+    } 
     unequip(slot:Slot):boolean { 
       return new UnequipCmd(slot,this.game).turn();
     }
