@@ -9,7 +9,7 @@ import { Stack } from 'O1term/05ScreenStack';
 import { BulletCmd } from './27BulletCmd';
 import { CmdDirScreen } from 'O6screen/15CmdDirScreen';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
-import { ItemCost } from './28ItemCost';
+import { ChargedItemCost1 } from './28ItemCost';
 import { SScreenIF } from 'O1term/05SScreenIF';
 
 export class FindObjSpell {
@@ -46,7 +46,7 @@ export class FindObjSpell {
     default: 
       return null; 
     }
-    cmd.setCost(new ItemCost(g,this.obj,this.ix));
+    cmd.setCost(new ChargedItemCost1(g,this.obj,this.ix));
     return s ? s : cmd;
   }   
 }
