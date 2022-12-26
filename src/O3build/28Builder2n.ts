@@ -55,9 +55,11 @@ export class Builder2n implements BuildIF2 {
   centerPos(d: WPoint):WPoint {
     return new WPoint(Math.floor(d.x/2), Math.floor(d.y/2)); 
   }
+
+  static plyHP_value=16;
   makePly():Mob { 
     let ply = new Mob(Glyph.Ply,20,12);
-    ply.hp = ply.maxhp = 10000; //15;
+    ply.hp = ply.maxhp = Builder2n.plyHP_value*=2; //10000; //15;
     return ply; 
   }
   

@@ -3,6 +3,7 @@ import { Slot } from "./21Slot";
 
 export class Obj {
   level:number=0;
+  charges:number=0;
   constructor(public g:Glyph, public slot:Slot) {}
 
   desc():string { 

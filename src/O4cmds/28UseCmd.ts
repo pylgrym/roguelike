@@ -11,7 +11,7 @@ import { Stack } from 'O1term/05ScreenStack';
 import { BulletCmd } from './27BulletCmd';
 import { CmdDirScreen } from 'O6screen/15CmdDirScreen';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
-import { ItemCost } from './28ItemCost';
+import { ChargedItemCost1 } from './28ItemCost';
 
 export class UseCmd extends CmdBase {
   constructor(public obj:Obj, public ix:number,
@@ -54,7 +54,7 @@ export class UseCmd extends CmdBase {
   }
   useZapItem(g:GameIF): boolean {
     let zap = new BulletCmd(g.ply,g,this.ss,this.maker); // (maker is because we'll be running screens.)
-    zap.setCost(new ItemCost(g,this.obj,this.ix));
+    zap.setCost(new ChargedItemCost1(g,this.obj,this.ix));
     let dir = new CmdDirScreen(zap,g,this.maker); 
     this.ss.pop(); // pop the old.
     this.ss.push(dir);

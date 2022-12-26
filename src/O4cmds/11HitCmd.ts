@@ -39,6 +39,13 @@ export class HitCmd extends CmdBase {
   }
   doDmg(dmg:number,tgt:Mob, atk:Mob, g:GameIF, 
         me:string,him:string) {
+    if (tgt.isPly) {
+      let orig=dmg;
+      let factor = g.worn!.AC_reduce();
+      dmg = Math.ceil(dmg*factor);
+      console.log(`${orig}→${dmg} (${factor})`);
+    }
+
     let rest = (tgt.hp - dmg);
     let s=dmg? `${me} hits ${him} for ${dmg}→${rest}`
              : `${me} misses ${him}`;  
