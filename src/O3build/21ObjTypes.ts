@@ -55,6 +55,9 @@ export class ObjTypes {
     let objLevel = rnd.spiceUpLevel(level);
     let obj = new Obj(tmpl.g, tmpl.s);
     obj.level = objLevel;
+    if (obj.g == Glyph.Wall) {
+      obj.charges = rnd.rnd(1,level);
+    }
     return obj;
   } 
   static getTmpl(ix:number):ObjTypeIF {
