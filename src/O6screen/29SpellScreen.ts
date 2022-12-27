@@ -1,7 +1,10 @@
 import { TermIF } from "O1term/03TermIF";
 import { Stack } from "O1term/05ScreenStack";
 import { GameIF } from "O3build/08GameIF";
+import { CostIF } from "O4cmds/28CostIF";
+import { FindObjSpell } from "O4cmds/28FindObjSpell";
 import { Spell } from "O4cmds/29Spell";
+import { SpellFinder } from "O4cmds/29SpellFinder";
 import { MakerIF } from "./06ScreenMakerIF";
 import { BaseScreen } from "./09BaseScreen";
 
@@ -30,8 +33,16 @@ export class SpellScreen extends BaseScreen {
   }
   itemMenu(pos:number, ss:Stack):void {
       let s:Spell = pos;
+      this.doSpell(s,ss);
       let label = Spell[s];
       if (!label) { ss.pop(); return;}
       this.game.flash(label);
+  }
+  doSpell(s:Spell, ss:Stack) {
+    //let finder = new FindObjSpell(undefined,ix,this.game,ss,this.make); 
+    let finder = new SpellFinder(this.game,ss,this.make);
+    let cost:CostIF = <CostIF> <unknown> undefined;
+    let CoS = finder.find(s,cost);
+    //throw new Error("Method not implemented.");
   }
 }
