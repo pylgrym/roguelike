@@ -1,5 +1,4 @@
 export enum Spell {
-None,
 Heal,      // U
 D_Charm,   //B
 D_Slow,    //S
@@ -22,6 +21,7 @@ D_Sleep,   //B
 D_Petrify, //S
 Summon,    // U
 D_Bleed,   // D
-D_Levitate //B
+D_Levitate,//B
 D_Disarm,  //B
+None,
 }

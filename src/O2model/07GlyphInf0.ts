@@ -44,6 +44,6 @@ export class GlyphMap0 {
     if (GlyphMap0.glyphs.length == g) { return; }
     console.log(g, 'differs from', 
       GlyphMap0.glyphs.length 
-      );
+    );
   }
 }
