@@ -19,6 +19,8 @@ export abstract class CmdBase implements CmdIF {
   constructor(public me:Mob, public g:GameIF){}
 
   setDir(dir: WPoint):CmdIF {throw 'no setDir';} // ch15
+
+  setTarget(me:Mob):void { this.me = me; } // ch29
   
   public raw():boolean  { return this.exc(); } 
   public npcTurn():boolean { return this.turn(); }
