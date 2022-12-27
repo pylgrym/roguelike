@@ -1,6 +1,9 @@
 import { TermIF } from "O1term/03TermIF";
 import { Stack } from "O1term/05ScreenStack";
+import { SScreenIF } from "O1term/05SScreenIF";
 import { GameIF } from "O3build/08GameIF";
+import { CmdBase } from "O4cmds/09CmdBase";
+import { CmdIF } from "O4cmds/09CmdIF";
 import { CostIF } from "O4cmds/28CostIF";
 import { FindObjSpell } from "O4cmds/28FindObjSpell";
 import { Spell } from "O4cmds/29Spell";
@@ -27,22 +30,32 @@ export class SpellScreen extends BaseScreen {
   } //++o; of Object.values(Spell)
   onKey(e:JQuery.KeyDownEvent,s:Stack):boolean  {
     this.game.log.clearQueue();
-    //s.pop();
+    s.pop();
     let pos = this.char2pos(e.key); this.itemMenu(pos,s); 
     return true; // if (pos >= 0) { } else { stack.pop(); }
   }
   itemMenu(pos:number, ss:Stack):void {
       let s:Spell = pos;
-      this.doSpell(s,ss);
+
       let label = Spell[s];
-      if (!label) { ss.pop(); return;}
-      this.game.flash(label);
+      if (!label) {return;} //ss.pop(); 
+      //this.game.flash(label);
+
+      this.doSpell(s,ss);
   }
   doSpell(s:Spell, ss:Stack) {
-    //let finder = new FindObjSpell(undefined,ix,this.game,ss,this.make); 
     let finder = new SpellFinder(this.game,ss,this.make);
-    let cost:CostIF = <CostIF> <unknown> undefined;
-    let CoS = finder.find(s,cost);
-    //throw new Error("Method not implemented.");
+    let cost:CostIF|undefined = undefined; // <CostIF> <unknown>
+    let spell:CmdIF|SScreenIF|null = finder.find(s,cost);
+
+    if (spell == null) { return; }
+    ss.pop(); 
+    if (spell instanceof CmdBase) {
+      if (spell.turn()) {
+        this.npcTurns(ss); 
+      }
+    } else { // (it's a screen)
+      ss.push(<SScreenIF> spell);
+    }
   }
 }

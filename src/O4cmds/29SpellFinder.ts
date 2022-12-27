@@ -9,11 +9,12 @@ import { MakerIF } from 'O6screen/06ScreenMakerIF';
 import { SScreenIF } from 'O1term/05SScreenIF';
 import { Spell } from './29Spell';
 import { CostIF } from './28CostIF';
+
 export class SpellFinder {
   constructor(public g:GameIF, public ss:Stack,
               public maker:MakerIF) {}
 
-  find(spell:Spell,cost:CostIF): CmdIF|SScreenIF|null {
+  find(spell:Spell,cost:CostIF|undefined): CmdIF|SScreenIF|null {
     let g = this.g;
     let me = g.ply;
     let level = 1;
