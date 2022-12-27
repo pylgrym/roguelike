@@ -17,6 +17,7 @@ import { LogScreen } from "./12LogScreen";
 import { CmdDirScreen } from "./15CmdDirScreen";
 import { InvScreen } from "./22InvScreen";
 import { WornScreen } from "./23WornScreen";
+import { SpellScreen } from "./29SpellScreen";
 
 export class ParsePly {
   public ply:Mob;
@@ -55,7 +56,8 @@ export class ParsePly {
       case '.': return this.waitCmd(); break;   
       case 'q': s = new LogScreen(this.game,this.maker); break; // ch12
       case 'c': s = this.doorCmd(); break; // ch15
-      case 'm': s = this.bulletCmd(ss); break; // ch27
+      //case 'm': s = this.bulletCmd(ss); break; // ch27
+      case 'm': s = new SpellScreen(this.game,this.maker); break; // ch29
       case 'g': // ch22
         if (this.game.bag) {
           return new PickupCmd(this.game);
