@@ -13,6 +13,9 @@ import { PayloadCmd } from './29PayloadCmd';
 import { BuffCmd } from './24BuffCmd';
 import { Buff } from 'O2model/24BuffEnum';
 import { Mob } from 'O2model/09Mob';
+import { CleanseCmd } from './29CleanseCmd';
+import { MultiplyCmd } from './29MultiplyCmd';
+import { SummonCmd } from './29SummonCmd';
 
 export interface CmdOrScreen {
     cmd:CmdIF;
@@ -32,27 +35,30 @@ export class SpellFinder {
 
     switch (spell) {
     case Spell.Heal:    cmd = new HealCmd(level,me,g); break;
-    case Spell.Port:    cmd = new PortCmd(6,me,g); break;
-    case Spell.Missile: s = this.dir(cmd = new BulletCmd(g.ply,g,this.ss,this.maker)); break;
     case Spell.D_Charm:   ({s,cmd} = this.buff(Buff.Charm,   me)); break;
     case Spell.D_Slow:    ({s,cmd} = this.buff(Buff.Slow,    me)); break;
     case Spell.D_Afraid:  ({s,cmd} = this.buff(Buff.Afraid,  me)); break;
+    case Spell.Missile: s = this.dir(cmd = new BulletCmd(g.ply,g,this.ss,this.maker)); break;
     case Spell.D_Poison:  ({s,cmd} = this.buff(Buff.Poison,  me)); break;
     case Spell.D_Confuse: ({s,cmd} = this.buff(Buff.Confuse, me)); break;
     case Spell.D_Silence: ({s,cmd} = this.buff(Buff.Silence, me)); break;
+    case Spell.Cleanse: cmd = new CleanseCmd(level,me,g); break;
     case Spell.D_Stun:    ({s,cmd} = this.buff(Buff.Stun,    me)); break;
     case Spell.D_Burn:    ({s,cmd} = this.buff(Buff.Burn,    me)); break;
     case Spell.D_Blind:   ({s,cmd} = this.buff(Buff.Blind,   me)); break;
+    case Spell.Multiply: cmd = new MultiplyCmd(level,me,g); break;
     case Spell.D_Freeze:  ({s,cmd} = this.buff(Buff.Freeze,  me)); break;
     case Spell.D_Root:    ({s,cmd} = this.buff(Buff.Root,    me)); break;
     case Spell.D_Shock:   ({s,cmd} = this.buff(Buff.Shock,   me)); break;
+    case Spell.Port:    cmd = new PortCmd(6,me,g); break;
     case Spell.D_Paralyze:({s,cmd} = this.buff(Buff.Paralyze,me)); break;
     case Spell.D_Sleep:   ({s,cmd} = this.buff(Buff.Sleep,   me)); break;
     case Spell.D_Petrify: ({s,cmd} = this.buff(Buff.Petrify, me)); break;
+    case Spell.Summon: cmd = new SummonCmd(level,me,g); break;
     case Spell.D_Bleed:   ({s,cmd} = this.buff(Buff.Bleed,   me)); break;
     case Spell.D_Levitate:({s,cmd} = this.buff(Buff.Levitate,me)); break;
     case Spell.D_Disarm:  ({s,cmd} = this.buff(Buff.Disarm,  me)); break;
-    
+
     default: return null; 
     }
     cmd.setCost(cost);
