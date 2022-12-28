@@ -1,9 +1,12 @@
+import { Spell } from "O4cmds/29Spell";
 import { Glyph } from "./07Glyph";
 import { Slot } from "./21Slot";
 
 export class Obj {
   level:number=0;
-  charges:number=0;
+  charges:number=0;// ch28
+  spell:Spell = Spell.None; // ch29
+
   constructor(public g:Glyph, public slot:Slot) {}
 
   desc():string { 

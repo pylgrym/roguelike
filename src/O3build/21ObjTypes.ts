@@ -4,6 +4,8 @@ import { Rnd } from "O2model/07Rnd";
 import { WPoint } from "O2model/07WPoint";
 import { Obj } from "O2model/21Obj";
 import { Slot } from "O2model/21Slot";
+import { Spell } from "O4cmds/29Spell";
+import { GameIF } from "./08GameIF";
 
 export interface ObjTypeIF {
   g:Glyph;
@@ -59,8 +61,25 @@ export class ObjTypes {
     if (obj.g == Glyph.Wand) {
       obj.charges = rnd.rnd(1,level);
     }
+    // ch29:
+    switch (obj.g) {
+      case Glyph.Potion:
+      case Glyph.Scroll:
+      case Glyph.Wand:
+        this.setItemSpell(obj,rnd);
+    }
     return obj;
   } 
+  static setItemSpell(o:Obj,r:Rnd) {
+    let L = r.spiceUpLevel(o.level);
+    o.spell = this.spellForLevel(L);
+  }
+  static MaxSpell:number = Spell.None;
+  static spellForLevel(L:number):Spell {
+    let s:Spell = L % this.MaxSpell;
+    return s;
+  }
+
   static getTmpl(ix:number):ObjTypeIF {
     let len = ObjTypes.objtypes.length;
     if (ix < 0 || ix >= len) { 
