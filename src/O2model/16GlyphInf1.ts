@@ -97,7 +97,7 @@ export class GlyphMap1 {
   static max:number = Object.keys(Glyph).length / 2;
   static ix2glyph(ix:number):Glyph {
     if (ix<0) { throw `ix ${ix} is less than 0!`; }
-    if (ix>=this.max) { throw `ix ${ix} >= ${this.max}!`; }
+    if (ix>=this.max) { throw `ix ${ix} >= ${this.max}!`; } // dies on level43!
     let g:Glyph = <Glyph> ix;
     return g;
   }  

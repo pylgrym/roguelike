@@ -1,5 +1,6 @@
 import { BuildIF0 } from "O3build/08BuildIF0";
 import { GameIF } from "O3build/08GameIF";
+import { BuildIF2 } from "O3build/10BuildIF2";
 import { AutoHeal } from "O4cmds/17AutoHeal";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { DMapIF } from "./07DMapIF";
@@ -12,7 +13,7 @@ import { Worn } from "./23Worn";
 
 export class Game5 implements GameIF { 
   constructor(public rnd:Rnd, public ply:Mob, 
-              public build:BuildIF0) {}
+              public build:BuildIF2) {}
   curMap():DMapIF|null { return this.dung.curMap(this); }
   ai: MobAiIF | null = null;
   log: MsgLog = new MsgLog();
