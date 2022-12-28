@@ -46,7 +46,7 @@ export class SpellFinder {
     case Spell.D_Stun:    ({s,cmd} = this.buff(Buff.Stun,    me)); break;
     case Spell.D_Burn:    ({s,cmd} = this.buff(Buff.Burn,    me)); break;
     case Spell.D_Blind:   ({s,cmd} = this.buff(Buff.Blind,   me)); break;
-    case Spell.Multiply: cmd = new MultiplyCmd(level,me,g); break;
+    case Spell.Multiply: cmd = new MultiplyCmd(me,g); break;
     case Spell.D_Freeze:  ({s,cmd} = this.buff(Buff.Freeze,  me)); break;
     case Spell.D_Root:    ({s,cmd} = this.buff(Buff.Root,    me)); break;
     case Spell.D_Shock:   ({s,cmd} = this.buff(Buff.Shock,   me)); break;
@@ -54,7 +54,7 @@ export class SpellFinder {
     case Spell.D_Paralyze:({s,cmd} = this.buff(Buff.Paralyze,me)); break;
     case Spell.D_Sleep:   ({s,cmd} = this.buff(Buff.Sleep,   me)); break;
     case Spell.D_Petrify: ({s,cmd} = this.buff(Buff.Petrify, me)); break;
-    case Spell.Summon: cmd = new SummonCmd(level,me,g); break;
+    case Spell.Summon: cmd = new SummonCmd(me,g); break;
     case Spell.D_Bleed:   ({s,cmd} = this.buff(Buff.Bleed,   me)); break;
     case Spell.D_Levitate:({s,cmd} = this.buff(Buff.Levitate,me)); break;
     case Spell.D_Disarm:  ({s,cmd} = this.buff(Buff.Disarm,  me)); break;

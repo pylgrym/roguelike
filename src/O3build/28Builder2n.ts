@@ -151,8 +151,8 @@ export class Builder2n implements BuildIF2 {
       } // (now using addMapLevel_Mob)
     }
   }
-  addMapLevel_Mob(pos:WPoint, map:DMapIF, rnd:Rnd) { 
-	  this.addLevelMob(pos,map,rnd,map.level);
+  addMapLevel_Mob(pos:WPoint, map:DMapIF, rnd:Rnd):Mob { 
+	  return this.addLevelMob(pos,map,rnd,map.level);
   }
   addLevelMob(p:WPoint, map:DMapIF, 
                 rnd:Rnd, baseLevel:number):Mob { 
