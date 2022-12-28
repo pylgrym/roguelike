@@ -13,7 +13,7 @@ import { PayloadCmd } from './29PayloadCmd';
 import { BuffCmd } from './24BuffCmd';
 import { Buff } from 'O2model/24BuffEnum';
 import { Mob } from 'O2model/09Mob';
-import { CleanseCmd } from './29CleanseCmd';
+import { CleanseAllCmd, CleanseBuffCmd } from './29CleanseCmd';
 import { MultiplyCmd } from './29MultiplyCmd';
 import { SummonCmd } from './29SummonCmd';
 
@@ -42,7 +42,7 @@ export class SpellFinder {
     case Spell.D_Poison:  ({s,cmd} = this.buff(Buff.Poison,  me)); break;
     case Spell.D_Confuse: ({s,cmd} = this.buff(Buff.Confuse, me)); break;
     case Spell.D_Silence: ({s,cmd} = this.buff(Buff.Silence, me)); break;
-    case Spell.Cleanse: cmd = new CleanseCmd(level,me,g); break;
+    case Spell.Cleanse: cmd = new CleanseAllCmd(me,g); break;
     case Spell.D_Stun:    ({s,cmd} = this.buff(Buff.Stun,    me)); break;
     case Spell.D_Burn:    ({s,cmd} = this.buff(Buff.Burn,    me)); break;
     case Spell.D_Blind:   ({s,cmd} = this.buff(Buff.Blind,   me)); break;
