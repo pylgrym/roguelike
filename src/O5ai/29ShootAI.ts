@@ -1,6 +1,7 @@
 import { StackIF } from "O1term/05ScreenStackIF";
 import { DMapIF } from "O2model/07DMapIF";
 import { Rnd } from "O2model/07Rnd";
+import { WPoint } from "O2model/07WPoint";
 import { Mob } from "O2model/09Mob";
 import { Mood } from "O2model/18MoodEnum";
 import { GameIF } from "O3build/08GameIF";
@@ -42,18 +43,23 @@ export class ShootAI implements MobAiIF {
     }
     return true;
   }
-  didShoot(me:Mob,r:Rnd,g:GameIF,enemy:Mob):boolean {
-    if (!this.aim()) { return false; }
+  didShoot(me:Mob,r:Rnd,g:GameIF,him:Mob):boolean {
+    if (!this.aim(me.pos,him.pos)) { return false; }
     let spell = this.pickSpell(me,r);
     if (!this.isMissileSpell(spell)) {return false; }
     if (!r.oneIn(this.spellRate)) { return false; }
     let map = <DMapIF> g.curMap();
-    if (!CanSee.canSee2(me,enemy,map,true)) { return false; }
+    if (!CanSee.canSee2(me,him,map,true)) { return false; }
     return this.shoot();
   }
-  aim() { return false; } // todo: check 8 dirs.
-  shoot(): boolean { return true; } //todo, do the actual shot.
+  aim(m:WPoint,e:WPoint) { 
+    let d = m.minus(e);
+    if (d.x==0 || d.y==0) { return true; } // on axis.
+    let ax = Math.abs(d.x), ay = Math.abs(d.y);
+    return (ax==ay);// diagonal.
+  } // check 8 dirs.
   isMissileSpell(s:Spell) { return s == Spell.Missile; }
+  shoot(): boolean { return true; } //todo, do the actual shot.
 
   maybeCastSpell(me:Mob, enemy:Mob, game:GameIF,
                  ss:StackIF, maker:MakerIF):boolean 
