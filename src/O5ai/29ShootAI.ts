@@ -1,14 +1,11 @@
-//import { Stack } from "O1term/05ScreenStack";
 import { StackIF } from "O1term/05ScreenStackIF";
 import { DMapIF } from "O2model/07DMapIF";
 import { Rnd } from "O2model/07Rnd";
 import { Mob } from "O2model/09Mob";
 import { Mood } from "O2model/18MoodEnum";
-import { Buff } from "O2model/24BuffEnum";
 import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "O4cmds/09CmdBase";
 import { CanSee } from "O4cmds/18CanSee";
-import { BuffCmd } from "O4cmds/24BuffCmd";
 import { CostIF } from "O4cmds/28CostIF";
 import { NPCSpellFinder } from "O4cmds/29NPCSpellFinder";
 import { Spell } from "O4cmds/29Spell";
@@ -23,22 +20,40 @@ export class ShootAI implements MobAiIF {
               public spellRate:number) {}  
   aiDir:MobAiIF = new MobAI2_cat();
   aiRnd:MobAiIF = new MobAI3_ant();
-  turn(me:Mob, enemy:Mob, game:GameIF,ss:StackIF, maker:MakerIF):boolean {
-    if (this.maybeCastSpell(me,enemy,game,ss,maker)) {
-      return true;
-    }
-    let r = game.rnd; 
-    for (let i=0;i<this.speed;++i) {
-      var ai = r.oneIn(2) ? this.aiDir : this.aiRnd;
-      ai.turn(me,enemy,game,ss,maker);
-    }
+  turn(me:Mob, enemy:Mob, g:GameIF,ss:StackIF, maker:MakerIF):boolean {
+    let r = g.rnd; 
     let far = SleepAI.isNear(me,enemy);
     if (far) { 
       me.mood = 
         r.oneIn(3) ? Mood.Asleep : Mood.Wake;
+      if (me.mood == Mood.Asleep) {
+        return true;
+      } // if mob now sleeps, don't do more.
     }   
+    if (this.didShoot(me,r,g,enemy)) {
+      return true;
+    }
+    if (this.maybeCastSpell(me,enemy,g,ss,maker)) {
+      return true;
+    }
+    for (let i=0;i<this.speed;++i) {
+      var ai = r.oneIn(2) ? this.aiDir : this.aiRnd;
+      ai.turn(me,enemy,g,ss,maker);
+    }
     return true;
   }
+  didShoot(me:Mob,r:Rnd,g:GameIF,enemy:Mob):boolean {
+    if (!this.aim()) { return false; }
+    let spell = this.pickSpell(me,r);
+    if (!this.isMissileSpell(spell)) {return false; }
+    if (!r.oneIn(this.spellRate)) { return false; }
+    let map = <DMapIF> g.curMap();
+    if (!CanSee.canSee2(me,enemy,map,true)) { return false; }
+    return this.shoot();
+  }
+  aim() { return false; } // todo: check 8 dirs.
+  shoot(): boolean { return true; } //todo, do the actual shot.
+  isMissileSpell(s:Spell) { return s == Spell.Missile; }
 
   maybeCastSpell(me:Mob, enemy:Mob, game:GameIF,
                  ss:StackIF, maker:MakerIF):boolean 
@@ -52,18 +67,6 @@ export class ShootAI implements MobAiIF {
     //return this.castBuff(buff,me,enemy,game);
     let spell = this.pickSpell(me, r);
     return this.castSpell(spell,me,enemy,game,ss,maker);
-}
-
-  pickBuff(me:Mob, r:Rnd):Buff { 
-    // Levitate is last buff:
-    let range:number = (Buff.Levitate)+1; 
-    //let offset = me.level - 2;
-    // Clip levels to buff-range:
-    let buffIx:number = me.level % range;
-    // Pick the Buff at <buffIx> offset:
-    let buff:Buff = Buff.Confuse + buffIx;
-    console.log(`${me.name} buff: ${buff}`);
-    return buff; //Buff.Confuse; 
   }
   pickSpell(me:Mob, r:Rnd):Spell { 
     // 'None' is last buff:
@@ -74,12 +77,6 @@ export class ShootAI implements MobAiIF {
     let spell:Spell = <Spell> spellIx;
     console.log(`${me.name} spell: ${spell}`);
     return spell; 
-  }
-  
-  castBuff(buff:number, me:Mob, 
-       enemy:Mob, game:GameIF):boolean {
-    let spell = new BuffCmd(buff,enemy,game,me);
-    return spell.npcTurn();
   }
   castSpell(spell:Spell, me:Mob, 
     enemy:Mob, game:GameIF,
@@ -94,6 +91,5 @@ export class ShootAI implements MobAiIF {
         return CoS.npcTurn();
     }
     return true;
-}
-
+  }
 }
