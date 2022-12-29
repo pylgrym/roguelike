@@ -55,6 +55,7 @@ export class GlyphMap1 {
 		add(bg,    '#bf8',   'z',Glyph.Zombie); 
 
     add(bg,    '#294',   'S',Glyph.Sheep); 
+    add(bg,    'red',    'D',Glyph.Dragon); 
     
     add(bg,    'orange', '>',Glyph.StairsDown); // ch13
     add(bg,    'orange', '<',Glyph.StairsUp);

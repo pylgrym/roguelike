@@ -14,6 +14,7 @@ export enum Glyph {
   Snake,   Troll,  UmberHulk, Vampire, 
   Worm,    Xorn,   Yeti,      Zombie, 
   Sheep,
+  Dragon, // ch30
   StairsDown, // ch13
   StairsUp,
 
