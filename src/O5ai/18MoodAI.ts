@@ -6,6 +6,7 @@ import { Sleep2AI } from "./18Sleep2AI";
 import { SleepAI } from "./18SleepAI";
 import { WakeAI } from "./18WakeAI";
 import { SpellAI } from "./24SpellAI";
+import { ShootAI } from "./29ShootAI";
 
 export class MoodAI implements MobAiIF {
   constructor(public asleep:MobAiIF, 
@@ -27,5 +28,9 @@ export class MoodAI implements MobAiIF {
   static stockMood24(speed:number, spellRate:number):MobAiIF {
     return new MoodAI(new SleepAI(),
                       new SpellAI(speed,spellRate));
+  }  
+  static stockMood29(speed:number, spellRate:number):MobAiIF {
+    return new MoodAI(new SleepAI(),
+                      new ShootAI(speed,spellRate));
   }  
 }
