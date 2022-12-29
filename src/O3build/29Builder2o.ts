@@ -64,7 +64,7 @@ export class Builder2o implements BuildIF3 {
   }
   
   makeAI():MobAiIF|null { 
-      return new AiSwitcher2(MoodAI.stockMood29(1,8)); // ch24
+      return new AiSwitcher2(MoodAI.stockMood29(1,8)); // ch29
   } 
   makeSheepRing(map:DMapIF, rnd:Rnd) {
     this.makeMobRing(Glyph.Sheep, map, rnd);
