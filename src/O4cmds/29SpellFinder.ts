@@ -2,7 +2,7 @@ import { HealCmd } from './28HealCmd';
 import { GameIF } from "O3build/08GameIF";
 import { CmdIF } from './09CmdIF';
 import { PortCmd } from './28PortCmd';
-import { Stack } from 'O1term/05ScreenStack';
+//import { Stack } from 'O1term/05ScreenStack';
 import { BulletCmd } from './27BulletCmd';
 import { CmdDirScreen } from 'O6screen/15CmdDirScreen';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
@@ -13,9 +13,10 @@ import { PayloadCmd } from './29PayloadCmd';
 import { BuffCmd } from './24BuffCmd';
 import { Buff } from 'O2model/24BuffEnum';
 import { Mob } from 'O2model/09Mob';
-import { CleanseAllCmd, CleanseBuffCmd } from './29CleanseCmd';
+import { CleanseAllCmd } from './29CleanseCmd';
 import { MultiplyCmd } from './29MultiplyCmd';
 import { SummonCmd } from './29SummonCmd';
+import { StackIF } from 'O1term/05ScreenStackIF';
 
 export interface CmdOrScreen {
     cmd:CmdIF;
@@ -23,7 +24,7 @@ export interface CmdOrScreen {
 }
 
 export class SpellFinder {
-  constructor(public g:GameIF, public ss:Stack,
+  constructor(public g:GameIF, public ss:StackIF,
               public maker:MakerIF) {}
   find(spell:Spell,cost:CostIF|undefined): CmdIF|SScreenIF|null {
     let g = this.g;

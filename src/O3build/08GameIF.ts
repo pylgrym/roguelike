@@ -8,7 +8,6 @@ import { Worn } from "O2model/23Worn";
 import { AutoHeal } from "O4cmds/17AutoHeal";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { BuildIF0 } from "./08BuildIF0";
-import { BuildIF2 } from "./10BuildIF2";
 
 export interface GameIF { 
   rnd:Rnd;
@@ -19,7 +18,7 @@ export interface GameIF {
   flash(s:string):void;//ch15
   log:MsgLog;
   dung:Dung;          // ch13
-  build:BuildIF2;     // ch29 
+  build:BuildIF0; //2;     // ch29 
   autoHeal: AutoHeal|undefined; // ch17
   bag:Bag|undefined; // ch22
   worn:Worn|undefined; // ch23

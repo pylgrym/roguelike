@@ -1,5 +1,6 @@
 import { TermIF } from "O1term/03TermIF";
-import { Stack } from "O1term/05ScreenStack";
+import { StackIF } from "O1term/05ScreenStackIF";
+//import { Stack } from "O1term/05ScreenStack";
 import { SScreenIF } from "O1term/05SScreenIF";
 import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "O4cmds/09CmdBase";
@@ -27,19 +28,19 @@ export class SpellScreen extends BaseScreen {
       if (y>12) { y=top;x +=14; }
     }
   }
-  onKey(e:JQuery.KeyDownEvent,s:Stack):boolean  {
+  onKey(e:JQuery.KeyDownEvent,s:StackIF):boolean  {
     this.game.log.clearQueue();
     s.pop();
     let pos = this.char2pos(e.key); this.itemMenu(pos,s); 
     return true;
   }
-  itemMenu(pos:number, ss:Stack):void {
+  itemMenu(pos:number, ss:StackIF):void {
       let s:Spell = pos;
       let label = Spell[s];
       if (!label) {return;}
       this.doSpell(s,ss);
   }
-  doSpell(s:Spell, ss:Stack) {
+  doSpell(s:Spell, ss:StackIF) {
     let finder = new SpellFinder(this.game,ss,this.make);
     let cost:CostIF|undefined = undefined;
     let spell:CmdIF|SScreenIF|null = finder.find(s,cost);

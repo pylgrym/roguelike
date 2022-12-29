@@ -1,4 +1,3 @@
-import { BuildIF0 } from "O3build/08BuildIF0";
 import { GameIF } from "O3build/08GameIF";
 import { BuildIF2 } from "O3build/10BuildIF2";
 import { AutoHeal } from "O4cmds/17AutoHeal";

@@ -20,7 +20,7 @@ export class Game0 implements GameIF {
   msg(s:string){} 
   flash(s:string){}
   dung:Dung = <Dung> <unknown> undefined; // ch13
-  build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
+  build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch29
   autoHeal:AutoHeal|undefined; // ch17
   bag:Bag|undefined; // ch22
   worn:Worn = <Worn><unknown> undefined; // ch23

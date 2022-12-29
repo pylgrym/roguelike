@@ -4,6 +4,7 @@ import { GameIF } from "O3build/08GameIF";
 import { WPoint } from "O2model/07WPoint";
 import { DMapIF } from "O2model/07DMapIF";
 import { Rnd } from "O2model/07Rnd";
+import { BuildIF3 } from "O3build/29BuildIF3";
 
 export class MultiplyCmd extends CmdBase {
   constructor(
@@ -20,7 +21,8 @@ export class MultiplyCmd extends CmdBase {
   }
   spawnMob(p:WPoint,map:DMapIF,g:GameIF) {
     let m = this.me;
-    g.build.addNPC(m.g,p.x,p.y,map,m.level);    
+    let b = <BuildIF3> g.build;
+    b.addNPC(m.g,p.x,p.y,map,m.level);    
     g.msg(`${m.name} breeds`);
   }
   find(map:DMapIF,r:Rnd):WPoint|null {

@@ -1,6 +1,9 @@
+//import { Stack } from "O1term/05ScreenStack";
+import { StackIF } from "O1term/05ScreenStackIF";
 import { Glyph } from "O2model/07Glyph";
 import { Mob } from "O2model/09Mob";
 import { GameIF } from "O3build/08GameIF";
+import { MakerIF } from "O6screen/06ScreenMakerIF";
 import { MobAiIF } from "./10MobAiIF";
 import { MobAI2_cat } from "./11MobAI2_cat";
 import { MobAI3_ant } from "./14MobAi3_ant";
@@ -12,7 +15,7 @@ export class AiSwitcher2 implements MobAiIF {
   ai3_ant:MobAiIF = new MobAI3_ant(); 
   ai4_bat:MobAiIF = MoodAI.stockMood(2);   
     
-  turn(me:Mob, enemy:Mob, game:GameIF):boolean { 
+  turn(me:Mob, enemy:Mob, game:GameIF,ss:StackIF, maker:MakerIF):boolean { 
     var ai:MobAiIF;
     switch (me.g) {
       case Glyph.Ant: ai=this.ai3_ant;break;
@@ -20,6 +23,6 @@ export class AiSwitcher2 implements MobAiIF {
       case Glyph.Cat: ai=this.ai2_cat;break;  
       default:        ai=this.ai5_std;break;
     }
-    return ai.turn(me,enemy,game);
+    return ai.turn(me,enemy,game,ss,maker);
   }
 }

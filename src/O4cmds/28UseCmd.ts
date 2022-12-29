@@ -7,15 +7,15 @@ import { CmdBase } from "./09CmdBase";
 import { CmdIF } from './09CmdIF';
 import { PortCmd } from './28PortCmd';
 import { Mob } from 'O2model/09Mob';
-import { Stack } from 'O1term/05ScreenStack';
 import { BulletCmd } from './27BulletCmd';
 import { CmdDirScreen } from 'O6screen/15CmdDirScreen';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
 import { ChargedItemCost1 } from './28ItemCost';
+import { StackIF } from 'O1term/05ScreenStackIF';
 
 export class UseCmd extends CmdBase {
   constructor(public obj:Obj, public ix:number,
-              public g:GameIF, public ss:Stack,
+              public g:GameIF, public ss:StackIF,
               public maker:MakerIF) { 
     super(g.ply,g); 
   }

@@ -31,7 +31,7 @@ export class BaseScreen implements SScreenIF {
          !m.isPly && !this.over(s); 
          m=q.next()
     ) {
-      this.npcTurn(m,ply);
+      this.npcTurn(m,ply,s);
     }
     this.handleMsgs(s); // ch12    
   }  
@@ -59,9 +59,10 @@ export class BaseScreen implements SScreenIF {
     ++m.sinceMove;
     this.tickBuffs(m);
   }
-  npcTurn(m:Mob, ply:Mob) { 
+  npcTurn(m:Mob, ply:Mob, ss:StackIF) { 
     let ai = this.game.ai; // ch10
-    if (ai) { ai.turn(m,ply,this.game); }  
+    //if (ai) { ai.turn(m,ply,this.game); }
+    if (ai) { ai.turn(m,ply,this.game,ss,this.make); }  
     this.finishTurn(m);
   }
   finishPlyTurn(q:TurnQ) {
@@ -73,7 +74,7 @@ export class BaseScreen implements SScreenIF {
     }
   }  
   
-  pop_And_RunNPCLoop(s:Stack) { // ch22
+  pop_And_RunNPCLoop(s:StackIF) { // ch22
     s.pop();
     this.npcTurns(s); 
   }

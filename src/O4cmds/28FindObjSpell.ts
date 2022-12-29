@@ -5,7 +5,7 @@ import { Slot } from "O2model/21Slot";
 import { GameIF } from "O3build/08GameIF";
 import { CmdIF } from './09CmdIF';
 import { PortCmd } from './28PortCmd';
-import { Stack } from 'O1term/05ScreenStack';
+//import { Stack } from 'O1term/05ScreenStack';
 import { BulletCmd } from './27BulletCmd';
 import { CmdDirScreen } from 'O6screen/15CmdDirScreen';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
@@ -13,10 +13,11 @@ import { ChargedItemCost1 } from './28ItemCost';
 import { SScreenIF } from 'O1term/05SScreenIF';
 import { Spell } from './29Spell';
 import { SpellFinder } from './29SpellFinder';
+import { StackIF } from 'O1term/05ScreenStackIF';
 
 export class FindObjSpell {
   constructor(public obj:Obj, public ix:number,
-              public g:GameIF, public ss:Stack,
+              public g:GameIF, public ss:StackIF,
               public maker:MakerIF) {}
 
   usable28(obj:Obj):boolean {

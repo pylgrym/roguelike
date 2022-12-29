@@ -5,7 +5,6 @@ import { WPoint } from "O2model/07WPoint";
 import { Obj } from "O2model/21Obj";
 import { Slot } from "O2model/21Slot";
 import { Spell } from "O4cmds/29Spell";
-import { GameIF } from "./08GameIF";
 
 export interface ObjTypeIF {
   g:Glyph;

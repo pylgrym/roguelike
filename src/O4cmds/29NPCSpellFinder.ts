@@ -2,7 +2,6 @@ import { HealCmd } from './28HealCmd';
 import { GameIF } from "O3build/08GameIF";
 import { CmdIF } from './09CmdIF';
 import { PortCmd } from './28PortCmd';
-import { Stack } from 'O1term/05ScreenStack';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
 import { SScreenIF } from 'O1term/05SScreenIF';
 import { Spell } from './29Spell';
@@ -13,10 +12,11 @@ import { Mob } from 'O2model/09Mob';
 import { CleanseAllCmd } from './29CleanseCmd';
 import { MultiplyCmd } from './29MultiplyCmd';
 import { SummonCmd } from './29SummonCmd';
+import { StackIF } from 'O1term/05ScreenStackIF';
 
 export class NPCSpellFinder {
   ply:Mob;
-  constructor(public g:GameIF, public ss:Stack,
+  constructor(public g:GameIF, public ss:StackIF,
               public maker:MakerIF) 
   { this.ply = g.ply; }
   find(me:Mob,spell:Spell,cost:CostIF|undefined): 
