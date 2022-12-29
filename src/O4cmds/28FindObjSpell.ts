@@ -11,13 +11,15 @@ import { CmdDirScreen } from 'O6screen/15CmdDirScreen';
 import { MakerIF } from 'O6screen/06ScreenMakerIF';
 import { ChargedItemCost1 } from './28ItemCost';
 import { SScreenIF } from 'O1term/05SScreenIF';
+import { Spell } from './29Spell';
+import { SpellFinder } from './29SpellFinder';
 
 export class FindObjSpell {
   constructor(public obj:Obj, public ix:number,
               public g:GameIF, public ss:Stack,
               public maker:MakerIF) {}
 
-  usable(obj:Obj):boolean {
+  usable28(obj:Obj):boolean {
     let canUse = (obj.slot == Slot.NotWorn);
     if (!canUse) {
       this.g.flash(`${obj.name()} is not usable: ${obj.slot}`);
@@ -25,9 +27,26 @@ export class FindObjSpell {
     return canUse;
   }
 
-  find(): CmdIF|SScreenIF|null {
+  usable29(obj:Obj,g:GameIF):boolean {
+    let canUse = (obj.spell != Spell.None);
+    if (!canUse) {
+      g.flash(`${obj.name()} is not usable: ${obj.slot}`);
+    }
+    return canUse;
+  }
+
+  find29(): CmdIF|SScreenIF|null {
+    let g=this.g;
     let obj:Obj = this.obj;
-    if (!this.usable(obj)) {return null;}
+    if (!this.usable29(obj,g)) {return null;}
+    let finder = new SpellFinder(g,this.ss,this.maker);
+    let cost = new ChargedItemCost1(g,this.obj,this.ix);
+    return finder.find(obj.spell,cost);
+  }
+ 
+  find28(): CmdIF|SScreenIF|null {
+    let obj:Obj = this.obj;
+    if (!this.usable28(obj)) {return null;}
 
     let g = this.g;
     let me = g.ply;
@@ -52,10 +71,4 @@ export class FindObjSpell {
 }
 
 
-export class FindObjSpell0 { 
-  constructor(public obj:Obj, public ix:number,
-              public g:GameIF, public ss:Stack,
-              public maker:MakerIF) {}
-
-  find(): CmdIF|null { return null;}
-}
+ 

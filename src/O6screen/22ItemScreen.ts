@@ -94,7 +94,7 @@ export class ItemScreen extends BaseScreen {
   useItem0(ss:Stack):void { 
     let g = this.game;
     let finder = new FindObjSpell(this.obj,this.ix,g,ss,this.make);
-    let spell:CmdIF|null = <CmdIF> finder.find();
+    let spell:CmdIF|null = <CmdIF> finder.find28();
     if (spell == null) { return; }
     ss.pop();
     if (spell) {
@@ -107,7 +107,7 @@ export class ItemScreen extends BaseScreen {
   useItem(ss:Stack):void { 
     let g = this.game;
     let finder = new FindObjSpell(this.obj,this.ix,g,ss,this.make);
-    let spell:CmdIF|SScreenIF|null = finder.find();
+    let spell:CmdIF|SScreenIF|null = finder.find29();
     if (spell == null) { return; }
     ss.pop(); 
     if (spell instanceof CmdBase) {
