@@ -5,7 +5,6 @@ import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "O4cmds/09CmdBase";
 import { CmdIF } from "O4cmds/09CmdIF";
 import { CostIF } from "O4cmds/28CostIF";
-import { FindObjSpell } from "O4cmds/28FindObjSpell";
 import { Spell } from "O4cmds/29Spell";
 import { SpellFinder } from "O4cmds/29SpellFinder";
 import { MakerIF } from "./06ScreenMakerIF";
@@ -27,27 +26,23 @@ export class SpellScreen extends BaseScreen {
       term.txt(x,1+y++, `${c} ${L}`, 'yellow', 'black'); 
       if (y>12) { y=top;x +=14; }
     }
-  } //++o; of Object.values(Spell)
+  }
   onKey(e:JQuery.KeyDownEvent,s:Stack):boolean  {
     this.game.log.clearQueue();
     s.pop();
     let pos = this.char2pos(e.key); this.itemMenu(pos,s); 
-    return true; // if (pos >= 0) { } else { stack.pop(); }
+    return true;
   }
   itemMenu(pos:number, ss:Stack):void {
       let s:Spell = pos;
-
       let label = Spell[s];
-      if (!label) {return;} //ss.pop(); 
-      //this.game.flash(label);
-
+      if (!label) {return;}
       this.doSpell(s,ss);
   }
   doSpell(s:Spell, ss:Stack) {
     let finder = new SpellFinder(this.game,ss,this.make);
-    let cost:CostIF|undefined = undefined; // <CostIF> <unknown>
+    let cost:CostIF|undefined = undefined;
     let spell:CmdIF|SScreenIF|null = finder.find(s,cost);
-
     if (spell == null) { return; }
     ss.pop(); 
     if (spell instanceof CmdBase) {

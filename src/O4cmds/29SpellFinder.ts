@@ -25,7 +25,6 @@ export interface CmdOrScreen {
 export class SpellFinder {
   constructor(public g:GameIF, public ss:Stack,
               public maker:MakerIF) {}
-
   find(spell:Spell,cost:CostIF|undefined): CmdIF|SScreenIF|null {
     let g = this.g;
     let me = g.ply;
@@ -78,4 +77,4 @@ export class SpellFinder {
     return new CmdDirScreen(cmd,this.g,this.maker); 
   }
 }
-//new CmdDirScreen(cmd,g,this.maker);
+ 
