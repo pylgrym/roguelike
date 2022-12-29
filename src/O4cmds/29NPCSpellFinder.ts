@@ -19,7 +19,9 @@ export class NPCSpellFinder {
   constructor(public g:GameIF, public ss:Stack,
               public maker:MakerIF) 
   { this.ply = g.ply; }
-  find(me:Mob,spell:Spell,cost:CostIF|undefined): CmdIF|SScreenIF|null {
+  find(me:Mob,spell:Spell,cost:CostIF|undefined): 
+    CmdIF|SScreenIF|null 
+  {
     let g = this.g;
     let level = 1;
     var s:SScreenIF|undefined;
@@ -58,8 +60,4 @@ export class NPCSpellFinder {
   buff(me:Mob,buff:Buff): CmdIF {
     return new BuffCmd(buff,this.ply,this.g,me);
   }
-  //payload(inner:CmdIF,me:Mob):CmdOrScreen {
-  //  let cmd:CmdIF = new PayloadCmd(me,this.g,this.ss,this.maker,inner);
-  //  return {cmd:cmd,s:undefined};
-  //}
  }
