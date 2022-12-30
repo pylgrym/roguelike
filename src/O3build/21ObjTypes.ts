@@ -21,6 +21,7 @@ export class ObjTypes {
 
   {g: Glyph.Potion,  s:Slot.NotWorn},
   {g: Glyph.Scroll,  s:Slot.NotWorn},
+  {g: Glyph.Wand,    s:Slot.NotWorn},
   ]    
   
   static ixForGlyph(g:Glyph):number {
