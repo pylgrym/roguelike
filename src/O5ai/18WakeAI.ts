@@ -17,7 +17,7 @@ export class WakeAI implements MobAiIF {
       var ai = r.oneIn(2) ? this.aiDir : this.aiRnd;
       ai.turn(me,enemy,game);
     }
-    let far = SleepAI.isNear(me,enemy);    
+    let far = !SleepAI.isNear(me,enemy);    
     if (far) { me.mood = r.oneIn(3) ? Mood.Asleep : Mood.Wake; }    
     return true;
   }
