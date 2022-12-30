@@ -15,10 +15,9 @@ export class HealCmd extends CmdBase {
     let a = Math.ceil( r*0.5);
     let b = Math.floor(r*1.5);
     let hp = R.rnd(a,b);
-    console.table({a,b,hp});       
-    
+    //console.table({a,b,hp});           
     HealthAdj.heal(this.me, hp); 
-    let msg = `${this.me.name} feels better (${hp})`;
+    let msg = `${this.me.name} feels better [${hp}]`;
     g.msg(msg);
     return true; 
   }

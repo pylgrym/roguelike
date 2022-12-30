@@ -17,8 +17,9 @@ export class Obj {
   desc():string { 
     let label = this.name();
     if (this.spell != Spell.None) { // ch29
-      let color = Colors.c[this.spell][1];
-      return `${color} ${label}`;  
+      let quality = Colors.c[this.spell][1];
+      //let quality = Spell[this.spell];
+      return `${quality} ${label}`;  
     }
     return `${label}${this.level}`; 
   }

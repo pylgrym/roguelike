@@ -13,6 +13,7 @@ import { CleanseAllCmd } from './29CleanseCmd';
 import { MultiplyCmd } from './29MultiplyCmd';
 import { SummonCmd } from './29SummonCmd';
 import { StackIF } from 'O1term/05ScreenStackIF';
+import { BulletCmd } from './27BulletCmd';
 
 export class NPCSpellFinder {
   ply:Mob;
@@ -32,7 +33,7 @@ export class NPCSpellFinder {
     case Spell.D_Charm:   cmd = this.buff(me,Buff.Charm    ); break;
     case Spell.D_Slow:    cmd = this.buff(me,Buff.Slow     ); break;
     case Spell.D_Afraid:  cmd = this.buff(me,Buff.Afraid   ); break;
-    //case Spell.Missile: s = this.dir(cmd = new BulletCmd(g.ply,g,this.ss,this.maker)); break;
+    case Spell.Missile: cmd = this.aim(new BulletCmd(me,g,this.ss,this.maker)); break;
     case Spell.D_Poison:  cmd = this.buff(me,Buff.Poison   ); break;
     case Spell.D_Confuse: cmd = this.buff(me,Buff.Confuse  ); break;
     case Spell.D_Silence: cmd = this.buff(me,Buff.Silence  ); break;
@@ -57,6 +58,10 @@ export class NPCSpellFinder {
     cmd.setCost(cost);
     return s ? s : cmd;
   }   
+  aim(cmd: BulletCmd): CmdIF {
+    let dir = this.ply.pos.dir(cmd.me.pos);
+    return cmd.setDir(dir);
+  }
   buff(me:Mob,buff:Buff): CmdIF {
     return new BuffCmd(buff,this.ply,this.g,me);
   }

@@ -27,7 +27,7 @@ export class PortCmd extends CmdBase {
       if (!map.legal(p)) { continue; }
       --ix;
       if (map.cell(p).blocked()){continue;}
-      console.table({r,dx,dy});
+      //console.table({r,dx,dy});
       return p;
     } 
     return null;
