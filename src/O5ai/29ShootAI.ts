@@ -23,7 +23,7 @@ export class ShootAI implements MobAiIF {
   aiRnd:MobAiIF = new MobAI3_ant();
   turn(me:Mob, enemy:Mob, g:GameIF,ss:StackIF, maker:MakerIF):boolean {
     let r = g.rnd; 
-    let far = SleepAI.isNear(me,enemy);
+    let far = !SleepAI.isNear(me,enemy);
     if (far) { 
       me.mood = 
         r.oneIn(3) ? Mood.Asleep : Mood.Wake;
