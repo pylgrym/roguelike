@@ -15,6 +15,7 @@ export class EventMgr {
     this.screen.draw(this.term); 
   }
   onKey(e:JQuery.KeyDownEvent) {
+    e.originalEvent!.preventDefault(); // this should be merged back from ch04.
     this.screen.onKey(e);
     this.screen.draw(this.term); 
   }
