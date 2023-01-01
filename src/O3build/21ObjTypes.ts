@@ -62,7 +62,6 @@ export class ObjTypes {
       return this.makeTemplateObj(level,r,t);
     }
   }
-
   // MAKES objects:
   static rndLevelObj(level:number, r:Rnd):Obj {
     //let ix = r.rnd(ObjTypes.objtypes.length);
