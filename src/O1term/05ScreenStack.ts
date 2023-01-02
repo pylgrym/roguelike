@@ -7,8 +7,15 @@ import { SScreenIF } from "./05SScreenIF";
 export class Stack implements StackIF, RawScreenIF {
   name='stack';
   s:SScreenIF[] = [];
-  pop(){ this.s.pop(); }
-  push(screen:SScreenIF) { this.s.push(screen); }
+  pop() { 
+    let popped = this.s.pop(); 
+    //console.log('popped:', popped);
+    return popped;
+  }
+  push(screen:SScreenIF) { 
+    //console.log('pushing', screen);
+    this.s.push(screen); 
+  }
   cur():SScreenIF { return this.s[this.s.length-1]; }
   draw(term:TermIF) {
     let s = this.cur();

@@ -1,6 +1,5 @@
 import { TermIF } from "O1term/03TermIF";
 import { StackIF } from "O1term/05ScreenStackIF";
-//import { Stack } from "O1term/05ScreenStack";
 import { SScreenIF } from "O1term/05SScreenIF";
 import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "O4cmds/09CmdBase";
@@ -41,11 +40,10 @@ export class SpellScreen extends BaseScreen {
       this.doSpell(s,ss);
   }
   doSpell(s:Spell, ss:StackIF) {
-    let finder = new SpellFinder(this.game,ss,this.make);
+    let finder = new SpellFinder(this.game,ss,this.make); // what if HE pushes instead?
     let cost:CostIF|undefined = undefined;
     let spell:CmdIF|SScreenIF|null = finder.find(s,cost);
     if (spell == null) { return; }
-    ss.pop(); 
     if (spell instanceof CmdBase) {
       if (spell.turn()) {
         this.npcTurns(ss); 

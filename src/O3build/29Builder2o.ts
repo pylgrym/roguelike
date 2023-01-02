@@ -10,6 +10,7 @@ import { Obj } from "O2model/21Obj";
 import { Slot } from "O2model/21Slot";
 import { Bag } from "O2model/22Bag";
 import { Game5 } from "O2model/23GameModel5Worn";
+import { Spell } from "O4cmds/29Spell";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { MoodAI } from "O5ai/18MoodAI";
 import { AiSwitcher2 } from "O5ai/20AISwitcher2";
@@ -190,19 +191,19 @@ export class Builder2o implements BuildIF3 {
     let a = ply.pos;
       
     let p = new WPoint(a.x+1,a.y);
-    map.addObj(new Obj(Glyph.Shield, Slot.OffHand), p);
+    map.addObj(new Obj(Glyph.Shield, Slot.OffHand, Spell.None), p);
     map.cell(p).env = Glyph.Floor;
       
     p = new WPoint(a.x,a.y+1);
-    map.addObj(new Obj(Glyph.Shield, Slot.OffHand), p);    
+    map.addObj(new Obj(Glyph.Shield, Slot.OffHand, Spell.None), p);    
     map.cell(p).env = Glyph.Floor;
   }
   addItemToPlayerBag(bag: Bag) {  
-    bag?.add(new Obj(Glyph.Dagger, Slot.MainHand) );
+    bag?.add(new Obj(Glyph.Dagger, Slot.MainHand, Spell.None) );
 
     // ch28
-    bag?.add(new Obj(Glyph.Potion, Slot.NotWorn) );
-    bag?.add(new Obj(Glyph.Scroll, Slot.NotWorn) );
-    bag?.add(new Obj(Glyph.Wand,   Slot.NotWorn) );
+    bag?.add(new Obj(Glyph.Potion, Slot.NotWorn, Spell.Heal) );
+    bag?.add(new Obj(Glyph.Scroll, Slot.NotWorn, Spell.Port) );
+    bag?.add(new Obj(Glyph.Wand,   Slot.NotWorn, Spell.Missile) );
   }
 }

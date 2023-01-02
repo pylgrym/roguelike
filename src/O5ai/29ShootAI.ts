@@ -23,7 +23,7 @@ export class ShootAI implements MobAiIF {
   aiRnd:MobAiIF = new MobAI3_ant();
   turn(me:Mob, enemy:Mob, g:GameIF,ss:StackIF, maker:MakerIF):boolean {
     let r = g.rnd; 
-    let far = SleepAI.isNear(me,enemy);
+    let far = !SleepAI.isNear(me,enemy);
     if (far) { 
       me.mood = 
         r.oneIn(3) ? Mood.Asleep : Mood.Wake;
@@ -31,7 +31,7 @@ export class ShootAI implements MobAiIF {
         return true;
       } // if mob now sleeps, don't do more.
     }
-    if (this.didShoot(me,r,g,enemy)) {
+    if (this.didShoot(me,r,g,enemy,ss,maker)) {
       return true;
     }
     if (this.maybeCastSpell(me,enemy,g,ss,maker)) {
@@ -80,14 +80,15 @@ export class ShootAI implements MobAiIF {
     }
     return true;
   }
-  didShoot(me:Mob,r:Rnd,g:GameIF,him:Mob):boolean {
+  didShoot(me:Mob,r:Rnd,g:GameIF,him:Mob,
+           ss:StackIF,maker:MakerIF):boolean {
     if (!this.aim(me.pos,him.pos)) { return false; }
     let spell = this.pickSpell(me,r);
     if (!this.isMissileSpell(spell)) {return false; }
     if (!r.oneIn(this.spellRate)) { return false; }
     let map = <DMapIF> g.curMap();
     if (!CanSee.canSee2(me,him,map,true)) { return false; }
-    return this.shoot();
+    return this.shoot(spell,me,him,g,ss,maker);
   }
   aim(m:WPoint,e:WPoint) {
     let d = m.minus(e);
@@ -96,5 +97,8 @@ export class ShootAI implements MobAiIF {
     return (ax==ay);// diagonal.
   } // check 8 dirs.
   isMissileSpell(s:Spell) { return s == Spell.Missile; }
-  shoot(): boolean { return true; } //todo, do the actual shot.
+  shoot(spell:Spell,me:Mob,enemy:Mob,g:GameIF,
+        ss:StackIF,maker:MakerIF): boolean { 
+    return this.castSpell(spell,me,enemy,g,ss,maker);
+  } 
 }

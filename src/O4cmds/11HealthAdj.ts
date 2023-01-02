@@ -27,7 +27,7 @@ export class HealthAdj {
 
     let old_hp = m.hp; //console.log('dmg', amount, m.hp);
     m.hp -= amount;
-    console.log('dmg',amount,'d_to',old_hp,'->',m.hp, m.name);
+    console.log('dmg',amount,'d_to',old_hp,'->',m.hp, m.name, 'attacker:', attacker);
     if (m.hp <= 0) { 
       let involvesPly = m.isPly || 
             (attacker != null && attacker.isPly);

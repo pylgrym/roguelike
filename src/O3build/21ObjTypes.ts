@@ -22,6 +22,7 @@ export class ObjTypes {
 
   {g: Glyph.Potion,  s:Slot.NotWorn},
   {g: Glyph.Scroll,  s:Slot.NotWorn},
+  {g: Glyph.Wand,    s:Slot.NotWorn},
   ]    
   
   static ixForGlyph(g:Glyph):number {
@@ -45,11 +46,28 @@ export class ObjTypes {
     map.addObj(obj,p); 
     return obj;
   }
-  // MAKES objects:
-  static rndLevelObj(level:number, r:Rnd):Obj {
+
+  // ch29:
+  static getRndTemplate(r:Rnd):ObjTypeIF {
     let ix = r.rnd(ObjTypes.objtypes.length);
     let tmpl:ObjTypeIF = ObjTypes.getTmpl(ix);
-    return this.makeTemplateObj(level,r,tmpl);
+    return tmpl;
+  }
+  static rareWands(level:number,r:Rnd):Obj {
+    for(;;) {
+      let t = this.getRndTemplate(r);
+      if (t.g == Glyph.Wand) {
+        if (!r.pct(level*3)) { continue; }
+      }
+      return this.makeTemplateObj(level,r,t);
+    }
+  }
+  // MAKES objects:
+  static rndLevelObj(level:number, r:Rnd):Obj {
+    //let ix = r.rnd(ObjTypes.objtypes.length);
+    //let tmpl:ObjTypeIF = ObjTypes.getTmpl(ix);
+    //return this.makeTemplateObj(level,r,tmpl);
+    return this.rareWands(level,r);
   }
   static makeTemplateObj(level:number, rnd:Rnd, 
                          tmpl:ObjTypeIF):Obj {

@@ -11,6 +11,8 @@ import { MakerIF } from "./06ScreenMakerIF";
 
 export class BaseScreen implements SScreenIF {
   name='base';
+  prompt_bg:string = '#236'; // ch29
+
   constructor(public game:GameIF, public make:MakerIF){}
   draw(term:TermIF) { 
     DrawMap.drawMapPly(

@@ -10,6 +10,8 @@ import { ActiveBuffs } from "./24ActiveBuffs";
 import { BuffIF } from "./24BuffIF";
 import { Buff } from "./24BuffEnum";
 import { GlyphInf1, GlyphMap1 } from "./16GlyphInf1";
+import { Colors } from "O3build/29Colors";
+import { Spell } from "O4cmds/29Spell";
 
 export class DrawMap {
   static drawMap0(term:TermIF, map:DMapIF, vp:WPoint) {
@@ -56,8 +58,11 @@ export class DrawMap {
           bg=unlit; fg=(c.lit?farlit:unlit);
         } else { // near
           bg=i.bg; fg=i.fg;
+          if (c.obj && c.obj.spell != Spell.None) { // ch29
+            bg = Colors.c[c.obj.spell][1];
+          }
           if (!c.lit) { c.lit = true; } 
-        }          
+        }
         term.at(t.x, t.y, i.c, fg, bg);                  
       } 
     }

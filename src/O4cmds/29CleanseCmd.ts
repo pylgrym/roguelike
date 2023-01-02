@@ -14,7 +14,7 @@ export class CleanseBuffCmd extends CmdBase {
     if (this.buff) {
       this.me.buffs.cleanse(this.buff,g,m);
     }
-    //let msg = `${this.me.name} feels better`; g.msg(msg);
+    //let msg = `${this.me.name} feels clean`; g.msg(msg);
     return true; 
   }
 }

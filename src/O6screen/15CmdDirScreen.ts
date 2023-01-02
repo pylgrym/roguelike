@@ -14,10 +14,11 @@ export class CmdDirScreen extends BaseScreen {
     super(game,maker); 
   }
   draw(term:TermIF) { 
-    term.txt(0,0, 'Which dir?', 'yellow', 'black'); 
+    super.draw(term); // fixed in ch29
+    term.txt(0,0, 'Which dir?', 'yellow', this.prompt_bg); 
     let R = ['H Left', 'J Down', 'K Up', 'L Right'];
     for (let i=0; i<R.length; ++i) {
-      term.txt(0,i+1, R[i], 'yellow', 'black'); 
+      term.txt(0,i+1, R[i], 'yellow', this.prompt_bg); 
     }
   }
   onKey(e:JQuery.KeyDownEvent, 
