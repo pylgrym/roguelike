@@ -63,7 +63,7 @@ export class ShootAI implements MobAiIF {
     let spellIx:number = me.level % range;
     // Pick the Spell at <SpellIx> offset:
     let spell:Spell = <Spell> spellIx;
-    console.log(`${me.name} spell: ${spell}`);
+    console.log(`${me.name} spell: ${Spell[spell]}`);
     return spell; 
   }
   castSpell(spell:Spell, me:Mob,
