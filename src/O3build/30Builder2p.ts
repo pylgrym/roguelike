@@ -239,9 +239,11 @@ export class Builder2p implements BuildIF4 {
   initDragonLevel(g: GameIF) {
     // it is the dung that must get the dragon level:
     let dung = g.dung;
+    /*
     let r = g.rnd;
     let minDragon = 26;
     let maxDragon = 30;
+    */
     dung.dragonLevel = 2; //r.rndC(minDragon,maxDragon);
   }
 }
