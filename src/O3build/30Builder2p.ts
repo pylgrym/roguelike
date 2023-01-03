@@ -17,33 +17,48 @@ import { GameIF } from "./08GameIF";
 import { FreeSpace } from "./13FreeSpace";
 import { MapGen1 } from "./15MapGen1";
 import { ObjTypes } from "./21ObjTypes";
-import { BuildIF3 } from "./29BuildIF3";
+import { BuildIF4 } from "./29BuildIF3";
 
-export class Builder2p implements BuildIF3 {
+export class Builder2p implements BuildIF4 {
   makeGame():GameIF { 
     let rnd = new Rnd(42);
     let ply = this.makePly(); 
     let game = new Game5(rnd,ply,this);
+    this.initDragonLevel(game);
     game.dung.level = 1;
     this.enterFirstLevel(game);
     game.ai = this.makeAI(); 
     this.initLevel_One(game);//ch22.
     return game; 
   }  
-  makeLevel(rnd:Rnd, level:number):DMapIF {
-    let map = this.makeMap(rnd, level);
+
+  makeDragonLevels(rnd:Rnd, level:number, dragonLevel:number):DMapIF {
+    let hasDragon = (level == dragonLevel);
+    let map = this.makeDragonMaps(rnd,level,dragonLevel);
     this.addLevelStairs(map,level,rnd); // ch13
     this.addItems(map,rnd); // ch21
     this.addMobsToLevel(map,rnd);
+
+    if (hasDragon) {
+      this.addDragon(map,rnd);
+    }
     return map;
   }
+  makeLevel(rnd:Rnd, level:number):DMapIF {
+    return this.makeDragonLevels(rnd,level,-1);
+  }
   makeMap(rnd:Rnd, level:number):DMapIF { // ch20
+    return this.makeDragonMaps(rnd,level,-1);
+  }
+  makeDragonMaps(rnd:Rnd, level:number, dragonLevel:number):DMapIF { // ch20 //hasDragon:boolean
     let dim = WPoint.StockDims; 
     var map:DMapIF;
     switch (level) {
       default: // (used to be testMap, now it's MapGen1.)
       case 1:  map = MapGen1.test(level); break;
       case 0:  map = TestMap.test(dim, rnd, level); break;  
+      // todo, here we should make a special dragon level:
+      case dragonLevel: map = TestMap.test(dim, rnd, level); break;
     }
     return map;
   }
@@ -209,5 +224,17 @@ export class Builder2p implements BuildIF3 {
   addMobsNextToPlayer(ply: Mob, map: DMapIF) {
     let p = ply.pos;
     this.addNPC(Glyph.Dragon,p.x,p.y+1,map,31);
+  }
+  addDragon(map: DMapIF, rnd: Rnd) {
+    let p = new WPoint(5,5); 
+    this.addNPC(Glyph.Dragon,p.x,p.y+1,map,31);
+  }
+  initDragonLevel(g: GameIF) {
+    // it is the dung that must get the dragon level:
+    let dung = g.dung;
+    let r = g.rnd;
+    let minDragon = 26;
+    let maxDragon = 30;
+    dung.dragonLevel = 2; //r.rndC(minDragon,maxDragon);
   }
 }

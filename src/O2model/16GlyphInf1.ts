@@ -16,14 +16,13 @@ export class GlyphMap1 {
       ? GlyphMap1.glyphs[glyph]
       : GlyphMap1.bad;    
   }
-  static ensureInit:number = GlyphMap1.initGlyphs(); 
-  static initGlyphs():number {
+  static ensureInit:number = GlyphMap1.initGlyphs(false); 
+  static initGlyphs(hasDragon:boolean):number {
     this.glyphs = [];
     let bg = 1 ? '#fff' : 'black';
 
-    let dragonLevel = true;
-    if (dragonLevel) {
-      bg = '#201540'; //'#444';
+    if (hasDragon) {
+      bg = '#201540'; 
     }
 
     var add = GlyphMap1.add;
