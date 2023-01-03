@@ -18,7 +18,14 @@ export class GlyphMap1 {
   }
   static ensureInit:number = GlyphMap1.initGlyphs(); 
   static initGlyphs():number {
+    this.glyphs = [];
     let bg = 1 ? '#fff' : 'black';
+
+    let dragonLevel = true;
+    if (dragonLevel) {
+      bg = '#201540'; //'#444';
+    }
+
     var add = GlyphMap1.add;
     add('red', 'yellow', '§',Glyph.Bad);
     add('#222','#282828','%',Glyph.Rock);    
