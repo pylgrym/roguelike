@@ -174,9 +174,16 @@ export class Builder2p implements BuildIF4 {
     let level = rnd.spiceUpLevel(baseLevel);
     if (level < 1) { level = 1; } 
     // otherwise 0 would cause @..
-    let g = this.level2glyph(level);
+    //let g = this.level2glyph(level);
+    let g = this.level2mobGlyph(level); // ch30
     return this.addNPC(g, p.x,p.y, map, level);
   } 
+  level2mobGlyph(L:number):Glyph {  
+    let g = this.level2glyph(L);
+    if (g >= Glyph.Sheep) { return g; }
+    // todo: instead return a mix of .. the last 4 levels or so?
+    return Glyph.Sheep;
+  }
   level2glyph(L:number):Glyph {  
     let glyph_ix:number = L + Glyph.Ant - 1;
     let g = GlyphMap1.ix2glyph(glyph_ix);
