@@ -25,7 +25,7 @@ export class Builder2o implements BuildIF3 {
     let rnd = new Rnd(42);
     let ply = this.makePly(); 
     let game = new Game5(rnd,ply,this);
-    game.dung.level = 1;
+    game.dung.level = 4;//1;
     this.enterFirstLevel(game);
     game.ai = this.makeAI(); 
     this.initLevel_One(game);//ch22.

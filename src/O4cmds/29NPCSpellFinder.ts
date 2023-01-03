@@ -59,7 +59,7 @@ export class NPCSpellFinder {
     return s ? s : cmd;
   }   
   aim(cmd: BulletCmd): CmdIF {
-    let dir = this.ply.pos.dir(cmd.me.pos);
+    let dir = cmd.me.pos.dir(this.ply.pos);
     return cmd.setDir(dir);
   }
   buff(me:Mob,buff:Buff): CmdIF {
