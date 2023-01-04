@@ -1,4 +1,4 @@
-export class Colors {
+export class Colors { 
   static c:string[][] = [ 
  ['amber','amber'],
  ['','cinnober'],
@@ -24,7 +24,8 @@ export class Colors {
  ['','ruby'], 
  ['','coral'], 
  ['','taffy'],  
-  ];// 24 spells need 24 colors.
+ ['','cream'], // breath
+];// 25 spells need 25 colors.
 
   /*
  ['','lilac'],  

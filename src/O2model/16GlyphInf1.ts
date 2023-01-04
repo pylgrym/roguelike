@@ -79,6 +79,10 @@ export class GlyphMap1 {
    
     add(bg,    'blue',   '🌟',Glyph.Bullet); // ch27 
 
+    add(bg,    'blue',   '🔥',Glyph.Fire1); // ch30 
+    add('yellow','blue', '🔥',Glyph.Fire2); // ch30 
+    add('orange','blue', '🔥',Glyph.Fire3); // ch30 
+
     add(bg,    'blue',   '!',Glyph.Potion); // ch28
     add(bg,    'yellow', '?',Glyph.Scroll); 
     add(bg,    'red',    '-',Glyph.Wand); 

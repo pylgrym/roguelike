@@ -23,5 +23,6 @@ Summon,    // U
 D_Bleed,   // D
 D_Levitate,//B
 D_Disarm,  //B
+Breath,    //U
 None,
 }

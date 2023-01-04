@@ -14,6 +14,8 @@ import { MultiplyCmd } from './29MultiplyCmd';
 import { SummonCmd } from './29SummonCmd';
 import { StackIF } from 'O1term/05ScreenStackIF';
 import { BulletCmd } from './27BulletCmd';
+import { BreathCmd } from './30BreathCmd';
+import { CmdBase } from './09CmdBase';
 
 export class NPCSpellFinder {
   ply:Mob;
@@ -53,12 +55,13 @@ export class NPCSpellFinder {
     case Spell.D_Bleed:   cmd = this.buff(me,Buff.Bleed    ); break;
     case Spell.D_Levitate:cmd = this.buff(me,Buff.Levitate ); break;
     case Spell.D_Disarm:  cmd = this.buff(me,Buff.Disarm   ); break;
+    case Spell.Breath: cmd = this.aim(new BreathCmd(me,g,this.ss,this.maker)); break;
     default: return null; 
     }
     cmd.setCost(cost);
     return s ? s : cmd;
   }   
-  aim(cmd: BulletCmd): CmdIF {
+  aim(cmd:CmdIF): CmdIF {
     let dir = cmd.me.pos.dir(this.ply.pos);
     return cmd.setDir(dir);
   }

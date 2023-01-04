@@ -17,6 +17,7 @@ import { CleanseAllCmd } from './29CleanseCmd';
 import { MultiplyCmd } from './29MultiplyCmd';
 import { SummonCmd } from './29SummonCmd';
 import { StackIF } from 'O1term/05ScreenStackIF';
+import { BreathCmd } from './30BreathCmd';
 
 export interface CmdOrScreen {
     cmd:CmdIF;
@@ -58,6 +59,7 @@ export class SpellFinder {
     case Spell.D_Bleed:   ({s,cmd} = this.buff(Buff.Bleed,   me)); break;
     case Spell.D_Levitate:({s,cmd} = this.buff(Buff.Levitate,me)); break;
     case Spell.D_Disarm:  ({s,cmd} = this.buff(Buff.Disarm,  me)); break;
+    case Spell.Breath: s = this.dir(cmd = new BreathCmd(g.ply,g,this.ss,this.maker)); break;
 
     default: return null; 
     }

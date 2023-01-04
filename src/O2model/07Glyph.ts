@@ -30,6 +30,9 @@ export enum Glyph {
   Boots,
 
   Bullet, // ch27
+  Fire1, // ch30
+  Fire2, // ch30
+  Fire3, // ch30
 
   Potion, // ch28
   Scroll,
