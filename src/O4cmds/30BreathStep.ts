@@ -23,6 +23,7 @@ export class BreathStep extends TimedStep {
   excS():StepIF|null {
     let p = this.pos;
     let map = this.map;
+    let r = this.game.rnd;
 
     //map.cell(p).sprite = undefined;
 
@@ -35,8 +36,11 @@ export class BreathStep extends TimedStep {
     let cell = map.cell(p);
     let done = cell.blocked();
     if (!done) { 
-      cell.sprite = this.sprite;
-      this.cells.push(cell); // remember the cells we painted.
+      let EO = r.oneIn(2);
+      // alternate fire:
+      cell.sprite = (EO ? this.sprite : Glyph.Fire3); 
+       // remember the cells we painted:
+      this.cells.push(cell);
       if (this.effect) { 
           this.effect.setPos(p);
           this.effect.excS(); 
