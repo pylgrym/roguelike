@@ -17,7 +17,7 @@ export class DigCmd extends CmdBase {
     let np = ply.pos.plus(this.dir);
     let cell = map.cell(np);
     let e = cell.env;
-    if (e != Glyph.Wall && e != Glyph.Rock) { // bug seen in 29, must be fixed in 26.
+    if (e != Glyph.Wall && e != Glyph.Rock) {
       game.flash('No rock to dig in.');
       console.log('not rock:',Glyph[e]);
       return false;
