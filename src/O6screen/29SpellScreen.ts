@@ -24,7 +24,7 @@ export class SpellScreen extends BaseScreen {
       let c = this.pos2char(s);
       let L = Spell[s];
       term.txt(x,1+y++, `${c} ${L}`, 'yellow', 'black'); 
-      if (y>12) { y=top;x +=14; }
+      if (y>13) { y=top;x +=14; }
     }
   }
   onKey(e:JQuery.KeyDownEvent,s:StackIF):boolean  {
