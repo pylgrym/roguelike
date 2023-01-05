@@ -29,7 +29,7 @@ export class NPCSpellFinder {
     let level = 1;
     var s:SScreenIF|undefined;
     var cmd:CmdIF;
-    let b=this.buff;
+    let b=this.buff.bind(this);
     switch (spell) {
     case Spell.Heal:    cmd = new HealCmd(level,me,g); break;
     case Spell.D_Charm:   cmd=b(me,Buff.Charm    ); break;
