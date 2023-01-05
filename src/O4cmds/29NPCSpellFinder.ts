@@ -27,32 +27,34 @@ export class NPCSpellFinder {
     let level = 1;
     var s:SScreenIF|undefined;
     var cmd:CmdIF;
-
+    let b=this.buff;
     switch (spell) {
     case Spell.Heal:    cmd = new HealCmd(level,me,g); break;
-    case Spell.D_Charm:   cmd = this.buff(me,Buff.Charm    ); break;
-    case Spell.D_Slow:    cmd = this.buff(me,Buff.Slow     ); break;
-    case Spell.D_Afraid:  cmd = this.buff(me,Buff.Afraid   ); break;
-    case Spell.Missile: cmd = this.aim(new BulletCmd(me,g,this.ss,this.maker)); break;
-    case Spell.D_Poison:  cmd = this.buff(me,Buff.Poison   ); break;
-    case Spell.D_Confuse: cmd = this.buff(me,Buff.Confuse  ); break;
-    case Spell.D_Silence: cmd = this.buff(me,Buff.Silence  ); break;
+    case Spell.D_Charm:   cmd=b(me,Buff.Charm    ); break;
+    case Spell.D_Slow:    cmd=b(me,Buff.Slow     ); break;
+    case Spell.D_Afraid:  cmd=b(me,Buff.Afraid   ); break;
+    case Spell.Missile: 
+      cmd=this.aim(new BulletCmd(me,g,this.ss,this.maker)); 
+      break;
+    case Spell.D_Poison:  cmd=b(me,Buff.Poison   ); break;
+    case Spell.D_Confuse: cmd=b(me,Buff.Confuse  ); break;
+    case Spell.D_Silence: cmd=b(me,Buff.Silence  ); break;
     case Spell.Cleanse: cmd = new CleanseAllCmd(me,g); break;
-    case Spell.D_Stun:    cmd = this.buff(me,Buff.Stun     ); break;
-    case Spell.D_Burn:    cmd = this.buff(me,Buff.Burn     ); break;
-    case Spell.D_Blind:   cmd = this.buff(me,Buff.Blind    ); break;
+    case Spell.D_Stun:    cmd=b(me,Buff.Stun     ); break;
+    case Spell.D_Burn:    cmd=b(me,Buff.Burn     ); break;
+    case Spell.D_Blind:   cmd=b(me,Buff.Blind    ); break;
     case Spell.Multiply: cmd = new MultiplyCmd(me,g); break;
-    case Spell.D_Freeze:  cmd = this.buff(me,Buff.Freeze   ); break;
-    case Spell.D_Root:    cmd = this.buff(me,Buff.Root     ); break;
-    case Spell.D_Shock:   cmd = this.buff(me,Buff.Shock    ); break;
+    case Spell.D_Freeze:  cmd=b(me,Buff.Freeze   ); break;
+    case Spell.D_Root:    cmd=b(me,Buff.Root     ); break;
+    case Spell.D_Shock:   cmd=b(me,Buff.Shock    ); break;
     case Spell.Port:    cmd = new PortCmd(6,me,g); break;
-    case Spell.D_Paralyze:cmd = this.buff(me,Buff.Paralyze ); break;
-    case Spell.D_Sleep:   cmd = this.buff(me,Buff.Sleep    ); break;
-    case Spell.D_Petrify: cmd = this.buff(me,Buff.Petrify  ); break;
+    case Spell.D_Paralyze:cmd=b(me,Buff.Paralyze ); break;
+    case Spell.D_Sleep:   cmd=b(me,Buff.Sleep    ); break;
+    case Spell.D_Petrify: cmd=b(me,Buff.Petrify  ); break;
     case Spell.Summon: cmd = new SummonCmd(me,g); break;
-    case Spell.D_Bleed:   cmd = this.buff(me,Buff.Bleed    ); break;
-    case Spell.D_Levitate:cmd = this.buff(me,Buff.Levitate ); break;
-    case Spell.D_Disarm:  cmd = this.buff(me,Buff.Disarm   ); break;
+    case Spell.D_Bleed:   cmd=b(me,Buff.Bleed    ); break;
+    case Spell.D_Levitate:cmd=b(me,Buff.Levitate ); break;
+    case Spell.D_Disarm:  cmd=b(me,Buff.Disarm   ); break;
     default: return null; 
     }
     cmd.setCost(cost);
