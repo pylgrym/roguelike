@@ -15,7 +15,6 @@ import { SummonCmd } from './29SummonCmd';
 import { StackIF } from 'O1term/05ScreenStackIF';
 import { BulletCmd } from './27BulletCmd';
 import { BreathCmd } from './30BreathCmd';
-import { CmdBase } from './09CmdBase';
 
 export class NPCSpellFinder {
   ply:Mob;
