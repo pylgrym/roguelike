@@ -20,10 +20,7 @@ export class GlyphMap1 {
   static initGlyphs(hasDragon:boolean):number {
     this.glyphs = [];
     let bg = 1 ? '#fff' : 'black';
-
-    if (hasDragon) {
-      bg = '#201540'; 
-    }
+    if (hasDragon) { bg = '#201540'; }
 
     var add = GlyphMap1.add;
     add('red', 'yellow', '§',Glyph.Bad);

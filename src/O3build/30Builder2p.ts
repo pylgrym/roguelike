@@ -31,35 +31,32 @@ export class Builder2p implements BuildIF4 {
     this.initLevel_One(game);//ch22.
     return game; 
   }  
-
-  makeDragonLevels(rnd:Rnd, level:number, dragonLevel:number):DMapIF {
+  makeLevel(rnd:Rnd,level:number):DMapIF {
+    return this.makeDragonLevels(rnd,level,-1);
+  }
+  makeDragonLevels(rnd:Rnd, level:number, 
+                   dragonLevel:number):DMapIF {
     let hasDragon = (level == dragonLevel);
     let map = this.makeDragonMaps(rnd,level,dragonLevel);
     this.addLevelStairs(map,level,rnd); // ch13
     this.addItems(map,rnd); // ch21
     this.addMobsToLevel(map,rnd);
-
-    if (hasDragon) {
-      this.addDragon(map,rnd);
-    }
+    if (hasDragon) {this.addDragon(map,rnd);}
     return map;
-  }
-  makeLevel(rnd:Rnd, level:number):DMapIF {
-    return this.makeDragonLevels(rnd,level,-1);
   }
   makeMap(rnd:Rnd, level:number):DMapIF { // ch20
     return this.makeDragonMaps(rnd,level,-1);
   }
-  makeDragonMaps(rnd:Rnd, level:number, dragonLevel:number):DMapIF { // ch20 //hasDragon:boolean
+  makeDragonMaps(rnd:Rnd, level:number, 
+                 dragonLevel:number):DMapIF {
     let dim = WPoint.StockDims; 
     var map:DMapIF;
     switch (level) {
-      default: // (used to be testMap, now it's MapGen1.)
+      default:
       case 1:  map = MapGen1.test(level); break;
-      case 0:  map = TestMap.test(dim, rnd, level); break;  
-      // todo, here we should make a special dragon level:
+      case 0:  map = TestMap.test(dim, rnd, level); break;        
       case dragonLevel: map = TestMap.test(dim, rnd, level); break;
-    }
+    } // (here we could make a special dragon level)
     return map;
   }
   enterFirstLevel0(game: Game0) {
@@ -170,18 +167,20 @@ export class Builder2p implements BuildIF4 {
 	  return this.addLevelMob(pos,map,rnd,map.level);
   }
   addLevelMob(p:WPoint, map:DMapIF, 
-                rnd:Rnd, baseLevel:number):Mob { 
-    let level = rnd.spiceUpLevel(baseLevel);
+                r:Rnd, baseLevel:number):Mob { 
+    let level = r.spiceUpLevel(baseLevel);
     if (level < 1) { level = 1; } 
     // otherwise 0 would cause @..
     //let g = this.level2glyph(level);
-    let g = this.level2mobGlyph(level); // ch30
+    let g = this.level2mobGlyph(level,r); // ch30
     return this.addNPC(g, p.x,p.y, map, level);
   } 
-  level2mobGlyph(L:number):Glyph {  
+  level2mobGlyph(L:number,r:Rnd):Glyph {  
     let g = this.level2glyph(L);
-    if (g >= Glyph.Sheep) { return g; }
-    // todo: instead return a mix of .. the last 4 levels or so?
+    if (g <= Glyph.Sheep) { return g; }
+    // instead return a mix of the last 4 levels:
+    let ix = r.rndC(0,3);
+    g = <Glyph> (Glyph.Sheep-ix);
     return Glyph.Sheep;
   }
   level2glyph(L:number):Glyph {  
@@ -236,14 +235,12 @@ export class Builder2p implements BuildIF4 {
     let p = new WPoint(5,5); 
     this.addNPC(Glyph.Dragon,p.x,p.y+1,map,31);
   }
-  initDragonLevel(g: GameIF) {
-    // it is the dung that must get the dragon level:
+  initDragonLevel(g:GameIF) {
     let dung = g.dung;
-    /*
     let r = g.rnd;
     let minDragon = 26;
     let maxDragon = 30;
-    */
-    dung.dragonLevel = 2; //r.rndC(minDragon,maxDragon);
+    dung.dragonLevel = r.rndC(minDragon,maxDragon);
+    dung.dragonLevel = 2
   }
 }
