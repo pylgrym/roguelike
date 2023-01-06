@@ -42,10 +42,10 @@ export class DragonAI implements MobAiIF {
     if (lineOfFire) {
       switch (r.rndC(0,2)) {
       default: break; // ignore it.
-      case 0: this.port(5,me,g); break; // flee
-      case 1: // shoot
-        this.shoot(Spell.Breath,me,enemy,g,ss,maker); 
-        break;
+      case 0: return this.port(5,me,g);// flee
+      case 1: return this.shoot(
+                Spell.Breath,me,enemy,g,ss,maker
+              ); 
       }
     }
     

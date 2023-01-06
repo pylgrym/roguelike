@@ -24,9 +24,7 @@ export class BreathStep extends TimedStep {
     let p = this.pos;
     let map = this.map;
     let r = this.game.rnd;
-
     //map.cell(p).sprite = undefined;
-
     if (this.dir == null) { 
       throw 'DirStep.dir is null'; 
     }
@@ -55,8 +53,6 @@ export class BreathStep extends TimedStep {
   }
 
   cleanup() {
-    for (let c of this.cells) {
-      c.sprite = undefined;
-    }
+    for (let c of this.cells) {c.sprite = undefined;}
   } // we remove dragon-fire at end.
 }

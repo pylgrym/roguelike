@@ -29,5 +29,5 @@ export class PayloadCmd extends CmdBase {
     step.setDir(this.dir);
     this.ss.push(new StepScreen(g,this.maker,step));
     return false;
-  }  
+  }
 }
