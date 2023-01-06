@@ -8,6 +8,7 @@ import { GameIF } from "O3build/08GameIF";
 import { CmdBase } from "O4cmds/09CmdBase";
 import { CanSee } from "O4cmds/18CanSee";
 import { CostIF } from "O4cmds/28CostIF";
+import { PortCmd } from "O4cmds/28PortCmd";
 import { NPCSpellFinder } from "O4cmds/29NPCSpellFinder";
 import { Spell } from "O4cmds/29Spell";
 import { MakerIF } from "O6screen/06ScreenMakerIF";
@@ -21,8 +22,13 @@ export class DragonAI implements MobAiIF {
               public spellRate:number) {}
   aiDir:MobAiIF = new MobAI2_cat();
   aiRnd:MobAiIF = new MobAI3_ant();
-  turn(me:Mob, enemy:Mob, g:GameIF,ss:StackIF, maker:MakerIF):boolean {
+  turn(me:Mob, enemy:Mob, g:GameIF,
+       ss:StackIF, maker:MakerIF):boolean {
     let r = g.rnd; 
+    if (DragonAI.isNear(2,me,enemy)) {
+      if (r.oneIn(3)) { return this.port(5,me,g); }
+    } // if ply is near, often port away.
+
     // should dragons even sleep?
     let far = !SleepAI.isNear(me,enemy); 
     if (far) { 
@@ -32,7 +38,18 @@ export class DragonAI implements MobAiIF {
         return true;
       } // if mob now sleeps, don't do more.
     }
-    if (this.didShoot(me,r,g,enemy,ss,maker)) {
+    let lineOfFire = this.aim(me.pos,enemy.pos);
+    if (lineOfFire) {
+      switch (r.rndC(0,2)) {
+      default: break; // ignore it.
+      case 0: this.port(5,me,g); break; // flee
+      case 1: // shoot
+        this.shoot(Spell.Breath,me,enemy,g,ss,maker); 
+        break;
+      }
+    }
+    
+    if (this.didBreathe(me,r,g,enemy,ss,maker)) {
       return true;
     }
     if (this.maybeCastSpell(me,enemy,g,ss,maker)) {
@@ -44,6 +61,14 @@ export class DragonAI implements MobAiIF {
     }
     return true;
   }
+  port(rad: number,me:Mob,g:GameIF): boolean {
+    return new PortCmd(rad,me,g).npcTurn();
+  }
+  static isNear(limit:number, me:Mob, enemy:Mob):boolean {
+    let dist = me.pos.dist(enemy.pos);
+    return dist < limit;    
+  }
+
   maybeCastSpell(me:Mob, enemy:Mob, game:GameIF,
                  ss:StackIF, maker:MakerIF):boolean
   {
@@ -77,15 +102,13 @@ export class DragonAI implements MobAiIF {
     }
     return true;
   }
-  didShoot(me:Mob,r:Rnd,g:GameIF,him:Mob,
+  didBreathe(me:Mob,r:Rnd,g:GameIF,him:Mob,
            ss:StackIF,maker:MakerIF):boolean {
     if (!this.aim(me.pos,him.pos)) { return false; }
-    let spell = this.pickSpell(me,r);
-    if (!this.isMissileSpell(spell)) {return false; }
     if (!r.oneIn(this.spellRate)) { return false; }
     let map = <DMapIF> g.curMap();
     if (!CanSee.canSee2(me,him,map,true)) { return false; }
-    return this.shoot(spell,me,him,g,ss,maker);
+    return this.shoot(Spell.Breath,me,him,g,ss,maker);
   }
   aim(m:WPoint,e:WPoint) {
     let d = m.minus(e);
