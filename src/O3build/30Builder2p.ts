@@ -229,7 +229,7 @@ export class Builder2p implements BuildIF4 {
   }
   addMobsNextToPlayer(ply: Mob, map: DMapIF) {
     let p = ply.pos;
-    this.addNPC(Glyph.Dragon,p.x,p.y+1,map,31);
+    this.addNPC(Glyph.Dragon,p.x,p.y+1,map,1); //31);
   }
   addDragon(map: DMapIF, rnd: Rnd) {
     let p = new WPoint(5,5); 
