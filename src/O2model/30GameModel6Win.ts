@@ -1,5 +1,5 @@
-import { BuildIF0 } from "O3build/08BuildIF0";
 import { GameIF } from "O3build/08GameIF";
+import { BuildIF2 } from "O3build/10BuildIF2";
 import { AutoHeal } from "O4cmds/17AutoHeal";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { DMapIF } from "./07DMapIF";
@@ -10,19 +10,18 @@ import { Dung } from "./13Dung";
 import { Bag } from "./22Bag";
 import { Worn } from "./23Worn";
 
-export class Game1 implements GameIF {
-  constructor(public rnd:Rnd) {}
-  map: DMapIF|null = null;
-  curMap(): DMapIF|null { return this.map; }
-  ply: Mob = <Mob><unknown>undefined;  
+export class Game6 implements GameIF { 
+  constructor(public rnd:Rnd, public ply:Mob, 
+              public build:BuildIF2) {}
+  curMap():DMapIF|null { return this.dung.curMap(this); }
   ai: MobAiIF | null = null;
   log: MsgLog = new MsgLog();
   msg(s:string) { this.log.msg(s,false); }
   flash(s:string) { this.log.msg(s,true);  }
-  dung:Dung = <Dung> <unknown> undefined; // ch13
-  build:BuildIF0 = <BuildIF0> <unknown> undefined; // ch13
-  autoHeal:AutoHeal|undefined; // ch17
-  bag:Bag|undefined; // ch22
-  worn:Worn = <Worn><unknown> undefined; // ch23
-  gameWon:boolean = false; // ch30 fixup
+  dung:Dung = new Dung(); // ch13
+  autoHeal:AutoHeal|undefined = new AutoHeal(); // ch17
+  bag:Bag = new Bag(); // ch22 
+  worn:Worn = new Worn(); // ch23
+
+  gameWon:boolean = false; // ch30
 }

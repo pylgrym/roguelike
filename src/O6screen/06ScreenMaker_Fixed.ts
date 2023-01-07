@@ -11,7 +11,7 @@ export class ScreenMaker0_Fixed implements MakerIF {
   more(game:GameIF|null):SScreenIF { return new DummyScreen(this);}
 
   static run_GOfirst(m:MakerIF) {
-    Stack.run_SScreen(m.gameOver());
+    Stack.run_SScreen(m.gameOver(undefined));
   }
   static StockMaker():MakerIF {
     return new ScreenMaker0_Fixed();

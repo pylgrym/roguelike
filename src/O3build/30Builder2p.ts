@@ -9,7 +9,7 @@ import { GlyphMap1 } from "O2model/16GlyphInf1";
 import { Obj } from "O2model/21Obj";
 import { Slot } from "O2model/21Slot";
 import { Bag } from "O2model/22Bag";
-import { Game5 } from "O2model/23GameModel5Worn";
+import { Game6 } from "O2model/30GameModel6Win";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { MoodAI } from "O5ai/18MoodAI";
 import { AiSwitcher2 } from "O5ai/20AISwitcher2";
@@ -23,7 +23,7 @@ export class Builder2p implements BuildIF4 {
   makeGame():GameIF { 
     let rnd = new Rnd(42);
     let ply = this.makePly(); 
-    let game = new Game5(rnd,ply,this);
+    let game = new Game6(rnd,ply,this); // ch30
     this.initDragonLevel(game);
     game.dung.level = 1;
     this.enterFirstLevel(game);

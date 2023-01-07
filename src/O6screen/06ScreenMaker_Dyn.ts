@@ -37,7 +37,7 @@ export class ScreenMaker1_Dyn implements MakerIF {
       build,
       (g:GameIF,sm:MakerIF) => new DummyScreen(sm),
       (g:GameIF,sm:MakerIF) => new OverScreen0(sm),
-      (sm:MakerIF) => sm.gameOver()
+      (sm:MakerIF) => sm.gameOver(undefined)
     );
     this.runDyn(dyn_gs);        
   }

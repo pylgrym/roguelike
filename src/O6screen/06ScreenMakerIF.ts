@@ -3,6 +3,6 @@ import { GameIF } from "O3build/08GameIF";
 
 export interface MakerIF {
   new_Game():SScreenIF;
-  gameOver():SScreenIF;
+  gameOver(g:GameIF|undefined):SScreenIF;
   more(game:GameIF|null):SScreenIF; // ch12
 }

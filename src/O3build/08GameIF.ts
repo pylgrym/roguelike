@@ -22,4 +22,5 @@ export interface GameIF {
   autoHeal: AutoHeal|undefined; // ch17
   bag:Bag|undefined; // ch22
   worn:Worn|undefined; // ch23
+  gameWon:boolean; // ch30
 }

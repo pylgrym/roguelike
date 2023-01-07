@@ -11,7 +11,7 @@ export class DummyScreen implements SScreenIF {
   }
   onKey(e:JQuery.KeyDownEvent, s:StackIF) {
     s.pop();
-    s.push(this.make.gameOver());  
+    s.push(this.make.gameOver(undefined));  
   }
   onTime():boolean{return false;} // ch27
 }

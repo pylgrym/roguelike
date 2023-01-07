@@ -35,9 +35,10 @@ export class HealthAdj {
     }
   }
 
-  static mobDies(m: Mob, game:GameIF, involvesPly:boolean) {
+  static mobDies(m:Mob, game:GameIF, involvesPly:boolean) {
     let s = `${m.name} dies in a fit of agony`;
     //console.log(s);
+    if (m.g == Glyph.Dragon) { game.gameWon = true; }
     if (involvesPly) { game.msg(s); } // ch12
     let map = <DMapIF> game.curMap();
     map.removeMob(m);

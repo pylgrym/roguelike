@@ -22,4 +22,5 @@ export class Game4 implements GameIF {
   autoHeal:AutoHeal|undefined = new AutoHeal(); // ch17
   bag:Bag = new Bag(); // ch22 
   worn:Worn = <Worn><unknown> undefined; // ch23
+  gameWon:boolean = false; // ch30 fixup
 }

@@ -38,10 +38,11 @@ export class BaseScreen implements SScreenIF {
     this.handleMsgs(s); // ch12    
   }  
   over(s:StackIF):boolean { 
-    let over = !this.game.ply.alive();
+    let over = !this.game.ply.alive()
+              || this.game.gameWon;
     if (over) {
       s.pop();
-      s.push(this.make.gameOver());
+      s.push(this.make.gameOver(this.game));
     }
     return over;  
   }
