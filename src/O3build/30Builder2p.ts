@@ -44,7 +44,7 @@ export class Builder2p implements BuildIF4 {
     if (hasDragon) {this.addDragon(map,rnd);}
     return map;
   }
-  makeMap(rnd:Rnd, level:number):DMapIF { // ch20
+  makeMap(rnd:Rnd, level:number):DMapIF { 
     return this.makeDragonMaps(rnd,level,-1);
   }
   makeDragonMaps(rnd:Rnd, level:number, 
