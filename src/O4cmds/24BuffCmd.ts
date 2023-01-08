@@ -15,7 +15,7 @@ export class BuffCmd extends CmdBase {
               g:GameIF,me:Mob){ super(me,g); }
   exc():boolean {
     // ch25:
-    let m = this.mob, g = this.g;
+    let m = this.tgt, g = this.g;
     let effect:TickIF|undefined = undefined;
     switch (this.buff) {
       case Buff.Poison: effect = new PoisonTick(m,g); break;
