@@ -17,5 +17,6 @@ export interface CmdIF {
   cost:CostIF|undefined; // ch28
   setCost(cost:CostIF|undefined):void;
 
-  setTarget(me:Mob):void; // ch29
+  tgt:Mob|undefined; // ch29
+  setTarget(tgt:Mob):void; // ch29
 }
