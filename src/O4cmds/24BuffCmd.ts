@@ -11,7 +11,7 @@ import { CmdBase } from "./09CmdBase";
 
 export class BuffCmd extends CmdBase {
   constructor(public buff:Buff, 
-              public mob:Mob, 
+              public tgt:Mob, 
               g:GameIF,me:Mob){ super(me,g); }
   exc():boolean {
     // ch25:
@@ -27,7 +27,7 @@ export class BuffCmd extends CmdBase {
     let active:BuffIF = { 
       buff:this.buff, time:8,  effect:effect
     }; 
-    this.addBuffToMob(active,this.g,this.mob);
+    this.addBuffToMob(active,this.g,this.tgt);
     return true;
   }
   addBuffToMob(active:BuffIF, 
