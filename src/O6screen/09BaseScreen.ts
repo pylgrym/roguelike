@@ -70,7 +70,7 @@ export class BaseScreen implements SScreenIF {
   }
   finishPlyTurn(q:TurnQ) {
     let ply = q.curMob();
-    if (!ply.isPly) { return; } // mob-missile ch29 fix.//throw `${ply.name} not ply?'`; }
+    if (!ply.isPly) { return; } // throw `${ply.name} not ply?'`; }
     this.finishTurn(ply);
     if (this.game.autoHeal) {
       this.game.autoHeal.turn(ply, this.game);

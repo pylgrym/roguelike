@@ -99,6 +99,7 @@ export class ShootAI implements MobAiIF {
   isMissileSpell(s:Spell) { return s == Spell.Missile; }
   shoot(spell:Spell,me:Mob,enemy:Mob,g:GameIF,
         ss:StackIF,maker:MakerIF): boolean { 
-    return this.castSpell(spell,me,enemy,g,ss,maker);
+    this.castSpell(spell,me,enemy,g,ss,maker);
+    return true;
   } 
 }
