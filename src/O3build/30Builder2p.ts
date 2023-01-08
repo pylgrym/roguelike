@@ -232,7 +232,7 @@ export class Builder2p implements BuildIF4 {
     this.addNPC(Glyph.Dragon,p.x,p.y+1,map,1); //31);
   }
   addDragon(map: DMapIF, rnd: Rnd) {
-    let p = new WPoint(5,5); 
+    let p = <WPoint> FreeSpace.find(Glyph.Floor,map,rnd);
     this.addNPC(Glyph.Dragon,p.x,p.y+1,map,31);
   }
   initDragonLevel(g:GameIF) {

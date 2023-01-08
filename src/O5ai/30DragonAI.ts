@@ -40,7 +40,9 @@ export class DragonAI implements MobAiIF {
     }
     let lineOfFire = this.aim(me.pos,enemy.pos);
     if (lineOfFire) {
-      switch (r.rndC(0,2)) {
+      let act = r.rndC(0,2);
+      console.log('dragon LOF reaction',act);
+      switch (act) {
       default: break; // ignore it.
       case 0: return this.port(5,me,g);// flee
       case 1: return this.shoot(
@@ -50,18 +52,23 @@ export class DragonAI implements MobAiIF {
     }
     
     if (this.didBreathe(me,r,g,enemy,ss,maker)) {
+      console.log('dragon breathed');
       return true;
     }
     if (this.maybeCastSpell(me,enemy,g,ss,maker)) {
+      console.log('dragon used spell');
       return true;
     }
     for (let i=0;i<this.speed;++i) {
+      console.log('dragon moved', ++this.moveIx);
       var ai = r.oneIn(2) ? this.aiDir : this.aiRnd;
       ai.turn(me,enemy,g,ss,maker);
     }
     return true;
   }
+  moveIx:number = 1;
   port(rad: number,me:Mob,g:GameIF): boolean {
+    console.log('dragon ports');
     return new PortCmd(rad,me,g).npcTurn();
   }
   static isNear(limit:number, me:Mob, enemy:Mob):boolean {
@@ -98,8 +105,10 @@ export class DragonAI implements MobAiIF {
     let noCost:CostIF|undefined = undefined;
     let CoS = finder.find(me,spell,noCost);
     if (CoS instanceof CmdBase) {
-        return CoS.npcTurn();
+      console.log('CB', CoS);
+      return CoS.npcTurn();
     }
+    console.log('CS');
     return true;
   }
   didBreathe(me:Mob,r:Rnd,g:GameIF,him:Mob,
@@ -108,7 +117,9 @@ export class DragonAI implements MobAiIF {
     if (!r.oneIn(this.spellRate)) { return false; }
     let map = <DMapIF> g.curMap();
     if (!CanSee.canSee2(me,him,map,true)) { return false; }
-    return this.shoot(Spell.Breath,me,him,g,ss,maker);
+    let didShoot = this.shoot(Spell.Breath,me,him,g,ss,maker);
+    console.log('didSh?', didShoot);
+    return  didShoot;
   }
   aim(m:WPoint,e:WPoint) {
     let d = m.minus(e);
