@@ -15,12 +15,14 @@ export abstract class CmdBase implements CmdIF {
   cost:CostIF|undefined;
   setCost(cost:CostIF|undefined) { this.cost = cost;}
 
+  mob:Mob|undefined; // ch29
+
   exc(): boolean { throw 'no exc'; }
   constructor(public me:Mob, public g:GameIF){}
 
   setDir(dir: WPoint):CmdIF {throw 'no setDir';} // ch15
 
-  setTarget(me:Mob):void { this.me = me; } // ch29
+  setTarget(tgt:Mob):void { this.mob = tgt; } // ch29
   
   public raw():boolean  { return this.exc(); } 
   public npcTurn():boolean { return this.turn(); }

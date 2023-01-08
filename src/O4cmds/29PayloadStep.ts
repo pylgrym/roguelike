@@ -18,8 +18,9 @@ export class PayloadStep extends TimedStep {
   ) { super(); }
   excS():StepIF|null {
     let tgt = this.target;
-    if (!tgt) { tgt = this.tgtFromPos(); }
+    if (!tgt) { tgt = this.tgtFromPos(); } // ch29
     if (tgt) { 
+      console.log('payload tgt now:', tgt);
       this.payload.setTarget(tgt);
       this.payload.raw();
     } else {

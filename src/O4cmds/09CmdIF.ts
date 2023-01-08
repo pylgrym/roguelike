@@ -12,10 +12,12 @@ export interface CmdIF {
   
   me:Mob;
   g:GameIF;
+
+  mob:Mob|undefined; // ch29
   setDir(dir: WPoint):CmdIF; //ch15
 
   cost:CostIF|undefined; // ch28
   setCost(cost:CostIF|undefined):void;
 
-  setTarget(me:Mob):void; // ch29
+  setTarget(tgt:Mob):void; // ch29
 }
