@@ -1,3 +1,4 @@
+import { Dung30 } from './30Dung';
 import { GameIF } from "O3build/08GameIF";
 import { BuildIF2 } from "O3build/10BuildIF2";
 import { AutoHeal } from "O4cmds/17AutoHeal";
@@ -18,7 +19,7 @@ export class Game6 implements GameIF {
   log: MsgLog = new MsgLog();
   msg(s:string) { this.log.msg(s,false); }
   flash(s:string) { this.log.msg(s,true);  }
-  dung:Dung = new Dung(); // ch13
+  dung:Dung = new Dung30(); // ch30
   autoHeal:AutoHeal|undefined = new AutoHeal(); // ch17
   bag:Bag = new Bag(); // ch22 
   worn:Worn = new Worn(); // ch23
