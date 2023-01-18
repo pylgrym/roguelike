@@ -1,14 +1,22 @@
+import { GlyphInf1 } from './../O2model/16GlyphInf1';
+import { ResizingTerm } from "O1term/03ResizingTerm";
+import { Glyph } from "O2model/07Glyph";
+import { WPoint } from "O2model/07WPoint";
+import { BaseMap } from "./33BaseMap";
+import { MapRenderer } from './33MapRenderer';
+import { DMap } from 'O2model/07DMap';
+
 export class MapDrawer extends BaseMap {
   term:ResizingTerm;
   constructor(dim:WPoint, init:Glyph) {
-    let map=new DMap0(new WPoint(dim.x,dim.y), init);
+    let map=new DMap(new WPoint(dim.x,dim.y),init,0);
     super(dim, map);
     this.term=new ResizingTerm(dim);
-    this.term.manResize();
+    this.term.onResize();
   }
-  setp(p:WPoint, glyph:Glyph):GlyphInf {
+  setp(p:WPoint, glyph:Glyph):GlyphInf1 {
     let i = super.setp(p,glyph);
-    this.term.at(p.x, p.y, i.c, i.fg, i.bg, null); 
+    this.term.at(p.x,p.y,i.c,i.fg,i.bg); 
     return i;
   }
   render() { MapRenderer.renderMap(this.term, this.map); }

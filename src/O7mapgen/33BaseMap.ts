@@ -1,3 +1,9 @@
+import { DMapIF } from "O2model/07DMapIF";
+import { Glyph } from "O2model/07Glyph";
+import { WPoint } from "O2model/07WPoint";
+import { GlyphInf1, GlyphMap1 } from "O2model/16GlyphInf1";
+import { MapDrawerIF } from "./33MapDrawerIF";
+
 export class BaseMap implements MapDrawerIF {
   // init:Glyph,  //this.fillMap(init);
   constructor(public dim:WPoint, public map:DMapIF){}   
@@ -9,8 +15,8 @@ export class BaseMap implements MapDrawerIF {
   set(x:number, y:number, glyph:Glyph) { 
     this.setp(new WPoint(x, y), glyph); 
   }
-  setp(p:WPoint, glyph:Glyph):GlyphInf {
-    let i: GlyphInf = GlyphInf.inf(glyph);
+  setp(p:WPoint, glyph:Glyph):GlyphInf1 {
+    let i: GlyphInf1 = GlyphMap1.inf(glyph);
     if (!this.map.legal(p)) { throw p; }
     this.map.cell(p).env = glyph;
     return i;
