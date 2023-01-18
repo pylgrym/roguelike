@@ -1,7 +1,12 @@
+import { Glyph } from "O2model/07Glyph";
+import { Rnd } from "O2model/07Rnd";
+import { WPoint } from "O2model/07WPoint";
+import { MapDrawer } from "./33MapDrawer";
+
 export class G2_RndBox_Algo {
   constructor(public dm:MapDrawer) {}    
   run(dim:WPoint, r:Rnd) {
-    let area = dm.dim.x*dm.dim.y;
+    let area = dim.x*dim.y;
     let ratio = 85; // A way to match #rects to area.
     let numRooms = area/ratio; 
     console.log(area, area/numRooms)
