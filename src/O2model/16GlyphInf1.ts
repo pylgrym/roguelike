@@ -19,15 +19,22 @@ export class GlyphMap1 {
   static ensureInit:number = GlyphMap1.initGlyphs(false); 
   static initGlyphs(hasDragon:boolean):number {
     this.glyphs = [];
-    let bg = 1 ? '#fff' : 'black';
+    let bg = 0 ? '#fff' : 'black';
     if (hasDragon) { bg = '#201540'; }
+
+    // 5A150A darkest
+    // 8D4A0F really dark
+    // B57A17 dark.
+    // E4C23D "lightest dark   theme color"
+    // FDFF97 "lightest bright theme color"
 
     var add = GlyphMap1.add;
     add('red', 'yellow', '§',Glyph.Bad);
     add('#222','#282828','%',Glyph.Rock);    
-    add('#444','#555555','#',Glyph.Wall);   
-    add(bg,    '#123',   '.',Glyph.Floor);  
-    add('#222','#282828','?',Glyph.Unknown);
+    //add('#444','#555555','#',Glyph.Wall);   
+    add( '#5A150A','#E4C23D','#',Glyph.Wall);   
+    add(bg,    '#E4C23D',   '.',Glyph.Floor);  
+    add(bg    ,'#5A150A','?',Glyph.Unknown);
     add(bg,    'orange', '@',Glyph.Ply); // ch09
     add(bg,    '#e2b',   'a',Glyph.Ant);
     add(bg,    '#43a',   'b',Glyph.Bat);
