@@ -9,6 +9,7 @@ import { GlyphMap1 } from "O2model/16GlyphInf1";
 import { Obj } from "O2model/21Obj";
 import { Slot } from "O2model/21Slot";
 import { Bag } from "O2model/22Bag";
+import { Dung30 } from "O2model/30Dung";
 import { Game6 } from "O2model/30GameModel6Win";
 import { MobAiIF } from "O5ai/10MobAiIF";
 import { MoodAI } from "O5ai/18MoodAI";
@@ -236,7 +237,7 @@ export class Builder2p implements BuildIF4 {
     this.addNPC(Glyph.Dragon,p.x,p.y+1,map,31);
   }
   initDragonLevel(g:GameIF) {
-    let dung = g.dung;
+    let dung = <Dung30> g.dung;
     let r = g.rnd;
     let minDragon = 26;
     let maxDragon = 30;
