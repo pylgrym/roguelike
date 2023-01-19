@@ -1,3 +1,10 @@
+import { Glyph } from "O2model/07Glyph";
+import { Rnd } from "O2model/07Rnd";
+import { WPoint } from "O2model/07WPoint";
+import { MapBuilder } from "./33MapBuilder";
+import { MapDrawerIF } from "./33MapDrawerIF";
+import { Dir, Dirs } from "./Dir";
+
 class GA_Rect {
   public UL:WPoint; public BR:WPoint;
   ways: Dir[] = [Dir.N, Dir.E, Dir.S, Dir.W];
@@ -28,7 +35,7 @@ export class G7_BoxGrow_Algo {
   rndSeed(r:Rnd,dim:WPoint) { this.addSeed(new WPoint(r.rnd(dim.x), r.rnd(dim.y)));}
   addSeed(p:WPoint) { this.pool.push(new GA_Rect(p)); this.draw(p,p); }
   run(rnd:Rnd) {
-    MapBuilder0.addFence(this.dm.map);
+    MapBuilder.addFence(this.dm.map);
     this.initPool(rnd);
     this.dm.render();
     while (this.pool.length>0) {            
