@@ -1,3 +1,5 @@
+import { WPoint } from "O2model/07WPoint";
+
 export enum Dir {N=0,E=1,S=2,W=3}
 export class Dirs {
   public static isEW(d:Dir) { 

@@ -28,6 +28,13 @@ export class WPoint {
     return b.x ==  this.x && b.y == this.y;
   }
 
+  // ch33:
+  rotateCW() :WPoint { return new WPoint(-this.y, this.x); }
+  rotateCCW():WPoint { return new WPoint( this.y,-this.x); }
+  outside(dim:WPoint):boolean {
+    return (this.x<0||this.y<0||this.x>=dim.x||this.y>=dim.y);
+  }
+
   static StockDims = new WPoint(
     TPoint.StockDims.x,TPoint.StockDims.y);
 }
