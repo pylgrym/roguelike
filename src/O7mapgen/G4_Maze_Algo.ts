@@ -36,7 +36,9 @@ export class G4_Maze_Algo {
   }
   free(p:WPoint, d: WPoint):boolean { 
     let n = p.plus(d).addTo(d); 
-    return this.dm.get(n) == Glyph.Wall; 
+    return this.dm.legal(n) 
+        && this.dm.get(n) == Glyph.Wall; 
+    //return this.dm.get(n) == Glyph.Wall; 
   } 
   markWay(p:WPoint, way:WPoint, door: WPoint) { 
     this.dm.setp(door, Glyph.Floor);  

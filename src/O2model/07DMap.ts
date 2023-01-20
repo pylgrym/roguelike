@@ -14,8 +14,14 @@ export class DMap implements DMapIF {
               public level:number) {
     this.cells = this.allocMap(g_empty);
   }
-  cell(p:WPoint):MapCell { 
+  cell(p:WPoint):MapCell {
+    this.wail(p); 
     return this.cells[p.y][p.x]; 
+  }
+  wail(p: WPoint) {
+    if (this.legal(p)) { return; }
+    console.log('x:',p.x, 'y:', p.y, 'dimx:', this.dim.x,'dimy:', this.dim.y);
+    throw new Error(`${p.x},${p.y} illegal`);
   }
   legal(p:WPoint):boolean { 
     return p.x >= 0 && p.x < this.dim.x
