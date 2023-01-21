@@ -31,8 +31,13 @@ export class G7_BoxGrow_Algo {
   pool: GA_Rect[] = [];
   finished: GA_Rect[] = [];
   constructor(public dm:MapDrawerIF, public dim:WPoint) {}    
-  initPool(r:Rnd) { 
-    for (let i=160;--i>0;) { this.rndSeed(r,this.dim); } 
+  calcSeeds(dim:WPoint):number {
+    let area = dim.x * dim.y;
+    return Math.ceil(area*0.02);
+  }
+  initPool(r:Rnd) {
+    let seeds = this.calcSeeds(this.dim);
+    for (let i=seeds;--i>0;) { this.rndSeed(r,this.dim); } 
   }
   rndSeed(r:Rnd,dim:WPoint) { 
     this.addSeed(new WPoint(r.rnd(dim.x), r.rnd(dim.y)));
@@ -42,11 +47,12 @@ export class G7_BoxGrow_Algo {
     this.draw(p,p);
   }
   run(rnd:Rnd) {
-    MapBuilder.addFence(this.dm.map);
+    MapBuilder.addFence(this.dm.map,Glyph.Wall,Glyph.Floor);
     this.initPool(rnd);
     this.dm.render();
     while (this.pool.length>0) {            
       let ix = this.pickRectIx(rnd);
+      //console.log('pool:', this.pool.length, 'pick:',ix);
       this.growRect(ix, this.pool[ix],rnd);  
     }
   }
@@ -84,9 +90,11 @@ export class G7_BoxGrow_Algo {
     return true;
   }    
   is_free(e:WPoint, f:WPoint):boolean {  
+    let dm = this.dm;
     for (let p = e.copy(); p.y <= f.y; ++p.y) {
       for (p.x = e.x; p.x <= f.x; ++p.x) {
-        if (this.dm.get(p) != Glyph.Floor) { return false; }
+        if (!dm.legal(p)) { return false; }
+        if (dm.get(p) != Glyph.Floor) { return false; }
       }
     }
     return true; 
