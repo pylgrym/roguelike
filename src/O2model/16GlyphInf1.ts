@@ -33,7 +33,7 @@ export class GlyphMap1 {
     add('#222','#282828','%',Glyph.Rock);    
     //add('#444','#555555','#',Glyph.Wall);   
     add( '#5A150A','#E4C23D','#',Glyph.Wall);   
-    add(bg,    '#E4C23D',   '.',Glyph.Floor);  
+    add('#731',    '#E4C23D',   '.',Glyph.Floor); //bg 
     add(bg    ,'#5A150A','?',Glyph.Unknown);
     add(bg,    'orange', '@',Glyph.Ply); // ch09
     add(bg,    '#e2b',   'a',Glyph.Ant);
@@ -70,7 +70,7 @@ export class GlyphMap1 {
     add(bg,    'orange', '>',Glyph.StairsDown); // ch13
     add(bg,    'orange', '<',Glyph.StairsUp);
       
-    add(bg,    'orange', ',',Glyph.Door_Open);  // ch15
+    add('#841','orange', ',',Glyph.Door_Open);  // ch15
     add(bg,    'orange', '+',Glyph.Door_Closed);
 
     add(bg,    'blue',   '-',Glyph.Dagger); // ch21

@@ -27,6 +27,7 @@ export class MapSurf {
   }  
   getTile(x:number,y:number):Tile {
     this.p.x = x; this.p.y = y;
+    if (!this.md.legal(this.p)) { return Tile.C_WALL; }
     let c = this.md.get(this.p);
     var tile:Tile;
     switch (c) {
