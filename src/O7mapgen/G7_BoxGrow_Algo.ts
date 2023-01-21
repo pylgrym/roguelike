@@ -9,8 +9,8 @@ class GA_Rect {
   public UL:WPoint; public BR:WPoint;
   ways: Dir[] = [Dir.N, Dir.E, Dir.S, Dir.W];
   constructor(c:WPoint){ this.UL = c.copy(); this.BR = c.copy(); }
-  UR():WPoint{ return new WPoint(this.BR.x, this.UL.y);}
-  BL():WPoint{ return new WPoint(this.UL.x, this.BR.y);}
+  UR():WPoint {return new WPoint(this.BR.x, this.UL.y);}
+  BL():WPoint {return new WPoint(this.UL.x, this.BR.y);}
   removeWay(ix:number) { this.ways.splice(ix,1); }
   growDir(dir:Dir) { switch (dir) { 
     case Dir.N: --this.UL.y; break; 
@@ -18,7 +18,7 @@ class GA_Rect {
     case Dir.S: ++this.BR.y; break; 
     case Dir.W: --this.UL.x; break; 
   } }
-  getSide(dir:Dir) { switch (dir) {
+  getSide(dir:Dir):WPoint[] { switch (dir) {
     case Dir.N: return [this.UL, this.UR()];
     case Dir.E: return [this.UR(), this.BR];
     case Dir.S: return [this.BL(), this.BR];
@@ -31,9 +31,16 @@ export class G7_BoxGrow_Algo {
   pool: GA_Rect[] = [];
   finished: GA_Rect[] = [];
   constructor(public dm:MapDrawerIF, public dim:WPoint) {}    
-  initPool(r:Rnd) { for (let i=160;--i>0;) { this.rndSeed(r,this.dim); } }
-  rndSeed(r:Rnd,dim:WPoint) { this.addSeed(new WPoint(r.rnd(dim.x), r.rnd(dim.y)));}
-  addSeed(p:WPoint) { this.pool.push(new GA_Rect(p)); this.draw(p,p); }
+  initPool(r:Rnd) { 
+    for (let i=160;--i>0;) { this.rndSeed(r,this.dim); } 
+  }
+  rndSeed(r:Rnd,dim:WPoint) { 
+    this.addSeed(new WPoint(r.rnd(dim.x), r.rnd(dim.y)));
+  }
+  addSeed(p:WPoint) { 
+    this.pool.push(new GA_Rect(p)); 
+    this.draw(p,p);
+  }
   run(rnd:Rnd) {
     MapBuilder.addFence(this.dm.map);
     this.initPool(rnd);
@@ -52,9 +59,13 @@ export class G7_BoxGrow_Algo {
       this.finished.push(rect);
     }
   }
-  pickDirIx(rect:GA_Rect, r:Rnd) { return r.rnd(rect.ways.length); }
+  pickDirIx(rect:GA_Rect, r:Rnd) {
+    return r.rnd(rect.ways.length);
+  }
   growSide(dirIx:number, dir:Dir, rect:GA_Rect, ix:number) {
-    if (dir == undefined) { throw `bad ${dirIx} ${rect.ways.length}`; }
+    if (dir == undefined) {
+      throw `bad ${dirIx} ${rect.ways.length}`;
+    }
     let grew = this.grow(rect,dir); 
     if (!grew) { rect.removeWay(dirIx); }
   }
@@ -62,8 +73,10 @@ export class G7_BoxGrow_Algo {
   grow(r:GA_Rect, dir:Dir):boolean {
     let s = r.getSide(dir);
     let d = Dirs.dirs[dir];    
-    let c1 = s[0].plus(d), c2 = s[1].plus(d); // 1 out. // c=candidate.
-    let b1 =   c1.plus(d), b2 =   c2.plus(d); // 2 out. // b=buffer.
+    // 1 out. // c=candidate.
+    let c1 = s[0].plus(d), c2 = s[1].plus(d); 
+    // 2 out. // b=buffer.
+    let b1 =   c1.plus(d), b2 =   c2.plus(d); 
     this.adjustBuffer(b1,b2,dir);
     if (!this.is_free(b1,b2)|| !this.is_free(c1,c2)) { return false; }
     r.growDir(dir);
@@ -80,7 +93,9 @@ export class G7_BoxGrow_Algo {
   }
   draw(i:WPoint, j:WPoint) { 
     for (let p=i.copy(); p.y <= j.y; ++p.y) {
-      for (p.x = i.x; p.x <= j.x; ++p.x) { this.dm.setp(p, Glyph.Wall); }
+      for (p.x = i.x; p.x <= j.x; ++p.x) { 
+        this.dm.setp(p, Glyph.Wall); 
+      }
     }
   }
   adjustBuffer(a:WPoint, b:WPoint, dir:Dir) {
