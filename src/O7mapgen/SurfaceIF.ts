@@ -11,5 +11,5 @@ export enum Tile {
 export interface SurfaceIF {
   tunnel(s:WPoint,e:WPoint, tile:Tile):void;
   box_empty(s:WPoint,e:WPoint):boolean;
-  box(a:WPoint,b:WPoint, wall:Tile):void; //, override:boolean); // always true.
+  box(a:WPoint,b:WPoint, wall:Tile):void;
 }

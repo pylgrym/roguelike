@@ -51,8 +51,13 @@ export class G8_Sprouter_Algo {
     this.surface = new Surface(s,this.rnd);    
   } 
   run() { 
-    this.addFirstRoom(this.dim);        
-    while (!this.q.empty()) { this.step(); } 
+    this.addFirstRoom(this.dim);
+    let ix=0;
+    while (!this.q.empty()) { 
+      this.step();
+      console.log('_'); 
+      if (++ix > 4) { break; }
+    } 
   }
   step():boolean {
     let i_room = this.q.rndIx(this.rnd);
@@ -93,7 +98,7 @@ export class G8_Sprouter_Algo {
     let r = this.suggestRoom(L);
     if (this.surface.box_empty(r.a, r.b)) {
       this.addRoom(r);
-      this.drawTunnel(L);    
+      this.drawTunnel(L);
     } else { 
       let quickDirtyLoops = true;
       if (quickDirtyLoops && this.rnd.rnd(3)<2) { 
