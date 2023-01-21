@@ -13,7 +13,7 @@ export class Surface implements SurfaceIF {
   tunnel(s:WPoint,e:WPoint, tile:Tile) {
     let mid = this.rnd.rnd(2) 
       ? new WPoint(s.x,e.y) : new WPoint(e.x,s.y);
-    //console.log('mid:', mid);
+    // console.log('mid:', mid);
     if (!this.box(s,mid,tile)) { return false; }
     if (!this.box(mid,e,tile)) { return false; }
     return true;
@@ -50,9 +50,13 @@ export class Surface implements SurfaceIF {
         (ex == Tile.C_FLOOR || ex == Tile.C_CORRFLOOR);
       let wantsWall =
         (ex == Tile.C_WALL || ex == Tile.C_HALLWALL);
-      if (hasFloor && wantsWall) { return false; }
+      if (hasFloor && wantsWall) { 
+        //console.log('wall may not override floor');
+        return false; 
+      }
     }
     this.dungsurf.setTile(x,y,tile); 
+    //console.log('setTile',x,y,tile);
     return true;
   }
   box_empty(s:WPoint,e:WPoint):boolean{ 

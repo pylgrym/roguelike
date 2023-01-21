@@ -52,11 +52,11 @@ export class G8_Sprouter_Algo {
   } 
   run() { 
     this.addFirstRoom(this.dim);
-    let ix=0;
+    //let ix=0;
     while (!this.q.empty()) { 
       this.step();
-      console.log('_'); 
-      if (++ix > 4) { break; }
+      // console.log('_'); 
+      //  if (++ix > 6) { break; }
     } 
   }
   step():boolean {
@@ -96,13 +96,18 @@ export class G8_Sprouter_Algo {
     }
     if (outside) { return; }
     let r = this.suggestRoom(L);
-    if (this.surface.box_empty(r.a, r.b)) {
+    if (this.surface.box_empty(r.a,r.b)) {
       this.addRoom(r);
       this.drawTunnel(L);
     } else { 
+      //console.log('not empty');
       let quickDirtyLoops = true;
       if (quickDirtyLoops && this.rnd.rnd(3)<2) { 
         this.drawTunnel(L); 
+        // This would be better
+        // if we continue the tunnel until
+        // we have punched a hole in the blocker.
+        // The floor part should do this.
       }
       this.collisions.push(L); 
     }
@@ -116,7 +121,8 @@ export class G8_Sprouter_Algo {
     let s1 = s0.plus(RH);
     let s2 = s0.minus(RH);
 
-    let e0 = L.e.minus(L.d);
+    // We don't really need to shorten it.
+    let e0 = L.e; //L.e.minus(L.d);
     let e1 = e0.plus(RH);
     let e2 = e0.minus(RH);
     if (this.v) {
