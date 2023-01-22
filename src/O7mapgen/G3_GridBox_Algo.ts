@@ -1,11 +1,11 @@
 import { Glyph } from "O2model/07Glyph";
 import { Rnd } from "O2model/07Rnd";
 import { WPoint } from "O2model/07WPoint";
-import { MapDrawer } from "./33MapDrawer";
+import { MapDrawerIF } from "./33MapDrawerIF";
 
 export class G3_GridBox_Algo {
   maxx:number; maxy:number;
-  constructor(public dm:MapDrawer) { 
+  constructor(public dm:MapDrawerIF) { 
     this.maxx = dm.dim.x-1; this.maxy = dm.dim.y-1; 
   }    
   run(r:Rnd, dim:WPoint, ratio:number) {
@@ -16,7 +16,7 @@ export class G3_GridBox_Algo {
     let half = Math.floor(avg*0.5);
     for (let bx=half; bx < dim.x-half-1; bx += avg) {
       for (let by=half; by < dim.y-half-1; by += avg) {
-        //if (!r.oneIn(3)) { continue;} 
+        //if (!r.oneIn(ratio)) { continue;} 
         if (((bx+by)%ratio)==1) { continue;}
         let a = avg-2, b = avg-2; 
         if (rnd_size) { 

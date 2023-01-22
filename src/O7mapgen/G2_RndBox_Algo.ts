@@ -1,10 +1,10 @@
 import { Glyph } from "O2model/07Glyph";
 import { Rnd } from "O2model/07Rnd";
 import { WPoint } from "O2model/07WPoint";
-import { MapDrawer } from "./33MapDrawer";
+import { MapDrawerIF } from "./33MapDrawerIF";
 
 export class G2_RndBox_Algo {
-  constructor(public dm:MapDrawer) {}    
+  constructor(public dm:MapDrawerIF) {}    
   run(dim:WPoint, r:Rnd) {
     let area = dim.x*dim.y;
     let ratio = 85; // A way to match #rects to area.
