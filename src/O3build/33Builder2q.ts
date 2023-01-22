@@ -63,8 +63,8 @@ export class Builder2q implements BuildIF4 {
   }
   makeDragonMaps(rnd:Rnd, level:number, 
                  dragonLevel:number):DMapIF {
-      let dim = WPoint.StockDims; 
-      return new LevelMaker(rnd).make(level,dim,dragonLevel);
+    let dim = WPoint.StockDims; 
+    return new LevelMaker(rnd).make(level,dim,dragonLevel);
   }
   enterFirstLevel0(game: Game0) {
     let map = <DMapIF> game.map;

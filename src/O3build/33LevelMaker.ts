@@ -22,8 +22,8 @@ export class LevelMaker {
     let m:DMapIF = new DMap(dim,Glyph.Unknown,level);
     let s = new BaseMap(m.dim,m);
     switch (level%10) {
-    case  0: this.genMap0_brokCol8(s); break;
-    case  1: this.genMap1_horzVert9(s); break;
+    case  0: this.genMap0_brokCol(s); break;
+    case  1: this.genMap1_horzVert(s); break;
     case  2: this.genMap2_rndBox(s); break;
     case  3: this.genMap3_grid(s); break;
     case  4: this.genMap4_maze(s); break;
@@ -35,9 +35,9 @@ export class LevelMaker {
     }
     return m;
   } 
-  genMap0_brokCol8(s:DrawIF){ 
+  genMap0_brokCol(s:DrawIF){ 
     new G0_BrokenColumns_Algo().run(s.dim,this.rnd,s); }
-  genMap1_horzVert9(s:DrawIF){ 
+  genMap1_horzVert(s:DrawIF){ 
     new G1_HorzVert_Algo().run(s.dim,this.rnd,s); }
   genMap2_rndBox(s:DrawIF){ 
     s.fillMap(Glyph.Wall); 
