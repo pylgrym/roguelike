@@ -19,7 +19,7 @@ export class LevelMaker {
   constructor(public rnd:Rnd){}
   make(level:number,dim:WPoint,
        dragonLevel:number): DMapIF {     
-    let m:DMapIF = new DMap(dim,Glyph.Unknown,level);
+    let m:DMapIF = new DMap(dim,Glyph.Floor,level);
     let s = new BaseMap(m.dim,m);
     switch (level%10) {
     case  0: this.genMap0_brokCol(s); break;
