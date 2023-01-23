@@ -143,6 +143,7 @@ export class Builder2q implements BuildIF4 {
   }
   addStair(map:DMapIF,rnd:Rnd,stair:Glyph):boolean {
       let p = <WPoint> FreeSpace.findFree(map, rnd);
+      if (!p) {return false;}
       map.cell(p).env = stair;	
       return true;
   }    

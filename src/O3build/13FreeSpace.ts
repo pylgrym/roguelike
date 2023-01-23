@@ -20,7 +20,11 @@ export class FreeSpace {
           p.x = 1; ++p.y;
           if (p.y > e.y) { p.y=1; }
         }           
-        if (p.eq(s)) { throw 'freespace not found'; }
+        if (p.eq(s)) { 
+          console.trace('freespace not found',c,map);
+          return null;
+          //throw 'freespace not found'; 
+        }
       }
     }
   }
