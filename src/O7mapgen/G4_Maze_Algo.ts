@@ -1,6 +1,7 @@
 import { Glyph } from "O2model/07Glyph";
 import { Rnd } from "O2model/07Rnd";
 import { WPoint } from "O2model/07WPoint";
+import { MapBuilder } from "./33MapBuilder";
 import { MapDrawerIF } from "./33MapDrawerIF";
 import { Dirs } from "./Dir";
 
@@ -9,6 +10,8 @@ export class G4_Maze_Algo {
   constructor(public dm:MapDrawerIF, public rnd:Rnd, 
               public dim:WPoint) {}    
   run(r:Rnd) {
+    let map = this.dm.map;
+    MapBuilder.addFence(map, Glyph.Rock, Glyph.Wall);
     this.dm.render();
     this.addRoom(this.center());
     while (this.pool.length > 0) { 

@@ -6,7 +6,8 @@ import { MapDrawerIF } from "./33MapDrawerIF";
 
 export class G1_HorzVert_Algo {
   run(dim:WPoint, r:Rnd, dm:MapDrawerIF) {
-    MapBuilder.addFence(dm.map); dm.render();
+    MapBuilder.addFence(dm.map, Glyph.Wall, Glyph.Floor);
+    dm.render();
     for (let p = new WPoint(2,2); p.x<dim.x-3; p.x+=2 ) {
       for (p.y = 2; p.y<dim.y-3; p.y+=2 ) {
         let vert = r.oneIn(2);

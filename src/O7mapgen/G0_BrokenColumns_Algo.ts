@@ -6,7 +6,7 @@ import { MapDrawerIF } from "./33MapDrawerIF";
 
 export class G0_BrokenColumns_Algo {
   run(dim:WPoint, r:Rnd, dm:MapDrawerIF) {
-    MapBuilder.addFence(dm.map); 
+    MapBuilder.addFence(dm.map, Glyph.Wall,Glyph.Floor); 
     dm.render();
     for (let p = new WPoint(2,1); p.x<dim.x-1; p.x+=2 ) {
       let a = r.rnd(1,dim.y-1), b = r.rnd(1,dim.y-1);

@@ -44,6 +44,8 @@ export class G6_CaveIn {
     return numDoors;
   }
   isDoor(p:WPoint):boolean { 
+    console.log(p);
+    if (!this.dm.legal(p)) { return false; }
     return this.dm.get(p) == Glyph.Floor; 
   }
   closeDoor(p:WPoint, d:WPoint|null) { 

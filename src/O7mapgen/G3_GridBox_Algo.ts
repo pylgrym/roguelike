@@ -1,6 +1,7 @@
 import { Glyph } from "O2model/07Glyph";
 import { Rnd } from "O2model/07Rnd";
 import { WPoint } from "O2model/07WPoint";
+import { MapBuilder } from "./33MapBuilder";
 import { MapDrawerIF } from "./33MapDrawerIF";
 
 export class G3_GridBox_Algo {
@@ -9,6 +10,8 @@ export class G3_GridBox_Algo {
     this.maxx = dm.dim.x-1; this.maxy = dm.dim.y-1; 
   }    
   run(r:Rnd, dim:WPoint, ratio:number) {
+    let map = this.dm.map;
+    MapBuilder.addFence(map, Glyph.Wall, Glyph.Rock);
     this.dm.render();
     let rnd_size:boolean = false;
     let rnd_offset:boolean = false;
