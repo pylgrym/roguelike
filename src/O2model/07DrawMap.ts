@@ -35,7 +35,7 @@ export class DrawMap {
 
     let unlit:string='#001';
     let farlit:string = '#124';
-    let farDist:number = 50;
+    let farDist:number = 5000; //50;
     var fg:string, bg:string;
     let tdim = term.dim;
     let t=new TPoint();

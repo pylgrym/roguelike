@@ -27,7 +27,7 @@ export class Builder2q implements BuildIF4 {
     let ply = this.makePly(); 
     let game = new Game6(rnd,ply,this); // ch30
     this.initDragonLevel(game);
-    game.dung.level = 0;
+    game.dung.level = 8;
     this.enterFirstLevel(game);
     game.ai = this.makeAI(); 
     this.initLevel_One(game);//ch22.
