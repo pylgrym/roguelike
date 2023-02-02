@@ -1,9 +1,10 @@
+import { Glyph } from "O2model/07Glyph";
 import { Rnd } from "O2model/07Rnd";
 import { WPoint } from "O2model/07WPoint";
 import { MapDrawerIF } from "./33MapDrawerIF";
 import { Dir, Dirs } from "./Dir";
 import { Surface } from "./Surface";
-import { SurfaceIF, Tile } from "./SurfaceIF";
+import { SurfaceIF } from "./SurfaceIF";
 
 class Leg { 
   constructor(public s:WPoint, public e:WPoint, public dir:Dir,
@@ -83,7 +84,7 @@ export class G8_Sprouter_Algo {
       ); 
     }
     this.q.add(r); 
-    this.surface.box(r.a, r.b, Tile.C_WALL); 
+    this.surface.box(r.a, r.b, Glyph.Wall); 
   }
   growWay(room:Room) {
     let way:Dir|undefined = room.ways.pop();
@@ -113,7 +114,7 @@ export class G8_Sprouter_Algo {
     }
   }    
   drawTunnel(L:Leg) {
-    this.surface.tunnel(L.s, L.e, Tile.C_CORRFLOOR);
+    this.surface.tunnel(L.s, L.e, Glyph.Floor);
     // supporting walls only needed for longer halls.
     if (L.len<=1) { return; } 
     let RH = L.d.rotateCW();
@@ -131,8 +132,8 @@ export class G8_Sprouter_Algo {
     if (this.v) {
       console.log( `leg2(${s2.x},${s2.y})->(${e2.x},${e2.y})`); 
     }
-    this.surface.tunnel(s1, e1, Tile.C_HALLWALL);
-    this.surface.tunnel(s2, e2, Tile.C_HALLWALL);
+    this.surface.tunnel(s1, e1, Glyph.Wall);
+    this.surface.tunnel(s2, e2, Glyph.Wall);
   }
   collisions:Leg[] = [];    
   suggestLeg(way:Dir|undefined, room:Room):Leg {
