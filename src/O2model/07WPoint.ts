@@ -1,4 +1,3 @@
-import { TPoint } from "O1term/03TPoint";
 
 export class WPoint {
   constructor(public x:number=0, public y:number=0) {}
@@ -36,5 +35,6 @@ export class WPoint {
   }
 
   static StockDims = new WPoint(
-    TPoint.StockDims.x,TPoint.StockDims.y);
+    190,160 //TPoint.StockDims.x,TPoint.StockDims.y
+  );
 }
