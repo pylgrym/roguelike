@@ -51,7 +51,6 @@ export class BreathStep extends TimedStep {
     }
     return done ? this.next : this;
   }
-
   cleanup() {
     for (let c of this.cells) {c.sprite = undefined;}
   } // we remove dragon-fire at end.

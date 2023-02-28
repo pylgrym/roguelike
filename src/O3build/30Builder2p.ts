@@ -72,7 +72,7 @@ export class Builder2p implements BuildIF4 {
   static plyHP_value=16;
   makePly():Mob { 
     let ply = new Mob(Glyph.Ply,20,12);
-    ply.hp = ply.maxhp = Builder2p.plyHP_value*=2; //10000; //15;
+    ply.hp = ply.maxhp = Builder2p.plyHP_value *= 2; 
     return ply; 
   }
   
