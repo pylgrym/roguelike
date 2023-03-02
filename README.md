@@ -13,7 +13,7 @@ https://www.google.com/search?client=firefox-b-d&q=how+to+make+your+own+roguelik
   https://www.barnesandnoble.com/w/how-to-create-your-own-roguelike-with-typescript-jakob-gaardsted/1143097845
   https://www.adlibris.com/se/bok/how-to-create-your-own-roguelike-with-typescript-9788797439029
   https://www.booktopia.com.au/how-to-create-your-own-roguelike-with-typescript-jakob-gaardsted/book/9788797439029.html
-  
+
 ```
 
 To set up and run, you need the following:
@@ -45,4 +45,5 @@ Beware that the code for different chapters are on git branches
 ```
 ch02 .. chNN .. ch33
 ```
+(you may possibly right now be on branch `main` instead.)
 
