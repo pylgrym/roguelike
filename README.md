@@ -18,7 +18,7 @@ https://www.google.com/search?client=firefox-b-d&q=how+to+make+your+own+roguelik
   https://www.booktopia.com.au/how-to-create-your-own-roguelike-with-typescript-jakob-gaardsted/book/9788797439029.html
 ```
 
-To set up and run, you need the following:
+# To set up and run, you need the following:
 
 (1) install node.js however you wish
 https://nodejs.org/en/download/
