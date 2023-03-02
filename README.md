@@ -1,4 +1,4 @@
-# roguelike
+# Make Your Own Roguelike with TypeScript Tutorial
 
 For instructions, you may start with either the full playlist,
 
