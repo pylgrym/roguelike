@@ -1,8 +1,11 @@
 # roguelike
 
 For instructions, you may start with either the full playlist,
+
 ` https://www.youtube.com/watch?v=sgD2gypE69s&list=PLp95sNPOODREkGXN6OsO518yOSGFxKEyE `
+
 or video #2, 'setting up your tools'.
+
 ` https://www.youtube.com/watch?v=_Ij_kxE-iEY&list=PLp95sNPOODREkGXN6OsO518yOSGFxKEyE&index=3 `
 
 There is a published book which explains each of the tutorial chapters in depth:
