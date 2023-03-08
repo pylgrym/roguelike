@@ -1,3 +1,3 @@
 let test:string = 'Hello Typescript!';
 console.log(test);
-document.body.textContent = test;
+document.body.firstChild!.textContent = test;
