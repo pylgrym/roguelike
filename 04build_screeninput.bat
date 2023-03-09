@@ -1,2 +1,1 @@
-npx webpack build --entry ./src/index03_resize.ts -o dist3
-
+npx webpack build --entry ./src/index04_rawscreen.ts -o dist4
