@@ -56,7 +56,8 @@ export class Worn {
        Slot.MainHand, 
        Slot.OffHand];
   static isWeapon(o:Obj) { 
-      return o.slot in Worn.weapons; 
+      return Worn.weapons.includes(o.slot); 
+      // return o.slot in Worn.weapons; 
   }
   weapon():Obj|undefined {
       for (let slot of Worn.weapons) {
